@@ -1,0 +1,13 @@
+player_id,player_name,football_role,shirt_number,date_of_birth,roster_scope_status,position_code,position_status,notes
+PLY-FCB-2008-09-001,Xavi Hernández,Midfielder,6,1980-01-25,APPROVED,BA,DRAFT,"Pilot roster selection approved; BA is a draft proposal only."
+PLY-FCB-2008-09-002,Andrés Iniesta,Midfielder,8,1984-05-11,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-003,Seydou Keita,Midfielder,15,1980-01-16,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-004,Alexander Hleb,Midfielder,21,1981-05-01,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-005,Yaya Touré,Midfielder,24,1983-05-13,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-006,Sergio Busquets,Midfielder,28,1988-07-16,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-007,Eiður Guðjohnsen,Forward,7,1978-09-15,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-008,Samuel Eto'o,Forward,9,1981-03-10,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-009,Lionel Messi,Forward,10,1987-06-24,APPROVED,ES,APPROVED,"Explicit user-approved F2B position."
+PLY-FCB-2008-09-010,Bojan Krkić,Forward,11,1990-08-28,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-011,Thierry Henry,Forward,14,1977-08-17,APPROVED,,, "Pilot roster selection approved; position pending."
+PLY-FCB-2008-09-012,Pedro Rodríguez,Forward,27,1987-07-28,APPROVED,,, "Pilot roster selection approved; position pending."
