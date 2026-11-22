@@ -1,35 +1,49 @@
 # F2B — Football to Basketball
 
-F2B is an alternate-history basketball simulation built from the history of association football. It preserves the identity and real-world career paths of clubs, competitions and eligible players, while allowing basketball performance, results, statistics, honours, contracts and records to diverge within the simulation.
+F2B és una enciclopèdia d'història alternativa del bàsquet. Reutilitza la identitat de les competicions, els clubs, els participants i l'estructura dels enfrontaments del futbol com a context; no replica les classificacions ni les estadístiques futbolístiques.
 
-## Core principles
-- Eligible players: midfielders and forwards only, including their football sub-positions. Goalkeepers and defenders are excluded.
-- F2B height = verified real height + 15 cm.
-- F2B weight = verified real weight + 7 kg.
-- Basketball position is assigned from the player's **real height before conversion**, then assessed against football role, versatility and roster context.
-- Preserve real clubs, chronology and season-by-season career order.
-- Season rosters include eligible first-team players, not reserve/youth players merely making occasional appearances.
-- Keep real-world facts separate from conversions and alternate simulation outcomes.
+## Versió actual: v0.3 — Primera Divisió 2008/09
 
-## Evidence and status vocabulary
-- `REAL`: verified historical fact.
-- `F2B`: mechanical conversion under project rules.
-- `ALT`: alternate-history divergence.
-- `SIM`: generated simulation output.
+La temporada pilot incorpora:
+- 1 competició i 1 temporada.
+- 20 identitats de club i 20 participacions d'equip.
+- 38 jornades i 380 enfrontaments (10 per jornada).
+- 190 emparellaments de la primera volta contrastats amb la font de referència.
+- 190 emparellaments de tornada derivats invertint la localia, amb enllaç explícit al partit de primera volta.
+- Cap jugador, plantilla, marcador de futbol, classificació de futbol o estadística futbolística.
+- Cap resultat, classificació o estadística F2B simulat encara.
 
-Approval states: `PENDING`, `DRAFT`, `REVIEWED`, `APPROVED`.
+## Obrir l'aplicació
 
-## Project period
-The initial historical coverage begins in season **1974/75**.
+Obre `index.html` directament o utilitza GitHub Pages quan estigui activat al repositori. L'entrada és una compilació autònoma amb CSS, JavaScript i les dades del pilot incrustades; no necessita paquets externs.
 
-## Repository map
-- `docs/`: project definition, methodology, position matrix and rating framework.
-- `data/pilots/`: controlled pilot datasets.
-- `governance/`: decisions, approvals and change control.
-- `ROADMAP.md`: staged implementation plan.
+## Paquet de projecte editable
 
-## Current pilot
-FC Barcelona 2008/09 is the initial roster pilot. The 12-player selection is approved as a pilot scope. Physical measurements remain provisional pending source-by-source verification. Only Lionel Messi's F2B position (ES) is explicitly approved at this stage; other positions must not be treated as final.
+El paquet ZIP distribuït amb aquesta versió inclou l'estructura modular del projecte:
+- `assets/css/app.css`
+- `assets/js/app.js`
+- `data/catalog/`
+- `data/seasons/laliga/2008-09/`
+- `docs/`
+- `tests/`
 
-## Data integrity
-Do not bulk-convert seasons or players without validation. Never silently upgrade provisional information to approved. Every future dataset should carry provenance, evidence status and a clear distinction between REAL, F2B, ALT and SIM.
+Per executar el projecte modular localment, inicia un servidor estàtic des de la carpeta arrel:
+
+```bash
+python -m http.server 8000
+```
+
+Després obre `http://localhost:8000`.
+
+## Validar les dades
+
+```bash
+python tests/validate_season.py
+node tests/render_smoke.js
+```
+
+Les comprovacions confirmen 20 clubs, 20 participacions, 38 jornades, 380 enfrontaments, 19 partits locals i 19 visitants per equip i emparellaments de doble volta. També comproven que no hi hagi marcadors ni registres de jugadors a la base del pilot.
+
+## Abast i filosofia
+
+F2B prioritza les dades que constitueixen la història pròpia de la simulació: resultats de bàsquet, classificacions F2B, estadístiques, jugadors, trajectòries, rècords i història de les competicions. Les dades REAL es limiten a la informació d'identitat i estructura necessària. La informació que no s'ha verificat no es completa amb valors ficticis.
