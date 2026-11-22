@@ -29,8 +29,11 @@ L'editor és una eina interna separada de la consulta pública.
 ## Fitxa de temporada
 Pestanyes previstes: resum, equips, classificació, partits/jornades i estadístiques. La classificació i estadístiques són F2B; no es poden copiar les taules ni els resultats del futbol perquè el rendiment simulat és diferent.
 
+## Fitxa de club
+Pàgina pròpia de l'entitat amb dades d'identitat, palmarès i llistat de temporades/competicions. No conté una única plantilla atemporal.
+
 ## Fitxa d'equip per temporada
-Pestanyes: plantilla, estadístiques, partits i historial de temporades. La plantilla és contextual a la temporada seleccionada. Els jugadors enllacen a una fitxa individual.
+Pestanyes: plantilla, estadístiques, partits i historial de temporades. La plantilla és contextual a la temporada seleccionada. La fitxa general de club i la fitxa d’equip en una temporada concreta són pantalles diferents. Els jugadors enllacen a una fitxa individual.
 
 ## Fitxa individual de jugador
 Pestanyes: resum, trajectòria, perfil físic, valoració, estadístiques i palmarès. Cal separar dades REAL, dades convertides F2B i divergències ALT/SIM, i mantenir estats PENDING/DRAFT/REVIEWED/APPROVED.
@@ -47,7 +50,7 @@ Entitats mínimes: Competition, Season, Club, TeamSeason, Player, PlayerSeason, 
 Relacions: una competició conté temporades; una temporada conté equips participants i partits; un TeamSeason connecta club, temporada, plantilla, entrenador i estadístiques; PlayerSeason connecta jugador, equip/temporada i el seu perfil/rendiment d'aquell any.
 
 ## Estat funcional v0.2
-Implementat: navegació entre mòduls, fitxa de competició, selector d'anys, fitxa de temporada i pestanyes, accés a equip per temporada, plantilla pilot, filtres de plantilla i directoris de jugadors/clubs, fitxa de jugador i pestanyes estructurals.
+Implementat: navegació entre mòduls, fitxa de competició, selector d'anys, fitxa de temporada i pestanyes, fitxa general de club, accés a equip per temporada, plantilla pilot, filtres de plantilla i directoris de jugadors/clubs, fitxa de jugador i pestanyes estructurals.
 
 Pendent: backend/base central, sincronització amb GitHub, editor de dades complet, relacions operatives, classificacions i estadístiques F2B reals, resultats i fitxes de partit, rànquings, fonts detallades, auditoria i permisos.
 
