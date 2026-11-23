@@ -11,7 +11,7 @@
 - [ ] Verify each pilot player's real height and weight against reliable sources.
 - [ ] Store source-level evidence and conflicts for each physical field.
 - [ ] Review all 12 player position assignments; preserve Messi = ES.
-- [ ] Recover and validate the full approved BA archetype list (15 archetypes) from the original design work.
+- [ ] Recover and validate the full approved BA archetype list (15 archetypes) from the original design work.\n  - [x] Create a first refinement draft for BA-01, BA-02, BA-03 and BA-15 in `docs/ARCHETYPES_BA_REFINEMENT.md` (not approved; attributes retained pending audit).
 - [ ] Confirm first-team roster evidence and season membership.
 
 ## Phase 2 — Canonical data model
