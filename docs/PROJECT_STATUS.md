@@ -1,6 +1,6 @@
-# F2B · Informe de situació v0.6
+# F2B · Informe de situació v0.7
 
-**Tall de treball: 26 de novembre de 2026.** Aquesta és la primera base integrada per continuar l’enciclopèdia i desenvolupar el simulador.
+**Tall de treball: 26 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
 ## Reglament vigent
 
@@ -8,6 +8,14 @@
 - Només entren a F2B els migcampistes i davanters elegibles. Físic convertit: +15 cm i +7 kg.
 - La posició principal i les alternatives pertanyen a la fitxa de temporada. Els quintets accepten rols situacionals i poden alinear dos bases, tres interiors o cap pivot nominal.
 - La trajectòria i el marc de les competicions donen el punt de partida històric. Els resultats i les estadístiques sorgeixen del joc F2B.
+
+## Catàleg i navegació v0.7
+
+El catàleg de competicions conté **29 identitats estables**, agrupades en set països, clubs europeus i seleccions. Inclou les copes de lliga d’Anglaterra, França i Portugal. La Copa de la UEFA i l’Europa League comparteixen una identitat de competició. Els noms i formats de temporada s’apliquen a cada edició quan es carrega.
+
+L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
+
+Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
 
 ## Inventari integrat
 
@@ -18,7 +26,7 @@
 | Barça i Madrid 2008/09 | 28 conversions, 36 atributs cadascuna | Barça 12, Madrid 16. Es van incorporar les 3 correccions de posició i les 13 d’OVR. Els ajustos derivats de POT/arquetip i els atributs estimats conserven estat provisional. |
 | València 2008/09 | 16 fitxes, 9 posicions acordades | Les altres set posicions i les valoracions continuen pendents a la versió integrada. |
 | Sevilla, Vila-real i Atlètic | 14, 13 i 12 fitxes | Inventari del pilot. Les conversions completes requereixen una font recuperable o una nova validació. |
-| Inter 2009/10 | 17 fitxes | Vista pròpia dins l’HTML amb etapa, arquetip, físic, OVR/POT i funció. Eto’o i Sneijder reutilitzen la identitat del pilot espanyol. Es mantenen les valoracions aprovades Sneijder 89, Milito 88 i Cambiasso 86. Inter no forma part del calendari espanyol. |
+| Inter 2009/10 | 17 fitxes | Dades conservades al repositori amb etapa, arquetip, físic, OVR/POT i funció. Eto’o i Sneijder reutilitzen la identitat del pilot espanyol. Es mantenen les valoracions aprovades Sneijder 89, Milito 88 i Cambiasso 86. L’Inter queda fora del visor fins que s’incorpori a una edició de la seva competició. |
 | Catàleg | 75 arquetips, 15 per posició | Codis i noms aprovats. La matriu comparativa té cinc dimensions. Hi ha dues files originals recuperades de la comparativa i dues de l’encaix; la resta continuen pendents de recuperació. |
 | Laboratori F2B | 36 camps d’atributs | Codis i noms registrats. Els valors individuals de Barça i Madrid són una proposta de calibratge. L’Inter conserva les dades disponibles al seu Excel. |
 
@@ -61,4 +69,4 @@ El primer bloc adient és un **motor de partit reproduïble de 48 minuts** per a
 
 ## Verificació d’aquesta entrega
 
-La compilació comprova les relacions i els recomptes de calendari i plantilles, els codis d’arquetip, els 36 atributs, la coherència OVR/POT i les conversions físiques. També s’ha executat el renderitzat JavaScript de set rutes amb un DOM de prova.
+La compilació comprova les relacions i els recomptes de calendari i plantilles, els codis d’arquetip, els 36 atributs, la coherència OVR/POT i les conversions físiques. El redisseny s’ha comprovat amb un DOM de prova i amb la regeneració de l’HTML.

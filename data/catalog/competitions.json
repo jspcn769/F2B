@@ -1,0 +1,310 @@
+{
+  "groups": [
+    {
+      "id": "ESP",
+      "name": "Espanya",
+      "scope": "domestic"
+    },
+    {
+      "id": "ENG",
+      "name": "Anglaterra",
+      "scope": "domestic"
+    },
+    {
+      "id": "ITA",
+      "name": "Itàlia",
+      "scope": "domestic"
+    },
+    {
+      "id": "GER",
+      "name": "Alemanya",
+      "scope": "domestic"
+    },
+    {
+      "id": "FRA",
+      "name": "França",
+      "scope": "domestic"
+    },
+    {
+      "id": "POR",
+      "name": "Portugal",
+      "scope": "domestic"
+    },
+    {
+      "id": "NED",
+      "name": "Països Baixos",
+      "scope": "domestic"
+    },
+    {
+      "id": "UEFA",
+      "name": "Clubs europeus",
+      "scope": "international"
+    },
+    {
+      "id": "NT",
+      "name": "Seleccions",
+      "scope": "international"
+    }
+  ],
+  "competitions": [
+    {
+      "id": "CMP-ESP-PRIMERA",
+      "groupId": "ESP",
+      "name": "Primera Divisió",
+      "type": "league",
+      "aliases": [
+        "LaLiga",
+        "La Liga",
+        "Primera División"
+      ]
+    },
+    {
+      "id": "CMP-ESP-COPA",
+      "groupId": "ESP",
+      "name": "Copa del Rei",
+      "type": "cup",
+      "aliases": [
+        "Copa del Rey"
+      ]
+    },
+    {
+      "id": "CMP-ESP-SUPERCOPA",
+      "groupId": "ESP",
+      "name": "Supercopa d’Espanya",
+      "type": "supercup",
+      "aliases": [
+        "Supercopa de España"
+      ]
+    },
+    {
+      "id": "CMP-ENG-PRIMERA",
+      "groupId": "ENG",
+      "name": "Premier League",
+      "type": "league",
+      "aliases": [
+        "First Division",
+        "English First Division"
+      ]
+    },
+    {
+      "id": "CMP-ENG-FA-CUP",
+      "groupId": "ENG",
+      "name": "FA Cup",
+      "type": "cup",
+      "aliases": []
+    },
+    {
+      "id": "CMP-ENG-LEAGUE-CUP",
+      "groupId": "ENG",
+      "name": "Copa de la Lliga anglesa",
+      "type": "league-cup",
+      "aliases": [
+        "League Cup",
+        "EFL Cup",
+        "Carabao Cup"
+      ]
+    },
+    {
+      "id": "CMP-ENG-SHIELD",
+      "groupId": "ENG",
+      "name": "Community Shield",
+      "type": "supercup",
+      "aliases": [
+        "Charity Shield"
+      ]
+    },
+    {
+      "id": "CMP-ITA-PRIMERA",
+      "groupId": "ITA",
+      "name": "Serie A",
+      "type": "league",
+      "aliases": []
+    },
+    {
+      "id": "CMP-ITA-COPA",
+      "groupId": "ITA",
+      "name": "Coppa Italia",
+      "type": "cup",
+      "aliases": []
+    },
+    {
+      "id": "CMP-ITA-SUPERCOPA",
+      "groupId": "ITA",
+      "name": "Supercoppa Italiana",
+      "type": "supercup",
+      "aliases": []
+    },
+    {
+      "id": "CMP-GER-PRIMERA",
+      "groupId": "GER",
+      "name": "Bundesliga",
+      "type": "league",
+      "aliases": []
+    },
+    {
+      "id": "CMP-GER-COPA",
+      "groupId": "GER",
+      "name": "DFB-Pokal",
+      "type": "cup",
+      "aliases": [
+        "DFB Pokal"
+      ]
+    },
+    {
+      "id": "CMP-GER-SUPERCOPA",
+      "groupId": "GER",
+      "name": "Supercopa d’Alemanya",
+      "type": "supercup",
+      "aliases": [
+        "DFL-Supercup",
+        "DFB-Supercup"
+      ]
+    },
+    {
+      "id": "CMP-FRA-PRIMERA",
+      "groupId": "FRA",
+      "name": "Ligue 1",
+      "type": "league",
+      "aliases": [
+        "Division 1"
+      ]
+    },
+    {
+      "id": "CMP-FRA-COPA",
+      "groupId": "FRA",
+      "name": "Coupe de France",
+      "type": "cup",
+      "aliases": []
+    },
+    {
+      "id": "CMP-FRA-LEAGUE-CUP",
+      "groupId": "FRA",
+      "name": "Coupe de la Ligue",
+      "type": "league-cup",
+      "aliases": [],
+      "historicalOnly": true
+    },
+    {
+      "id": "CMP-FRA-SUPERCOPA",
+      "groupId": "FRA",
+      "name": "Trophée des Champions",
+      "type": "supercup",
+      "aliases": [
+        "Trofeu dels Campions"
+      ]
+    },
+    {
+      "id": "CMP-POR-PRIMERA",
+      "groupId": "POR",
+      "name": "Primeira Liga",
+      "type": "league",
+      "aliases": [
+        "Liga Portugal",
+        "Campeonato Nacional da Primeira Divisão"
+      ]
+    },
+    {
+      "id": "CMP-POR-COPA",
+      "groupId": "POR",
+      "name": "Taça de Portugal",
+      "type": "cup",
+      "aliases": []
+    },
+    {
+      "id": "CMP-POR-LEAGUE-CUP",
+      "groupId": "POR",
+      "name": "Taça da Liga",
+      "type": "league-cup",
+      "aliases": [
+        "Copa de la Lliga portuguesa"
+      ]
+    },
+    {
+      "id": "CMP-POR-SUPERCOPA",
+      "groupId": "POR",
+      "name": "Supertaça Cândido de Oliveira",
+      "type": "supercup",
+      "aliases": [
+        "Supertaça"
+      ]
+    },
+    {
+      "id": "CMP-NED-PRIMERA",
+      "groupId": "NED",
+      "name": "Eredivisie",
+      "type": "league",
+      "aliases": [
+        "Holanda"
+      ]
+    },
+    {
+      "id": "CMP-NED-COPA",
+      "groupId": "NED",
+      "name": "KNVB Beker",
+      "type": "cup",
+      "aliases": [
+        "KNVB Cup"
+      ]
+    },
+    {
+      "id": "CMP-NED-SUPERCOPA",
+      "groupId": "NED",
+      "name": "Johan Cruijff Schaal",
+      "type": "supercup",
+      "aliases": [
+        "Johan Cruyff Shield"
+      ]
+    },
+    {
+      "id": "CMP-UEFA-CHAMPIONS",
+      "groupId": "UEFA",
+      "name": "Champions League",
+      "type": "continental-cup",
+      "aliases": [
+        "Copa d’Europa",
+        "UEFA Champions League",
+        "Lliga de Campions"
+      ]
+    },
+    {
+      "id": "CMP-UEFA-EUROPA",
+      "groupId": "UEFA",
+      "name": "Europa League",
+      "type": "continental-cup",
+      "aliases": [
+        "Copa de la UEFA",
+        "UEFA Cup",
+        "UEFA Europa League"
+      ]
+    },
+    {
+      "id": "CMP-UEFA-SUPERCOPA",
+      "groupId": "UEFA",
+      "name": "Supercopa d’Europa",
+      "type": "supercup",
+      "aliases": [
+        "UEFA Super Cup"
+      ]
+    },
+    {
+      "id": "CMP-UEFA-EURO",
+      "groupId": "NT",
+      "name": "Eurocopa",
+      "type": "national-teams",
+      "aliases": [
+        "UEFA Euro",
+        "Campionat d’Europa"
+      ]
+    },
+    {
+      "id": "CMP-FIFA-WC",
+      "groupId": "NT",
+      "name": "Mundial",
+      "type": "national-teams",
+      "aliases": [
+        "FIFA World Cup",
+        "Copa del Món"
+      ]
+    }
+  ]
+}

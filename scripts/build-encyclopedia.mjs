@@ -3,13 +3,14 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
   json('data/catalog/archetypes.json'),
   json('data/catalog/attributes.json'),
   json('data/rules/regulation.json'),
+  json('data/catalog/competitions.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -77,7 +78,31 @@ for(const row of conversion.partialPositions){
   Object.assign(m.conversion,{status:'IN_REVIEW',primaryPosition:row.position,primaryPositionStatus:row.status});
 }
 for(const profile of inter.players) normalizeConversion(profile);
-Object.assign(db,{archetypeCatalog:catalog,attributeDictionary:dictionary,archiveSquads:[inter],rules});
+const {groups, competitions}=competitionCatalog;
+check(unique(groups,'id') && unique(competitions,'id'), 'IDs de competició o grup duplicats');
+const groupIds = new Set(groups.map(group=>group.id));
+const types = ['league','cup','league-cup','supercup','continental-cup','national-teams'];
+for (const item of competitions) {
+  check(/^CMP-[A-Z0-9-]+$/.test(item.id) && item.name && groupIds.has(item.groupId), 'Fitxa de competició invàlida');
+  check(types.includes(item.type) && Array.isArray(item.aliases) && item.aliases.every(alias=>typeof alias==='string'), item.id);
+}
+check(groups.filter(group=>group.scope==='domestic').length===7, 'Calen set països al catàleg');
+for (const group of groups.filter(group=>group.scope==='domestic')) {
+  const domestic=competitions.filter(item=>item.groupId===group.id);
+  for (const type of ['league','cup','supercup']) {
+    check(domestic.some(item=>item.type===type), group.id+' sense '+type);
+  }
+}
+const editionIndex=[{
+  id:db.season.id,
+  competitionId:db.season.competitionId,
+  label:'2008/09',
+  teams:db.participants.length,
+  rounds:db.rounds.length,
+  fixtures:db.fixtures.length,
+}];
+check(editionIndex.every(edition=>competitions.some(item=>item.id===edition.competitionId)), 'Edició sense competició');
+Object.assign(db,{archetypeCatalog:catalog,attributeDictionary:dictionary,competitionCatalog,editionIndex,rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');
 const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));
@@ -87,4 +112,4 @@ if(process.argv.includes('--check')){
 }else{
   await fs.writeFile(destination,output);
 }
-console.log('F2B · 75 arquetips · 36 atributs · 83 jugadors pilot · 28 conversions · 9 posicions · 17 fitxes de l’Inter · 48 min / 240 min per equip');
+console.log('F2B · 75 arquetips · 36 atributs · 83 jugadors pilot · 28 conversions · 9 posicions · catàleg i índex d’edicions validats · 48 min / 240 min per equip');
