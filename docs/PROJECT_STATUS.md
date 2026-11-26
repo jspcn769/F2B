@@ -52,7 +52,7 @@ S’han usat l’artefacte `F2B-Primera-Divisio-2008-09-6-clubs-v0.5.html`, els 
 
 ## Direcció històrica aprovada
 
-El [cànon històric](HISTORICAL_CANON.md) fixa la cobertura, els moviments de categoria, les trajectòries i l’aprovació de les excepcions que afecten el palmarès o les places. El primer curs complet proposat és el 2008/09.
+El [cànon històric](HISTORICAL_CANON.md) fixa la cobertura, els moviments de categoria, les trajectòries i l’aprovació de les excepcions que afecten el palmarès o les places. El primer curs de construcció confirmat és el 2008/09.
 
 ## Bloc següent
 
