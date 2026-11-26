@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.8
+# F2B · Informe de situació v0.9
 
 **Tall de treball: 26 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -17,9 +17,11 @@ L’HTML distingeix una competició catalogada d’una edició amb dades. La nov
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
 
-## Arquetips v0.8
+## Arquetips v0.9
 
-El catàleg enllaça a 15 fitxes detallades dels bases, BA-01 a BA-15. Les fitxes parteixen de `data/catalog/archetype-profiles.json` i comparteixen estructura. BA-01 mostra la fila registrada. Els altres catorze bases mostren propostes de calibratge, pendents de recuperar o validar la matriu original. Les fitxes dels altres seixanta arquetips conserven codi i nom i indiquen el detall pendent.
+El catàleg enllaça a **30 fitxes detallades**, les 15 de base i les 15 d’escolta. Cada fitxa recull identitat, comportament en pista, possessió il·lustrativa, encaix, límits, criteris d’assignació, referències i proposta per al motor. Les referències diferencien una assignació existent al pilot d’un cas de contrast, i els enllaços entre posicions permeten comparar els perfils que coincideixen en funcions.
+
+Les fitxes parteixen de `data/catalog/archetype-profiles.json`. BA-01 i ES-01 mostren les files registrades al catàleg F2B LAB. Els altres 28 perfils desenvolupats mostren propostes de calibratge pendents de contrast amb la matriu original. Els 45 arquetips restants conserven codi i nom a l’índex.
 
 ## Inventari integrat
 

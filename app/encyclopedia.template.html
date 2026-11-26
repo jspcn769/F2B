@@ -58,7 +58,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.8</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.9</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -627,7 +627,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
   const archetypeLink=(id,label,cls='archive-link')=>routeLink(archetypePath(id),esc(label),cls);
 
   function renderArchetypeIndex(){
-    return pageHead('Catàleg F2B','Arquetips','75 perfils per posició, amb les fitxes dels 15 bases ja desenvolupades.')+
+    return pageHead('Catàleg F2B','Arquetips','75 perfils en cinc posicions. Consulta les 30 fitxes detallades de bases i escoltes.')+
       Object.entries(positionNames).map(([position,label])=>{
         const entries=DB.archetypeCatalog.entries.filter(entry=>entry.position===position);
         return `<section class="archive-section"><h2>${esc(label)}</h2><div class="archetype-grid">${entries.map(entry=>{
@@ -688,7 +688,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
         <section class="archetype-panel"><h2>Referències F2B</h2><ul class="archetype-refs">${refs}</ul>${id==='BA-01'?'<p class="archetype-caption">Xavi · 185 cm / 75 kg F2B · encaix BA-01 de 94,4/99 amb els atributs del pilot.</p>':''}</section>
         <section class="archetype-panel"><h2>Proposta per al motor</h2><p>${esc(profile.engine)}</p><h3>Indicadors proposats</h3><ul>${profile.indicators.map(value=>`<li>${esc(value)}</li>`).join('')}</ul></section>
       </div>
-      <nav class="archetype-pager" aria-label="Altres bases">${adjacent.map(item=>archetypeLink(item.id,item.id+' · '+item.name)).join('')}</nav>
+      <nav class="archetype-pager" aria-label="Altres arquetips de la posició">${adjacent.map(item=>archetypeLink(item.id,item.id+' · '+item.name)).join('')}</nav>
     </article>`;
   }
 
