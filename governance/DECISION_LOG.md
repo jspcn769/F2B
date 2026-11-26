@@ -28,5 +28,24 @@ This file records explicit project decisions. Draft proposals and assumptions mu
 | DEC-017 | F2B should commonly reach 100 points per team. | APPROVED | Direction for engine calibration. The scoring distribution, pace and baseline efficiency remain open. |
 | DEC-018 | Version the encyclopedia and structured data together in this repository. | APPROVED | The standalone HTML is generated. Browser edits are drafts until imported and reviewed. |
 
+## Cànon històric · decisions aprovades el 2026-11-26
+
+| ID | Decisió | Estat | Aplicació |
+|---|---|---|---|
+| DEC-019 | Una única història oficial F2B, publicada per temporades i amb narrativa pròpia. | APPROVED | Cada excepció i les seves conseqüències són traçables. |
+| DEC-020 | Set lligues completes amb copes i supercopes nacionals: Espanya, Anglaterra, Itàlia, Alemanya, França, Portugal i Països Baixos. | APPROVED | Les segones divisions es documenten com a procedència o destí dels moviments de categoria. |
+| DEC-021 | Cobertura de Champions League, competició UEFA secundària, Supercopa d’Europa, Eurocopa i Mundial. | APPROVED | Noms i formats per època. El Mundial és l’única competició coberta fora de l’àmbit europeu. |
+| DEC-022 | S’admeten equips-temporada externs amb cobertura selectiva. | APPROVED | Per participació en tornejos coberts o per documentar trajectòries de jugadors. |
+| DEC-023 | La simulació pot reordenar els equips, especialment a la zona mitjana. | APPROVED | Mateixos ascendits i descendits històrics. L’ordre dels equips descendits pot variar dins la zona de descens. |
+| DEC-024 | Els campions, les places europees i altres places determinants parteixen del resultat històric. | APPROVED | Canvis excepcionals validats manualment per edició, amb justificació i els efectes aplicats a les competicions dependents. |
+| DEC-025 | Es detalla la fase principal dels tornejos europeus de clubs. | APPROVED | Copes nacionals habitualment des de vuitens. El punt de tall es pot ajustar per edició. |
+| DEC-026 | Les trajectòries, els moviments, les dates de pertinença i la disponibilitat documentada són històrics. | APPROVED | Minuts i titularitats F2B. Els canvis de jerarquia han de ser proporcionats al perfil i a l’evidència. |
+| DEC-027 | Convocatòries reals de selecció amb un mínim de 15 jugadors a F2B. | APPROVED | Es permeten ajustos documentats quan el filtre F2B deixa la convocatòria per sota del mínim. |
+| DEC-028 | Escala econòmica europea pròpia de F2B, amb ajust per època i equivalència entre anys. | APPROVED | Imports, contractes, salaris i primes propis. La inflació i el canvi de valor monetari històrics orienten la comparació. |
+| DEC-029 | Es pot atribuir el títol als jugadors registrats a la plantilla de l’edició. | APPROVED | Són elegibles sense minuts disputats i si marxen abans del final. La contribució efectiva es conserva com a dada pròpia. |
+| DEC-030 | Cada competició té palmarès individual propi. | APPROVED | MVP, quintets ideals i guardons especialitzats. El catàleg i els criteris concrets es detallen més endavant. |
+
+Especificació de conjunt al [cànon històric](../docs/HISTORICAL_CANON.md).
+
 ## Change protocol
 For each new decision, add a unique ID, concise wording, status, date/context if known, rationale and affected files. If a decision is superseded, preserve it and add a replacement entry rather than deleting history.

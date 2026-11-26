@@ -50,6 +50,10 @@ S’han usat l’artefacte `F2B-Primera-Divisio-2008-09-6-clubs-v0.5.html`, els 
 3. Regenerar l’HTML i verificar que coincideix amb les dades. En les proves de partit, desar regles, quintets, versió del motor, llavor i resultat.
 4. Actualitzar aquest informe quan canviï la cobertura o el grau de validació.
 
+## Direcció històrica aprovada
+
+El [cànon històric](HISTORICAL_CANON.md) fixa la cobertura, els moviments de categoria, les trajectòries i l’aprovació de les excepcions que afecten el palmarès o les places. El primer curs complet proposat és el 2008/09.
+
 ## Bloc següent
 
 El primer bloc adient és un **motor de partit reproduïble de 48 minuts** per al Barça i el Madrid. Ha de validar 240 minuts per equip, treure el nombre de possessions del rellotge i conservar qui inicia, qui crea l’avantatge i qui finalitza. Amb aquests dos equips es poden contrastar un partit obert, un ritme controlat i diversos quintets amb les mateixes llavors. Abans d’escalar a competicions, cal provar també perfils de joc diferents i recuperar les matrius d’arquetips originals.
