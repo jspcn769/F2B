@@ -21,7 +21,6 @@
 | Inter 2009/10 | 17 fitxes | Vista pròpia dins l’HTML amb etapa, arquetip, físic, OVR/POT i funció. Eto’o i Sneijder reutilitzen la identitat del pilot espanyol. Es mantenen les valoracions aprovades Sneijder 89, Milito 88 i Cambiasso 86. Inter no forma part del calendari espanyol. |
 | Catàleg | 75 arquetips, 15 per posició | Codis i noms aprovats. La matriu comparativa té cinc dimensions. Hi ha dues files originals recuperades de la comparativa i dues de l’encaix; la resta continuen pendents de recuperació. |
 | Laboratori F2B | 36 camps d’atributs | Codis i noms registrats. Els valors individuals de Barça i Madrid són una proposta de calibratge. L’Inter conserva les dades disponibles al seu Excel. |
-| Experiments de partit | 2 partits | Barça–Inter 81–78, llavor 1, 72 possessions per equip; Barça–Madrid 91–80, llavor 200809, 70 possessions per equip. Ambdós són proves prèvies de 40 minuts. Els marcadors i la rotació de nou del segon experiment estan registrats; el codi original no s’ha recuperat al repositori. |
 
 ## Decisions incorporades
 
@@ -55,7 +54,6 @@ S’han usat l’artefacte `F2B-Primera-Divisio-2008-09-6-clubs-v0.5.html`, els 
 
 El primer bloc adient és un **motor de partit reproduïble de 48 minuts** per al Barça i el Madrid. Ha de validar 240 minuts per equip, treure el nombre de possessions del rellotge i conservar qui inicia, qui crea l’avantatge i qui finalitza. Amb aquests dos equips es poden contrastar un partit obert, un ritme controlat i diversos quintets amb les mateixes llavors. Abans d’escalar a competicions, cal provar també perfils de joc diferents i recuperar les matrius d’arquetips originals.
 
-Les rotacions de nou disponibles sumen 200 minuts per equip i continuen com a referència experimental. La versió de 240 minuts s’ha de construir amb la mateixa lògica de quintets i amb els minuts que corresponguin al nou reglament.
 
 ## Verificació d’aquesta entrega
 

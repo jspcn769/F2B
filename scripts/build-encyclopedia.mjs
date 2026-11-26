@@ -3,14 +3,13 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, experiments, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
   json('data/catalog/archetypes.json'),
   json('data/catalog/attributes.json'),
   json('data/rules/regulation.json'),
-  json('data/scenarios/experiments-2008-09.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -78,11 +77,6 @@ for(const row of conversion.partialPositions){
   Object.assign(m.conversion,{status:'IN_REVIEW',primaryPosition:row.position,primaryPositionStatus:row.status});
 }
 for(const profile of inter.players) normalizeConversion(profile);
-for(const team of experiments.rotation40.teams){
-  check(team.targets.length===9 && unique(team.targets,'playerId'), 'Rotació de nou');
-  check(team.targets.every(target=>conversion.profiles.some(p=>p.playerId===target.playerId&&p.team===team.club)), 'Jugador fora de la plantilla');
-  check(team.targets.reduce((sum,target)=>sum+target.minutes,0)===200, 'Total de minuts experimental');
-}
 Object.assign(db,{archetypeCatalog:catalog,attributeDictionary:dictionary,archiveSquads:[inter],rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');

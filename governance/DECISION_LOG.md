@@ -9,7 +9,7 @@ This file records explicit project decisions. Draft proposals and assumptions mu
 | DEC-003 | F2B weight conversion is real verified weight +7 kg. | APPROVED | Preserve real and converted values separately. |
 | DEC-004 | Assign basketball position using real height before conversion. | APPROVED | Then consider football role, versatility and context. |
 | DEC-005 | Initial historical coverage begins in 1974/75. | APPROVED | Historical database scope. |
-| DEC-006 | Standard game assumption is 48 minutes and 240 team player-minutes. | APPROVED | Five players × 48 minutes. Reconfirmed explicitly on 2026-11-26. The 40-minute prototypes are recorded with their own rules. |
+| DEC-006 | Standard game assumption is 48 minutes and 240 team player-minutes. | APPROVED | Five players × 48 minutes. Reconfirmed explicitly on 2026-11-26. |
 | DEC-007 | Typical roster range is 10–16, without a hard limit. | APPROVED | Duplicated or absent positions are permitted. |
 | DEC-008 | FC Barcelona 2008/09 pilot roster contains the 12 listed eligible first-team players. | APPROVED | Pilot scope only; does not approve all physical data or positions. |
 | DEC-009 | Lionel Messi's F2B position in the pilot is ES. | APPROVED | Explicit user decision. |

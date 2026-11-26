@@ -47,7 +47,6 @@ Proceed in small reviewable batches. Do not mark a phase complete merely because
 - [x] Move the v0.5 encyclopedia data into the repository and publish the generated v0.6 HTML.
 - [x] Register the 75 archetype identifiers and names, the 36 attributes, the available matrix rows and the 48-minute ruleset.
 - [x] Register and display Barcelona, Madrid and Inter conversions and nine Valencia position decisions.
-- [x] Archive the 40-minute test settings and the results as experiments.
 - [ ] Recover the remaining archetype fit and comparison cells from their original sources.
 - [ ] Convert the other pilot squads, resolving eligibility and availability case by case.
 - [ ] Implement a reproducible 48-minute match engine with possession timing and calibrate scoring across several matchups.
