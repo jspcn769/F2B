@@ -2022,5 +2022,1080 @@
         "●"
       ]
     }
+  },
+  "AL-01": {
+    "family": "Moviment sense pilota",
+    "identity": "Estira la defensa amenaçant l’espai a l’esquena de la darrera ajuda.",
+    "offense": "Ataca en diagonal després d’una recepció avançada. Si el defensor ja corre cap al cèrcol, pot frenar i donar una passada de retorn.",
+    "offBallDefense": "Talla des de l’ala quan un creador obliga la defensa a mirar cap a la pilota. En defensa adapta el retorn al seu paper al balanç.",
+    "possession": "Henry comença obert i talla quan el base fixa dos defensors. Rep per davant de l’última ajuda i acaba en cursa.",
+    "fit": "Un passador que detecta el tall aviat i un interior que surt de la pintura mantenen oberta la via profunda.",
+    "limits": "Amb la zona plena, un tall sense pausa pot acostar un defensor a la pilota. Si li neguen l’esquena, necessita obrir-se o reiniciar.",
+    "physical": "Acceleració en trajectòries diagonals i control del cos en cursa. L’alçada amplia les recepcions possibles.",
+    "near": [
+      {
+        "id": "AL-06",
+        "distinction": "Pot amenaçar profunditat en atac posicional; AL-06 explota sobretot la defensa encara en replegament."
+      },
+      {
+        "id": "AL-09",
+        "distinction": "AL-09 trenca l’alineació defensiva sobretot després de rebre."
+      },
+      {
+        "id": "ES-06",
+        "distinction": "El caçador busca buits de tota mena; AL-01 prioritza l’esquena de la defensa."
+      }
+    ],
+    "assignment": "Identifica qui obliga el defensor a protegir el cèrcol abans que arribi la pilota. Els talls llargs i diagonals han de ser recurrents.",
+    "engine": "Activar la ruta quan el passador té angle i la darrera ajuda està compromesa. Penalitzar talls que coincideixen amb un interior en el mateix carril.",
+    "indicators": [
+      "Talls a l’esquena",
+      "recepcions profundes",
+      "tirs en cursa",
+      "ajudes desplaçades"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A1",
+          "C6",
+          "F1",
+          "A2"
+        ],
+        [
+          "A4",
+          "F2",
+          "S1",
+          "A5"
+        ],
+        [
+          "F7",
+          "S5",
+          "C1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "◐",
+        "○",
+        "○"
+      ]
+    }
+  },
+  "AL-02": {
+    "family": "Conducció i contacte",
+    "identity": "Guanya metres amb pilota aprofitant força, acceleració i protecció del bot.",
+    "offense": "Ataca des de l’ala amb bots llargs quan té espai. Si el marcador recupera de costat, utilitza el cos per mantenir la trajectòria i trobar tir o passada.",
+    "offBallDefense": "S’ofereix per avançar la pilota després d’una recepció intermèdia. En defensa, la força ajuda a sostenir contacte, amb l’agilitat lateral com a factor separat.",
+    "possession": "Rep prop de mig camp, protegeix el bot del primer perseguidor i travessa el carril. Quan l’interior li talla el pas, descarrega al tirador lliure.",
+    "fit": "Al costat d’un base de primera passada i amb tiradors oberts pot convertir una recepció lateral en pressió interior.",
+    "limits": "Els defensors que li tanquen el carril abans del primer bot l’obliguen a frenar. Un excés de força o velocitat sense control comporta risc de pèrdua i falta d’atac.",
+    "physical": "Força funcional, velocitat amb pilota i canvi de ritme. La talla ajuda a protegir la pilota, però revela poc sense observar la conducció.",
+    "near": [
+      {
+        "id": "AL-05",
+        "distinction": "AL-05 busca un duel físic localitzat; AL-02 destaca pels metres que guanya en moviment."
+      },
+      {
+        "id": "AL-13",
+        "distinction": "AL-13 prolonga l’acció en espais curts i a les dues cistelles."
+      },
+      {
+        "id": "AL-14",
+        "distinction": "AL-14 obre la segona passada sobretot amb canvi de direcció i manipulació de l’ajuda."
+      }
+    ],
+    "assignment": "Busca progressions llargues o mitjanes sostingudes sota contacte lateral. Si el seu valor apareix principalment després d’aturar-se, revisa l’arquetip.",
+    "engine": "Afavorir la progressió quan el carril i el suport són favorables. Resoldre la protecció del bot i el contacte amb la força, el criteri i la posició del defensor.",
+    "indicators": [
+      "Progressions sota contacte",
+      "avantatges per conducció",
+      "passes de sortida",
+      "pèrdues i faltes d’atac"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-ARJEN-ROBBEN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-004",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C2",
+          "C3",
+          "A3",
+          "F1"
+        ],
+        [
+          "A1",
+          "A2",
+          "F7",
+          "C6"
+        ],
+        [
+          "C1",
+          "F2",
+          "S5"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "◐",
+        "●",
+        "○",
+        "○"
+      ]
+    }
+  },
+  "AL-03": {
+    "family": "Finalització",
+    "identity": "Acaba per damunt de la defensa quan la passada o el tall li permeten rebre a l’aire.",
+    "offense": "Busca un punt de salt net, protegeix la recepció i adapta l’acabament a l’angle del protector. Una passada baixa li pot demanar tornar a terra per resoldre.",
+    "offBallDefense": "Entra des del costat feble, espera que l’interior giri cap a la pilota i ofereix una diana alta. Els taps defensius depenen de la lectura i els atributs propis.",
+    "possession": "El base arriba al colze i l’interior rival fa un pas endavant. L’aler surt de la banda contrària, rep una passada alta i acaba abans que l’ajuda torni.",
+    "fit": "Guanya valor amb passadors precisos, espai per accelerar i un pivot que obligui el protector a decidir entre dues amenaces.",
+    "limits": "Amb un marcador que talla la cursa abans del salt, necessita acabar a peu pla. La verticalitat sense bon control de mans pot perdre passades complicades.",
+    "physical": "Salt, coordinació i abast permeten completar l’acció. La força modula el control del cos quan hi ha contacte en enlairar-se.",
+    "near": [
+      {
+        "id": "AL-01",
+        "distinction": "AL-01 es defineix per guanyar profunditat; AL-03 per com acaba la jugada."
+      },
+      {
+        "id": "AL-12",
+        "distinction": "AL-12 salta primer per assegurar una possessió o una segona oportunitat."
+      },
+      {
+        "id": "ES-07",
+        "distinction": "L’executor acaba corrent en transició, amb acabaments tant aeris com a terra."
+      }
+    ],
+    "assignment": "Valora recepcions i acabaments a l’aire en diverses situacions. Un salt alt en una fitxa física, per si sol, és evidència insuficient.",
+    "engine": "Oferir passada alta quan hi ha línia, temps de salt i angle segur. Resoldre recepció, interferència i acabament per separat.",
+    "indicators": [
+      "Recepcions aèries",
+      "esmaixades en cursa",
+      "eficiència amb protector proper",
+      "passades altes no controlades"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-008",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A4",
+          "F2",
+          "C6",
+          "F1"
+        ],
+        [
+          "A1",
+          "A2",
+          "A3",
+          "S1"
+        ],
+        [
+          "F3",
+          "S5",
+          "F7"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "●",
+        "◐",
+        "○"
+      ]
+    }
+  },
+  "AL-04": {
+    "family": "Anotació",
+    "identity": "Sosté una quota anotadora alta des de l’ala alternant recepció, bot i finalització interior.",
+    "offense": "Tria la via que el rival concedeix. Pot atacar un tancament, tirar en suspensió contra una ajuda baixa o aprofitar una marca petita a prop del cèrcol.",
+    "offBallDefense": "Es reubica quan un altre crea i conserva amenaça sense dominar totes les possessions. La capacitat de defensar diverses posicions es valora separadament.",
+    "possession": "Després de castigar dos tancaments en penetració, rep amb el defensor més lluny. Accepta el tir obert i, a la possessió següent, talla quan la defensa en surt massa.",
+    "fit": "Un director, bon espaiat i un interior amb continuació li permeten mantenir volum sense anunciar l’acabament.",
+    "limits": "Si baixa el criteri de tir, la varietat es pot convertir en una successió d’intents difícils. Un rival amb longitud i ajudes ràpides obliga a crear també amb la passada.",
+    "physical": "Equilibri, control en contacte i resistència per anotar de maneres diferents. Cada físic condiciona quines zones donen més rendiment.",
+    "near": [
+      {
+        "id": "ES-01",
+        "distinction": "ES-01 posa l’accent en crear la ruptura amb pilota; AL-04 en sostenir producció per vies diverses des de l’ala."
+      },
+      {
+        "id": "AL-14",
+        "distinction": "AL-14 destaca per desbordar i explotar la resposta de la segona ajuda."
+      },
+      {
+        "id": "AL-15",
+        "distinction": "AL-15 es defineix per donar respostes en funcions múltiples, inclosa la defensa."
+      }
+    ],
+    "assignment": "Busca volum, varietat i eficiència repetida contra cobertures diferents. Fer molts punts des d’una sola zona indica un perfil més específic.",
+    "engine": "Donar prioritat al tirador si té avantatge i distribuir la selecció entre zones segons cobertura, recepció i emparellament.",
+    "indicators": [
+      "Possessions acabades",
+      "punts per zona i tipus d’acció",
+      "volum eficient",
+      "punts després de recepció o bot"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-ARJEN-ROBBEN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-004",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "S5",
+          "S2",
+          "S3",
+          "F1"
+        ],
+        [
+          "S1",
+          "F7",
+          "C2",
+          "C6"
+        ],
+        [
+          "S6",
+          "F6",
+          "A5"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "◐",
+        "○",
+        "○"
+      ]
+    }
+  },
+  "AL-05": {
+    "family": "Conducció i contacte",
+    "identity": "Castiga un emparellament concret amb força i joc de peus, sobretot quan el defensor queda aïllat.",
+    "offense": "Rep a l’ala, fixa la marca amb el cos i guanya la posició amb bot curt, gir o parada. Si arriba una ajuda, la passada pot castigar que el rival hagi canviat de marca.",
+    "offBallDefense": "Busca la recepció contra la marca més petita o menys estable. Pot marcar ales físics si també disposa de lectura i defensa perimetral.",
+    "possession": "Després d’un canvi defensiu, rep amb un base al darrere. Guanya un metre amb un bot controlat, gira cap a l’espai lliure i tira abans que baixi l’ajuda.",
+    "fit": "Ofereix una resposta al canvi defensiu i als finals de rellotge. Funciona amb una cantonada oberta perquè l’ajuda hagi de recórrer més distància.",
+    "limits": "Contra ales igual de forts i més llargs, pot anar a un tir de balanç difícil. Convertir qualsevol recepció en un duel redueix el ritme de l’equip.",
+    "physical": "Força de tronc, equilibri i control dels peus; l’alçada ajuda a tirar sobre una marca més baixa.",
+    "near": [
+      {
+        "id": "AL-02",
+        "distinction": "AL-02 guanya metres en progressió; AL-05 vol dominar el seu emparellament en un espai concret."
+      },
+      {
+        "id": "AL-13",
+        "distinction": "AL-13 absorbeix contacte en rebots, talls i defensa sense necessitat d’aïllament."
+      },
+      {
+        "id": "ES-04",
+        "distinction": "ES-04 sol crear separació amb el bot i el canvi de ritme per davant del contacte."
+      }
+    ],
+    "assignment": "Busca possessions dissenyades per enfrontar-lo a una marca concreta i comprova que el cos i els peus expliquen l’avantatge.",
+    "engine": "Detectar canvis de marca favorables abans de proposar el duel. El defensor i la segona ajuda determinen si convé gir, tir o passada.",
+    "indicators": [
+      "Duels contra canvis",
+      "tirs després de contacte",
+      "dobles marques provocades",
+      "eficiència en espais curts"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "C2",
+          "F4",
+          "F1"
+        ],
+        [
+          "F7",
+          "F6",
+          "S2",
+          "S5"
+        ],
+        [
+          "A2",
+          "C6",
+          "D2"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "●",
+        "◐",
+        "○"
+      ]
+    }
+  },
+  "AL-06": {
+    "family": "Ritme i camp obert",
+    "identity": "Obre el contraatac corrent l’ala i pot convertir-se en corredor, receptor intermedi o finalitzador segons la jugada.",
+    "offense": "Quan rep aviat pot conduir el carril, fixar el defensor del mig i passar al corredor contrari. Si ja té angle, acaba abans que torni el protector.",
+    "offBallDefense": "Decideix quan córrer i quan assegurar el balanç. Estira el replegament encara que la pilota no entri al seu carril.",
+    "possession": "Faubert surt per l’ala després d’un rebot. Rep abans de mig camp. Com que el defensor li tanca la banda, atrau el marcador central i troba un company a l’altre costat.",
+    "fit": "Va bé amb rebotejadors que obren aviat i amb un base que reconeix superioritats. Pot aportar pes al ritme encara que finalitzi poc.",
+    "limits": "Quan el rival tanca el rebot i replega amb ordre, necessita aportar en mitja pista. Sortir massa aviat pot deixar un tir de segona oportunitat al rival.",
+    "physical": "Acceleració, resistència i mans fiables per rebre en cursa. La força permet sostenir el carril si hi ha contacte.",
+    "near": [
+      {
+        "id": "ES-07",
+        "distinction": "ES-07 destaca per completar el contraatac; AL-06 pot obrir-lo, estirar-lo i fer la passada intermèdia."
+      },
+      {
+        "id": "AL-01",
+        "distinction": "AL-01 amenaça l’esquena també amb el rival establert."
+      },
+      {
+        "id": "BA-09",
+        "distinction": "BA-09 acostuma a dirigir el contraatac des del primer control."
+      }
+    ],
+    "assignment": "Observa els primers segons després d’assegurar la pilota: l’aler ha d’ampliar opcions amb cursa, recepció o passada, més enllà dels seus punts.",
+    "engine": "Triar sortida i carril segons rebot segur, defensors per davant i tasca de balanç. Adaptar el paper segons la primera passada.",
+    "indicators": [
+      "Carrils oberts",
+      "recepcions primerenques",
+      "passades intermèdies",
+      "punts i ocasions de transició"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-JULIEN-FAUBERT",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-012",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-008",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A1",
+          "A5",
+          "C6",
+          "C3"
+        ],
+        [
+          "F1",
+          "A4",
+          "C1",
+          "A2"
+        ],
+        [
+          "A6",
+          "F2",
+          "S5"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "●",
+        "—",
+        "○"
+      ]
+    }
+  },
+  "AL-07": {
+    "family": "Moviment sense pilota",
+    "identity": "Converteix el moviment de la defensa davant la primera amenaça en una segona via d’atac.",
+    "offense": "Rep quan la primera ajuda ja s’ha mogut i resol amb tir, tall curt o passada abans que es recuperin les marques.",
+    "offBallDefense": "Es manté a distància útil de la primera acció, arriba al costat feble a temps i evita envair l’espai del creador o del pivot.",
+    "possession": "Raúl espera que l’interior rebi al colze. Quan l’aler rival fa l’ajuda, entra al buit un instant després i acaba amb la defensa girada.",
+    "fit": "Ideal amb iniciadors que fixen gent i un interior capaç de fer una passada curta. Pot produir sense ocupar gaire pilota.",
+    "limits": "Si el primer atac no mou la defensa, arriba a un espai tancat. Una mala sincronització pot tapar el carril del continuador.",
+    "physical": "Lectura, mans i control dels peus en trajectòries curtes. L’abast amplia les finestres de recepció.",
+    "near": [
+      {
+        "id": "AL-01",
+        "distinction": "AL-01 ataca sobretot l’espai profund; AL-07 busca el buit que deixa una acció anterior."
+      },
+      {
+        "id": "ES-14",
+        "distinction": "ES-14 arriba a l’acabament en continuació; AL-07 també enllaça amb una passada o un tir en posicions d’ala."
+      },
+      {
+        "id": "AL-08",
+        "distinction": "AL-08 pot iniciar la ruptura des del perímetre."
+      }
+    ],
+    "assignment": "Segueix l’ordre de la jugada. En aquest perfil l’aportació habitual és aprofitar la primera reacció defensiva i donar-hi una resposta de segona línia.",
+    "engine": "Assignar el tall o la recepció de segona línia després que la primera acció hagi compromès un defensor. Proposar acabament o connexió segons la nova cobertura.",
+    "indicators": [
+      "Recepcions després de primera ajuda",
+      "punts de segona acció",
+      "passades de continuïtat",
+      "errors de sincronització"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RAUL-GONZALEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-013",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-012",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-012",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C6",
+          "S5",
+          "F1",
+          "C4"
+        ],
+        [
+          "S1",
+          "S3",
+          "A2",
+          "C1"
+        ],
+        [
+          "C5",
+          "A6",
+          "F2"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "○",
+        "○",
+        "○"
+      ]
+    }
+  },
+  "AL-08": {
+    "family": "Creació exterior",
+    "identity": "Organitza oportunitats des de l’ala o el perímetre i pot sostenir la creació quan el base comparteix o cedeix la iniciativa.",
+    "offense": "Observa la defensa des d’un altre angle. Pot portar un blocatge lateral, invertir el costat o trobar un tall amb una passada abans d’haver de superar la marca.",
+    "offBallDefense": "Es col·loca com a segona sortida i fa útil una recepció lluny del centre. Pot cedir la direcció en tornar el base i quedar com a receptor actiu.",
+    "possession": "Hleb rep a l’ala quan el rival nega el retorn al base. Porta un blocatge lateral i espera que el tallador passi darrere el defensor que cobreix la continuació.",
+    "fit": "Un base capaç de moure’s sense pilota i interiors que ofereixin línies al colze li donen diverses vies per crear.",
+    "limits": "Amb poc maneig sota pressió pot perdre la segona sortida. Amb tiradors o talladors estàtics, la passada arriba sense avantatge.",
+    "physical": "Visió per damunt o al voltant de la pressió i control del bot. Una mida gran ajuda amb les passades creuades si pot conservar la pilota.",
+    "near": [
+      {
+        "id": "AL-14",
+        "distinction": "AL-14 crea sobretot després de superar i retenir la segona ajuda; AL-08 pot crear des de la lectura abans del duel."
+      },
+      {
+        "id": "ES-03",
+        "distinction": "ES-03 assumeix la segona iniciativa com a escolta; AL-08 genera també a partir dels angles i emparellaments de l’ala."
+      },
+      {
+        "id": "BA-02",
+        "distinction": "BA-02 sol concentrar la responsabilitat de passada des del base."
+      }
+    ],
+    "assignment": "Identifica si l’equip confia creació recurrent a l’aler, en possessions amb blocatge i també amb altres mecanismes de passada.",
+    "engine": "Oferir-li iniciació lateral amb responsabilitat real segons el quintet i activar tall, passada creuada o blocatge segons la lectura.",
+    "indicators": [
+      "Iniciacions des de l’ala",
+      "ocasions creades",
+      "passades al tall",
+      "pèrdues quan assumeix la direcció"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-004",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-004",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-RAFAEL-VAN-DER-VAART",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-007",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C1",
+          "C2",
+          "C4",
+          "C5"
+        ],
+        [
+          "C6",
+          "S5",
+          "S3",
+          "A2"
+        ],
+        [
+          "C3",
+          "S2",
+          "D2"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "◐",
+        "○",
+        "—",
+        "○"
+      ]
+    }
+  },
+  "AL-09": {
+    "family": "Conducció i contacte",
+    "identity": "Trenca una línia defensiva amb una recepció orientada i un primer atac decidit abans que l’ajuda es col·loqui.",
+    "offense": "Ataca el peu avançat i travessa el primer espai obert. Acaba o descarrega breument si es tanca la pintura, amb pocs bots per evitar que la defensa es refaci.",
+    "offBallDefense": "Redueix distàncies per rebre en cames i aprofita tancaments desequilibrats. Pot obrir-se quan el rival anticipa la penetració.",
+    "possession": "Rep el canvi de costat amb el defensor corrent a tancar. El supera amb el primer bot, entra pel buit abans que l’interior roti i acaba a prop del cèrcol.",
+    "fit": "Un creador que desplaça la defensa i amenaces exteriors al voltant li deixen tancaments llargs per atacar.",
+    "limits": "Un defensor equilibrat i ajuda precol·locada li treuen la primera ruptura. Si insisteix amb la defensa tancada, necessita passada ràpida o tir de suport.",
+    "physical": "Primer pas i control de frenada sostenen la ruptura curta. La força ajuda quan el defensor recupera per darrere.",
+    "near": [
+      {
+        "id": "AL-02",
+        "distinction": "AL-02 progressa sota contacte i al llarg de més espai; AL-09 se centra en travessar la primera línia ràpidament."
+      },
+      {
+        "id": "AL-14",
+        "distinction": "AL-14 busca manipular també l’ajuda que arriba després de la superació."
+      },
+      {
+        "id": "ES-04",
+        "distinction": "ES-04 acostuma a construir el duel des d’una posició més estàtica."
+      }
+    ],
+    "assignment": "Busca superacions primerenques després de rebre. La fita és arribar a un espai nou abans que hi arribi l’ajuda.",
+    "engine": "Afavorir atac de tancaments desequilibrats i jutjar el moment de descàrrega abans que es completi la rotació.",
+    "indicators": [
+      "Ruptures després de recepció",
+      "temps fins a superar",
+      "tirs al cèrcol",
+      "sortides de passada sota ajuda"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-ARJEN-ROBBEN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-004",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A2",
+          "C3",
+          "C2",
+          "F1"
+        ],
+        [
+          "A1",
+          "F7",
+          "S5",
+          "C6"
+        ],
+        [
+          "C5",
+          "S3",
+          "A3"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "●",
+        "—",
+        "○"
+      ]
+    }
+  },
+  "AL-10": {
+    "family": "Espaiat i joc lateral",
+    "identity": "Fa rendir el carril exterior amb cantonades ocupades, passades de seguretat i decisions curtes a la banda.",
+    "offense": "Rep i tria entre tir, passada enrere o atac del tancament. Manté un angle de passada disponible quan la pilota és al mig.",
+    "offBallDefense": "Es mou de cantonada a ala segons la penetració, preserva distàncies i pot orientar un rival cap a la línia si la defensa té ajuda preparada.",
+    "possession": "El base penetra pel mig. L’aler puja de la cantonada per obrir-li la línia de passada; rep i torna a la cantonada amb una passada extra quan el defensor salta.",
+    "fit": "Amb creadors centrals, pot mantenir l’amplada ofensiva i compartir una tasca defensiva lateral ben definida.",
+    "limits": "Si gairebé mai amenaça amb tir o amb el tancament, el rival pot deixar-li el carril per ajudar al mig. La banda li limita la creació quan rep parat i pressionat.",
+    "physical": "Mans fiables, equilibri en recepció i agilitat per corregir l’angle. La talla ajuda a defensar recepcions i veure per damunt del primer defensor.",
+    "near": [
+      {
+        "id": "ES-02",
+        "distinction": "ES-02 es defineix principalment pel tir exterior, allà on aparegui."
+      },
+      {
+        "id": "AL-06",
+        "distinction": "AL-06 fa servir la banda sobretot en transició."
+      },
+      {
+        "id": "AL-08",
+        "distinction": "AL-08 pren més decisions d’iniciació; AL-10 manté útil el carril lateral."
+      }
+    ],
+    "assignment": "Observa si la funció es repeteix a la banda en atacs diferents, incloses possessions en què mai rep la pilota.",
+    "engine": "Assignar ocupació lateral segons la posició de pilota i el costat d’ajuda. Resoldre tir, passada extra o atac curt segons el tancament.",
+    "indicators": [
+      "Ocupacions útils de cantonada",
+      "recepcions a l’ala",
+      "tirs exteriors de recepció",
+      "passades extra"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-012",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-012",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-JULIEN-FAUBERT",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-012",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "S3",
+          "C6",
+          "S5",
+          "C1"
+        ],
+        [
+          "A2",
+          "D2",
+          "C4",
+          "F1"
+        ],
+        [
+          "A5",
+          "S2",
+          "D6"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "○",
+        "—",
+        "◐"
+      ]
+    }
+  },
+  "AL-11": {
+    "family": "Defensa i versatilitat",
+    "identity": "Dona valor sostingut en atac i assumeix una responsabilitat defensiva important a l’ala.",
+    "offense": "Converteix tirs raonables, ataca tancaments i pot connectar una segona passada. Selecciona les accions que mantenen l’eficiència amb els creadors del quintet.",
+    "offBallDefense": "Marca un exterior rellevant, tanca les ajudes i recupera sense perdre el tirador. Pot sostenir un canvi si el seu físic hi encaixa.",
+    "possession": "Conté el primer bot del millor aler rival, ajuda a assegurar el rebot i a l’atac següent castiga una ajuda amb un triple després d’una passada extra.",
+    "fit": "Dona equilibri a quintets amb un creador que necessita protecció defensiva i evita que el rival pugui ignorar un especialista a l’altre cèrcol.",
+    "limits": "Una escala d’OVR equilibrada no demostra responsabilitat a les dues bandes. Si ha d’assumir massa volum ofensiu, pot perdre energia per a la marca.",
+    "physical": "Mobilitat lateral, força i resistència. L’equilibri físic li permet canviar d’assignació sense sortir del partit.",
+    "near": [
+      {
+        "id": "ES-12",
+        "distinction": "L’escorta defensiu es defineix principalment per la marca exterior."
+      },
+      {
+        "id": "AL-15",
+        "distinction": "L’aler universal destaca per adaptar diversos papers; AL-11 per l’impacte consistent a les dues bandes."
+      },
+      {
+        "id": "AL-13",
+        "distinction": "AL-13 obté molt valor del contacte; AL-11 pot aportar amb lectura, espaiat i contenció sense buscar-lo."
+      }
+    ],
+    "assignment": "Demana una tasca defensiva exigent i un rol ofensiu útil, tots dos observables en partits amb rivals diferents.",
+    "engine": "Mantenir-li una tasca defensiva rellevant i seleccionar tirs, talls o passada que encaixin amb el quintet. Tenir en compte la fatiga acumulada.",
+    "indicators": [
+      "Qualitat de tir concedida",
+      "ajudes i recuperacions",
+      "eficiència ofensiva",
+      "contribució per emparellament"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-008",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D2",
+          "D6",
+          "S3",
+          "S5"
+        ],
+        [
+          "D7",
+          "A5",
+          "A3",
+          "F1"
+        ],
+        [
+          "D5",
+          "C6",
+          "C4"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "◐",
+        "○",
+        "●"
+      ]
+    }
+  },
+  "AL-12": {
+    "family": "Rebot i segona oportunitat",
+    "identity": "Des de l’ala identifica on caurà el tir i arriba a la captura o a la pilota llarga amb avantatge.",
+    "offense": "Després d’un rebot ofensiu decideix si pot acabar o convé tornar-la fora. Amb el rebot defensiu assegurat pot avançar la pilota o donar la primera passada.",
+    "offBallDefense": "Llegeix la trajectòria del tir i l’orientació dels bloquejos. En atac, selecciona quan carregar i quan queda assignat al balanç.",
+    "possession": "El tir de la cantonada toca l’anella i surt llarg. L’aler, que s’ha col·locat a l’espai entre l’exterior i el pivot, captura la pilota i la treu al base per a un tir millor.",
+    "fit": "Augmenta segones oportunitats sense posar un altre interior. És valuós amb un pivot que bloqueja la marca i un exterior que cobreix el replegament.",
+    "limits": "Carregar quan és l’últim defensor exposa el contraatac. Contra rivals que el bloquegen aviat, necessita rebot llarg i bon temps de salt.",
+    "physical": "Salt, esforç i força per conservar la posició. L’anticipació i l’acceleració curta permeten compensar part del desavantatge de talla.",
+    "near": [
+      {
+        "id": "AL-03",
+        "distinction": "AL-03 salta per acabar una possessió; AL-12 per guanyar-la o allargar-la."
+      },
+      {
+        "id": "AL-13",
+        "distinction": "AL-13 produeix amb contacte en més accions."
+      },
+      {
+        "id": "AL-06",
+        "distinction": "AL-06 aprofita el rebot ja capturat per accelerar el partit."
+      }
+    ],
+    "assignment": "Observa captures, pilotes desviades i decisions de balanç. El patró ha de persistir des d’una posició exterior, sense confondre’l amb un pivot.",
+    "engine": "Fer intervenir la lectura de trajectòria i el bloqueig de rebot. Decidir si carrega o torna segons l’assignació i quants companys queden per darrere.",
+    "indicators": [
+      "Rebots ofensius i defensius",
+      "pilotes llargues recuperades",
+      "segones oportunitats",
+      "contraatacs concedits quan carrega"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "R1",
+          "R2",
+          "A4",
+          "A6"
+        ],
+        [
+          "A3",
+          "A2",
+          "C6",
+          "D6"
+        ],
+        [
+          "A5",
+          "S1",
+          "C1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AL-13": {
+    "family": "Conducció i contacte",
+    "identity": "Sosté accions físiques a les dues cistelles, especialment recepcions disputades, rebot i ajudes interiors.",
+    "offense": "Ofereix el cos per rebre sota pressió, talla mentre conserva la línia i pot donar una passada curta després de fixar la marca.",
+    "offBallDefense": "Accepta contacte en el bloqueig de rebot i en les ajudes del costat feble. Recupera cap al seu exterior quan l’interior torna a la posició.",
+    "possession": "Tanca el rebot contra un quatre, corre a l’altra banda i, a mitja pista, guanya una recepció curta amb el cos abans de descarregar al tall d’un company.",
+    "fit": "Permet jugar amb un quatre més obert o cobrir trams amb un quintet lleuger. Encaixa amb interiors que comuniquen la cobertura.",
+    "limits": "Pot patir si ha de perseguir un tirador molt ràpid. Si converteix cada acció en contacte, augmenten el desgast i les faltes.",
+    "physical": "Força funcional i equilibri sota contacte. Mobilitat curta i resistència permeten repetir ajudes i bloquejos sense quedar fora de posició.",
+    "near": [
+      {
+        "id": "AL-05",
+        "distinction": "AL-05 castiga un duel aïllat; AL-13 sosté accions físiques sense pilota i en defensa."
+      },
+      {
+        "id": "AL-02",
+        "distinction": "AL-02 es defineix per conduir i guanyar metres."
+      },
+      {
+        "id": "AL-12",
+        "distinction": "AL-12 concentra l’aportació distintiva en recuperar o prolongar possessions amb rebot."
+      }
+    ],
+    "assignment": "Busca impacte físic en més d’una fase: recepció, ajuda, bloqueig de rebot o defensa del canvi. La mida sola no és suficient.",
+    "engine": "Repartir tasques de suport físic quan l’emparellament ho demana i resoldre les ajudes, el contacte i la recuperació segons força i lectura.",
+    "indicators": [
+      "Recepcions disputades",
+      "bloquejos de rebot",
+      "ajudes interiors",
+      "faltes i rotacions recuperades"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-003",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "A6",
+          "D6",
+          "C6"
+        ],
+        [
+          "D1",
+          "R2",
+          "D2",
+          "F7"
+        ],
+        [
+          "A5",
+          "R1",
+          "S1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AL-14": {
+    "family": "Creació exterior",
+    "identity": "Supera el seu defensor des de l’ala i manipula la segona ajuda perquè el quintet obtingui una opció millor.",
+    "offense": "Condueix cap al mig amb canvi de ritme, pot frenar per tirar i conserva la passada fins que l’ajuda es compromet. Adapta la sortida a la rotació, no a una jugada única.",
+    "offBallDefense": "Se situa per rebre amb espai contra el tancament. Sense pilota pot mantenir l’amenaça exterior i tornar-la a demanar després de la primera circulació.",
+    "possession": "Robben rep obert, envaeix el carril central i obliga el defensor baix a pujar. Retarda mig segon la passada i troba el company que arriba a l’esquena de l’ajuda.",
+    "fit": "Un interior mòbil i tiradors a l’altre costat fan que cada ajuda tingui un cost. Amb un base que comparteix la iniciativa pot triar els seus duels.",
+    "limits": "Davant defenses que amaguen la segona ajuda, pot decidir tard. Si el quintet no castiga les rotacions, el rival li tanca la via sense exposar-se.",
+    "physical": "Canvi de direcció, maneig i velocitat amb pilota. El control de frenada li permet mantenir obertes passada i tir fins a l’últim moment.",
+    "near": [
+      {
+        "id": "AL-08",
+        "distinction": "AL-08 pot crear amb passada i lectura sense desbordar primer."
+      },
+      {
+        "id": "AL-09",
+        "distinction": "AL-09 es defineix per la primera ruptura; AL-14 es defineix també per la resposta a qui arriba després."
+      },
+      {
+        "id": "ES-01",
+        "distinction": "ES-01 respon a una cadena semblant des del rol d’escolta i amb més pes de l’anotació pròpia."
+      }
+    ],
+    "assignment": "Comprova que el desbordament genera sovint un nou angle per a un company o un tir clar després de llegir la següent ajuda.",
+    "engine": "Afavorir recepció lateral amb un carril cap al mig i alternatives reals. Tractar la superació i la lectura de segona ajuda com a decisions successives.",
+    "indicators": [
+      "Superacions",
+      "segones ajudes compromeses",
+      "tirs oberts creats",
+      "pèrdues després de ruptura"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-ARJEN-ROBBEN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-004",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-009",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C2",
+          "C3",
+          "C5",
+          "A2"
+        ],
+        [
+          "C1",
+          "C4",
+          "S2",
+          "F1"
+        ],
+        [
+          "S3",
+          "F7",
+          "C6"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "◐",
+        "◐",
+        "—",
+        "○"
+      ]
+    }
+  },
+  "AL-15": {
+    "family": "Defensa i versatilitat",
+    "identity": "Conserva un paper útil quan canvien companys, sistema o emparellament, amb aportacions diferents segons el quintet.",
+    "offense": "Pot obrir el costat feble en un quintet gran, crear una segona acció en un de petit o assumir talls quan la pilota passa per dos manejadors.",
+    "offBallDefense": "Alterna assignacions exteriors i ajudes interiors raonables. Ajusta el rebot i el balanç segons el nombre de jugadors grans a pista.",
+    "possession": "Comença obrint la cantonada amb dos interiors. Quan entra un director addicional, defensa una marca més gran i passa a connectar des del colze quan el rival envia ajuda.",
+    "fit": "Redueix la necessitat de substitucions cada cop que l’entrenador canvia d’estructura. Pot unir rotacions que altrament quedarien limitades a un sol sistema.",
+    "limits": "La flexibilitat té límits davant un especialista superior. Si només li atribuïm molts papers sense veure’l executar-los, el perfil queda sense evidència.",
+    "physical": "Equilibri de mobilitat, força i mida per gestionar assignacions variades. La lectura determina quins canvis pot assumir de manera segura.",
+    "near": [
+      {
+        "id": "AL-11",
+        "distinction": "AL-11 destaca per aportar consistentment als dos costats; AL-15 pel canvi de funció segons la composició del quintet."
+      },
+      {
+        "id": "AL-08",
+        "distinction": "AL-08 té un nucli de creació exterior específic."
+      },
+      {
+        "id": "ES-15",
+        "distinction": "ES-15 cobreix funcions comparables des de l’escolta; l’aler pot guanyar més tasques d’ajuda i rebot segons el seu perfil."
+      }
+    ],
+    "assignment": "Segueix partits amb quintets diferents i demana accions útils en tres o més papers. Comprova que el context explica el canvi de funció.",
+    "engine": "Redistribuir-li rols després de cada canvi de quintet segons emparellaments i atributs. Avaluar cada responsabilitat amb les seves pròpies regles.",
+    "indicators": [
+      "Rols executats",
+      "aportació per tipus de quintet",
+      "canvis defensius sostinguts",
+      "eficiència per funció"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RAUL-GONZALEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-013",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C4",
+          "D2",
+          "C6",
+          "S5"
+        ],
+        [
+          "D6",
+          "A2",
+          "C1",
+          "F1"
+        ],
+        [
+          "R2",
+          "A3",
+          "S3"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "◐",
+        "◐",
+        "○",
+        "◐"
+      ]
+    }
   }
 }
