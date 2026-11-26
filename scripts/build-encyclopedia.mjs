@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -11,6 +11,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, te
   json('data/catalog/attributes.json'),
   json('data/rules/regulation.json'),
   json('data/catalog/competitions.json'),
+  json('data/catalog/archetype-profiles.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -102,7 +103,25 @@ const editionIndex=[{
   fixtures:db.fixtures.length,
 }];
 check(editionIndex.every(edition=>competitions.some(item=>item.id===edition.competitionId)), 'Edició sense competició');
-Object.assign(db,{archetypeCatalog:catalog,attributeDictionary:dictionary,competitionCatalog,editionIndex,rules});
+
+const requiredProfileText=['family','identity','offense','offBallDefense','possession','fit','limits','physical','assignment','engine'];
+const baseEntries=catalog.entries.filter(entry=>entry.position==='BA');
+check(baseEntries.every(entry=>Object.hasOwn(archetypeProfiles,entry.id)), 'Falta una fitxa de base');
+for(const [id,profile] of Object.entries(archetypeProfiles)){
+  check(entries.has(id) && requiredProfileText.every(key=>typeof profile[key]==='string'&&profile[key].trim()), id+' incomplet');
+  check(profile.indicators.length>0 && profile.indicators.every(value=>typeof value==='string'&&value.trim()), id+' sense indicadors');
+  check(profile.near.length>0 && unique(profile.near,'id') && profile.near.every(peer=>peer.id!==id&&entries.has(peer.id)&&peer.distinction), id+' contrast invàlid');
+  const official=catalog.fit.rows[id];
+  const groups=official??profile.proposal?.groups;
+  const dimensions=catalog.comparison.rows[id]??profile.proposal?.dimensions;
+  check(groups?.length===3 && groups.every(group=>group.length>0&&group.every(code=>attributeCodes.has(code))) && new Set(groups.flat()).size===groups.flat().length, id+' atributs invàlids');
+  check(dimensions?.length===catalog.comparison.dimensions.length && dimensions.every(symbol=>Object.values(catalog.comparison.levels).includes(symbol)), id+' dimensions invàlides');
+  check(profile.references.length>0 && profile.references.every(ref=>{
+    const m=members.get(ref.membershipId);
+    return m?.playerId===ref.playerId && (ref.kind==='contrast'||(ref.kind==='pilot'&&m.conversion.archetypeId===id));
+  }), id+' referències invàlides');
+}
+Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');
 const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));

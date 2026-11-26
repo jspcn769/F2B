@@ -58,7 +58,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.7</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.8</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -99,6 +99,24 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
 @media(max-width:1160px){.catalog-groups{grid-template-columns:1fr}}
 @media(max-width:800px){.country-index{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.archive-hero{grid-template-columns:1fr;min-height:0}.archive-diagram{display:none}.edition-card{grid-template-columns:auto 1fr;gap:10px}.edition-card .btn{grid-column:2;justify-self:start}.edition-year{font-size:20px;padding-right:8px}.competition-row{gap:6px;grid-template-columns:minmax(0,1fr) auto auto}.competition-category{display:none}.archive-section h2{font-size:21px}.archive-link{font-size:12px}}
+/* Fitxes del catàleg d’arquetips */
+.archetype-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.archetype-card{display:flex;flex-direction:column;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:15px}
+.archetype-card:hover{background:#eaf0f5}.archetype-code{font-size:11px;font-weight:800;color:#305777;letter-spacing:.07em}
+.archetype-card small,.archetype-detail .archetype-caption,.archetype-refs small{color:var(--muted);font-size:12px;line-height:1.5}
+.archetype-detail .page-desc{max-width:800px}.archetype-detail{display:grid;gap:14px}.archetype-detail .page-head{margin-bottom:3px}
+.archetype-grid.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.archetype-panel,.archetype-example{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px}
+.archetype-panel h2,.archetype-example h2{font:700 23px Georgia,serif;letter-spacing:-.025em;margin:0 0 10px}
+.archetype-panel h3{font-size:13px;margin:13px 0 4px}.archetype-panel p,.archetype-example p,.archetype-panel li,.archetype-panel dd{font-size:14px;line-height:1.55;margin-top:0}
+.archetype-panel p:last-child,.archetype-example p:last-child{margin-bottom:0}
+.archetype-example{background:#142438;color:#fcf6eb;border-color:#142438}
+.archetype-dimensions{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px;margin:12px 0}
+.archetype-dimensions div{border:1px solid var(--line);border-radius:7px;padding:8px}.archetype-dimensions dt{font-size:12px}.archetype-dimensions dd{font-size:20px;margin:0;color:#305777}
+.archetype-neighbors div{padding:9px 0;border-top:1px solid var(--line)}.archetype-neighbors dd{margin:4px 0 0}
+.archetype-refs small{display:block}.archetype-pager{display:flex;flex-wrap:wrap;gap:15px}
+@media(max-width:1000px){.archetype-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:575px){.archetype-grid,.archetype-grid.detail-grid{grid-template-columns:1fr}.archetype-panel,.archetype-example{padding:13px}}
   </style>
   <script>window.F2B_DATA=__F2B_EMBEDDED_DATA__;</script>
   <script>
@@ -271,6 +289,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const [page,...p]=bits;
     route={page:page||'home'};
     if(page==='competitions') route.groupId=p[0];
+    if(page==='archetypes') route.archetypeId=p[0]?.toUpperCase();
     if(page==='competition') route.competitionId=p[0]||compId;
     if(page==='season'){route.seasonId=p[0]||seasonId;route.tab=p[1]||'overview';}
     if(page==='club') route.clubId=p[0];
@@ -309,7 +328,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     else if(route.page==='fixture') parts.push(c.name,'2008/09','Partit');
     else if(route.page==='rounds') parts.push('Jornades i partits');
     else if(route.page==='database') parts.push('Base de dades');
-    else if(route.page==='archetypes') parts.push('Arquetips');
+    else if(route.page==='archetypes') parts.push('Arquetips',...(route.archetypeId?[archetypeEntry(route.archetypeId)?.name||route.archetypeId]:[]));
     else if(route.page==='players') parts.push('Jugadors');
     else if(route.page==='player') parts.push('Jugadors',player(route.playerId)?.fullName||'Jugador');
     $('#breadcrumb').innerHTML=parts.map((x,i)=>i===parts.length-1?`<b>${esc(x)}</b>`:esc(x)).join(' <span>/</span> ');
@@ -569,7 +588,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
           <div class="note">Regla de projecte configurada: alçada REAL +15 cm i pes REAL +7 kg. L’estat i la font de les mesures consten a la fitxa.</div>
         </div></section>
         <section class="panel"><div class="panel-head"><div><h3>Posició i arquetip F2B</h3><p>La posició es decidirà a partir de l’alçada REAL i del perfil futbolístic.</p></div></div><div class="panel-body edit-grid">
-          ${conversionField('primaryPosition','Posició principal F2B','select',posOptions)}${conversionField('primaryPositionStatus','Estat posició principal','select',statusOptions)}${conversionField('secondaryPosition','Posició secundària F2B','select',posOptions)}${conversionField('secondaryPositionStatus','Estat posició secundària','select',statusOptions)}${conversionField('tertiaryPosition','Tercera posició F2B','select',posOptions)}${conversionField('positionNotes','Notes sobre l’assignació de posició','textarea')}${conversionField('archetype','Arquetip F2B')}${conversionField('archetypeStatus','Estat de l’arquetip','select',statusOptions)}${conversionField('status','Estat general de conversió','select',convOptions)}
+          ${conversionField('primaryPosition','Posició principal F2B','select',posOptions)}${conversionField('primaryPositionStatus','Estat posició principal','select',statusOptions)}${conversionField('secondaryPosition','Posició secundària F2B','select',posOptions)}${conversionField('secondaryPositionStatus','Estat posició secundària','select',statusOptions)}${conversionField('tertiaryPosition','Tercera posició F2B','select',posOptions)}${conversionField('positionNotes','Notes sobre l’assignació de posició','textarea')}${conversionField('archetype','Arquetip F2B')}${archetypeEntry(cv.archetypeId)?archetypeLink(cv.archetypeId,'Consultar fitxa de l’arquetip'):''}${conversionField('archetypeStatus','Estat de l’arquetip','select',statusOptions)}${conversionField('status','Estat general de conversió','select',convOptions)}
           ${conversionField('conversionNotes','Notes de conversió','textarea')}
         </div></section>
       </div>
@@ -600,11 +619,83 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
       <div class="grid cards-3">${DB.sources.filter(x=>x.id.startsWith('SRC-BDFUTBOL-')&&x.id!=='SRC-BDFUTBOL-LALIGA-0809').map(x=>`<a class="card" href="${esc(x.url)}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.scope||x.use||'Referència de plantilla')}</p><div class="meta">Obrir font ↗</div></a>`).join('')}</div>`;
   }
 
-  function renderArchetypes(){
-    const groups=Object.groupBy?Object.groupBy(DB.archetypeCatalog.entries,x=>x.position):DB.archetypeCatalog.entries.reduce((acc,x)=>((acc[x.position]??=[]).push(x),acc),{});
-    return pageHead('Catàleg F2B','75 arquetips','15 perfils per posició. Els codis s’utilitzen a les plantilles i al registre de conversions.')+
-      Object.entries(groups).map(([pos,rows])=>`<section class="panel" style="margin-bottom:12px"><div class="panel-head"><h3>${esc(pos)}</h3></div><div class="panel-body"><ol>${rows.map(x=>`<li><b>${esc(x.id)}</b> · ${esc(x.name)}</li>`).join('')}</ol></div></section>`).join('');
+
+  const positionNames={BA:'Bases',ES:'Escoltes',AL:'Alers',AP:'Ales pivots',P:'Pivots'};
+  const archetypePath=id=>'/archetypes/'+id;
+  const archetypeEntry=id=>DB.archetypeCatalog.entries.find(item=>item.id===id);
+  const archetypeProfile=id=>Object.hasOwn(DB.archetypeProfiles,id)?DB.archetypeProfiles[id]:undefined;
+  const archetypeLink=(id,label,cls='archive-link')=>routeLink(archetypePath(id),esc(label),cls);
+
+  function renderArchetypeIndex(){
+    return pageHead('Catàleg F2B','Arquetips','75 perfils per posició, amb les fitxes dels 15 bases ja desenvolupades.')+
+      Object.entries(positionNames).map(([position,label])=>{
+        const entries=DB.archetypeCatalog.entries.filter(entry=>entry.position===position);
+        return `<section class="archive-section"><h2>${esc(label)}</h2><div class="archetype-grid">${entries.map(entry=>{
+          const profile=archetypeProfile(entry.id);
+          return `<a class="archetype-card" href="#${archetypePath(entry.id)}" data-route="${archetypePath(entry.id)}">
+            <span class="archetype-code">${esc(entry.id)}</span><b>${esc(entry.name)}</b>
+            ${profile?`<small>${esc(profile.identity)}</small>`:''}
+          </a>`;
+        }).join('')}</div></section>`;
+      }).join('');
   }
+
+  function renderArchetypeMatrix(id,profile){
+    const catalog=DB.archetypeCatalog;
+    const official=catalog.fit.rows[id];
+    const groups=official??profile.proposal.groups;
+    const dimensions=catalog.comparison.rows[id]??profile.proposal.dimensions;
+    const names=new Map(DB.attributeDictionary);
+    const stages=['Definitoris','De suport','Complementaris'];
+    return `<section class="archetype-panel" id="archetype-matrix"><h2>Matriu i atributs</h2>
+      <p class="archetype-caption">${official?'Fila registrada al catàleg F2B LAB.':'Proposta de calibratge. La fila original F2B LAB està pendent de recuperar.'}</p>
+      <dl class="archetype-dimensions">${catalog.comparison.dimensions.map((label,i)=>`<div><dt>${esc(label)}</dt><dd>${esc(dimensions[i])}</dd></div>`).join('')}</dl>
+      <p class="archetype-caption">● principal · ◐ secundària · ○ complementària · — no determinant</p>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Grup</th><th>Pes d’encaix</th><th>Atributs</th></tr></thead><tbody>${groups.map((codes,i)=>`
+        <tr><td>${stages[i]}</td><td>${Math.round(Object.values(catalog.fit.weights)[i]*100)}%</td><td>${codes.map(code=>esc(code+' '+names.get(code))).join(' · ')}</td></tr>`).join('')}</tbody></table></div>
+      <p class="archetype-caption">L’encaix combina les mitjanes dels tres grups. L’OVR continua sent la valoració del nivell del jugador a la seva posició.</p>
+    </section>`;
+  }
+
+  function renderArchetypeDetail(id){
+    const entry=archetypeEntry(id);
+    if(!entry) return empty('◇','Arquetip desconegut','Consulta els arquetips registrats al catàleg.')+routeLink('/archetypes','Tornar al catàleg','btn');
+    const profile=archetypeProfile(id);
+    const trail=breadcrumbRow([{label:'Arquetips',path:'/archetypes'},{label:entry.name}]);
+    const mast=pageHead(entry.id+' · '+(profile?.family??positionNames[entry.position]),entry.name,profile?.identity??'');
+    if(!profile) return trail+mast+empty('◇','Fitxa detallada pendent','El codi i la denominació ja són al catàleg.');
+    const refs=profile.references.map(ref=>{
+      const p=player(ref.playerId);
+      const m=playerSeason(ref.membershipId);
+      const c=club(m.clubId);
+      const role=ref.kind==='pilot'?'Assignació al pilot':'Cas de contrast';
+      const position=[m.conversion.primaryPosition,m.conversion.secondaryPosition,m.conversion.tertiaryPosition].filter(Boolean).join(' / ');
+      return `<li>${routeLink(playerPath(p.id),esc(p.fullName),'archive-link')} <small>${esc(c.name)} · 2008/09 · ${esc(role)} · ${esc(position)} · OVR ${esc(m.conversion.ovr)} / POT ${esc(m.conversion.potential)}</small></li>`;
+    }).join('');
+    const peers=DB.archetypeCatalog.entries.filter(item=>item.position===entry.position&&archetypeProfile(item.id));
+    const i=peers.findIndex(item=>item.id===id);
+    const adjacent=[peers[i-1],peers[i+1]].filter(Boolean);
+    return `${trail}<article class="archetype-detail">${mast}
+      <div class="archetype-grid detail-grid">
+        <section class="archetype-panel"><h2>Com juga</h2><h3>Amb pilota</h3><p>${esc(profile.offense)}</p><h3>Sense pilota i en defensa</h3><p>${esc(profile.offBallDefense)}</p></section>
+        <section class="archetype-panel"><h2>Encaix al quintet</h2><p>${esc(profile.fit)}</p><h3>Límits</h3><p>${esc(profile.limits)}</p><h3>Perfil físic</h3><p>${esc(profile.physical)}</p></section>
+      </div>
+      <section class="archetype-example"><h2>Una possessió característica</h2><p>${esc(profile.possession)}</p></section>
+      ${renderArchetypeMatrix(id,profile)}
+      <section class="archetype-panel"><h2>Com assignar-lo</h2><p>${esc(profile.assignment)}</p>
+      <dl class="archetype-neighbors">${profile.near.map(peer=>`<div><dt>${archetypeLink(peer.id,peer.id+' · '+archetypeEntry(peer.id).name)}</dt><dd>${esc(peer.distinction)}</dd></div>`).join('')}</dl></section>
+      <div class="archetype-grid detail-grid">
+        <section class="archetype-panel"><h2>Referències F2B</h2><ul class="archetype-refs">${refs}</ul>${id==='BA-01'?'<p class="archetype-caption">Xavi · 185 cm / 75 kg F2B · encaix BA-01 de 94,4/99 amb els atributs del pilot.</p>':''}</section>
+        <section class="archetype-panel"><h2>Proposta per al motor</h2><p>${esc(profile.engine)}</p><h3>Indicadors proposats</h3><ul>${profile.indicators.map(value=>`<li>${esc(value)}</li>`).join('')}</ul></section>
+      </div>
+      <nav class="archetype-pager" aria-label="Altres bases">${adjacent.map(item=>archetypeLink(item.id,item.id+' · '+item.name)).join('')}</nav>
+    </article>`;
+  }
+
+  function renderArchetypes(){
+    return route.archetypeId?renderArchetypeDetail(route.archetypeId):renderArchetypeIndex();
+  }
+
   function render(){
     let html='';
     switch(route.page){
@@ -635,6 +726,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     for(const c of DB.clubs){
       const hay=[c.name,c.shortName,c.city,...c.aliases].join(' ').toLocaleLowerCase('ca');
       if(hay.includes(query)) results.push({title:c.name,sub:`Club · ${c.city} · Temporada 2008/09`,icon:initials(c.shortName),path:clubPath(c.id)});
+    }
+    for(const entry of DB.archetypeCatalog.entries){
+      if(filterText(entry.id+' '+entry.name).includes(filterText(query))) results.push({title:entry.name,sub:'Arquetip · '+entry.id,icon:entry.position,path:archetypePath(entry.id)});
     }
     for(const entry of catalog().competitions){
       const group=getGroup(entry.groupId);
