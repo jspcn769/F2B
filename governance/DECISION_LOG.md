@@ -47,5 +47,12 @@ This file records explicit project decisions. Draft proposals and assumptions mu
 
 Especificació de conjunt al [cànon històric](../docs/HISTORICAL_CANON.md).
 
+## Aclariments aprovats el 2026-11-26
+
+| ID | Decisió | Estat | Aplicació |
+|---|---|---|---|
+| DEC-031 | Les eliminatòries de copa segueixen la referència històrica de les lligues. | APPROVED | El recorregut històric, inclosos els finalistes, és l’esperat. Les desviacions es justifiquen i s’aproven manualment per edició. Se n’apliquen les conseqüències al quadre i a les places derivades. |
+| DEC-032 | Per completar una convocatòria internacional fins al mínim de 15, es prioritzen les preconvocatòries reals documentades. | APPROVED | S’hi apliquen les regles d’elegibilitat F2B. Quan aquestes dades falten o no cobreixen totes les places necessàries, la resta es resol manualment i queda registrada. |
+
 ## Change protocol
 For each new decision, add a unique ID, concise wording, status, date/context if known, rationale and affected files. If a decision is superseded, preserve it and add a replacement entry rather than deleting history.
