@@ -105,8 +105,7 @@ const editionIndex=[{
 check(editionIndex.every(edition=>competitions.some(item=>item.id===edition.competitionId)), 'Edició sense competició');
 
 const requiredProfileText=['family','identity','offense','offBallDefense','possession','fit','limits','physical','assignment','engine'];
-const developedEntries=catalog.entries.filter(entry=>['BA','ES','AL'].includes(entry.position));
-check(developedEntries.every(entry=>Object.hasOwn(archetypeProfiles,entry.id)), 'Falta una fitxa de base, escolta o aler');
+check(catalog.entries.every(entry=>Object.hasOwn(archetypeProfiles,entry.id)), 'Falta una fitxa d’arquetip');
 for(const [id,profile] of Object.entries(archetypeProfiles)){
   check(entries.has(id) && requiredProfileText.every(key=>typeof profile[key]==='string'&&profile[key].trim()), id+' incomplet');
   check(profile.indicators.length>0 && profile.indicators.every(value=>typeof value==='string'&&value.trim()), id+' sense indicadors');

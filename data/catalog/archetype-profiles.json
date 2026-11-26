@@ -3097,5 +3097,2125 @@
         "◐"
       ]
     }
+  },
+  "AP-01": {
+    "family": "Presència física",
+    "identity": "Guanya i conserva espai de treball al voltant de la pintura des del quatre.",
+    "offense": "Rep de cara o al pal mitjà, fixa el defensor amb el cos i aprofita l’espai que crea el seu primer bot.",
+    "offBallDefense": "Segella l’ajuda perquè un company pugui entrar. En defensa aguanta el contacte i acaba l’acció amb bloqueig de rebot.",
+    "possession": "Touré fixa el defensor amb el maluc, rep un metre més endins i acaba abans que el cinc rival pugui creuar la zona.",
+    "fit": "Funciona amb un cinc que desocupa el seu carril i un base que li entrega la pilota quan ja té posició.",
+    "limits": "Amb la pintura plena pot perdre l’angle de gir. Els rivals més mòbils el poden obligar a defensar lluny del cèrcol.",
+    "physical": "Força de base, equilibri i control de la pilota sota contacte.",
+    "near": [
+      {
+        "id": "P-04",
+        "distinction": "El pivot de potència ocupa preferentment el centre com a cinc; l’AP-01 pot imposar contacte amb un altre interior a pista."
+      },
+      {
+        "id": "AP-11",
+        "distinction": "El connector fixa per facilitar una altra acció."
+      }
+    ],
+    "assignment": "Busca victòries repetides de posició i d’espai abans i després de rebre.",
+    "engine": "Valorar segell i contacte en funció de l’angle, l’ajuda i l’espai compartit amb el pivot.",
+    "indicators": [
+      "Segells útils",
+      "recepcions guanyades",
+      "punts sota contacte",
+      "faltes d’atac"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "F4",
+          "C6",
+          "F7"
+        ],
+        [
+          "S1",
+          "F1",
+          "R2",
+          "D1"
+        ],
+        [
+          "F3",
+          "A5",
+          "S5"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AP-02": {
+    "family": "Moviment i esforç",
+    "identity": "Enllaça ajudes, balanç i curses de suport amb activitat sostinguda durant tot el partit.",
+    "offense": "Ataca espais alliberats, continua després de passar i resol amb poc bot quan rep en moviment.",
+    "offBallDefense": "Dona una segona ajuda, torna a la marca i pot carregar el rebot quan el balanç queda cobert.",
+    "possession": "Keita ajuda a tancar la penetració, recupera a l’ala i, després del rebot, corre el carril intermedi per oferir una sortida al base.",
+    "fit": "Complementa un cinc fix i una primera línia agressiva que necessita cobertures repetides.",
+    "limits": "Amb esforços mal repartits arriba tard als dos costats. En estàtic necessita un rol concret perquè el moviment no s’amuntegui.",
+    "physical": "Resistència, esforç i acceleració curta per repetir desplaçaments.",
+    "near": [
+      {
+        "id": "AP-05",
+        "distinction": "L’arribador destaca per la segona onada ofensiva; el motor també sosté ajudes i retorns."
+      },
+      {
+        "id": "AP-13",
+        "distinction": "La cobertura és més específica i dependent de les assignacions defensives."
+      }
+    ],
+    "assignment": "Valora la repetició d’accions útils als dos costats al llarg del partit.",
+    "engine": "Assignar-li rutes de suport i retorn segons la responsabilitat primària i la fatiga disponible.",
+    "indicators": [
+      "Ajudes seguides de recuperació",
+      "retorns útils",
+      "curses de suport",
+      "càrrega entre quarts"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-003",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A5",
+          "A6",
+          "A1",
+          "D6"
+        ],
+        [
+          "A2",
+          "R2",
+          "C6",
+          "F1"
+        ],
+        [
+          "D2",
+          "C4",
+          "R1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "◐",
+        "◐"
+      ]
+    }
+  },
+  "AP-03": {
+    "family": "Defensa i possessió",
+    "identity": "Recupera pilotes a la zona anticipant passades curtes, desviaments i segons bots.",
+    "offense": "Després de guanyar pilota, protegeix la captura i treu una passada segura abans que el rival pressioni de nou.",
+    "offBallDefense": "Llegeix passades al colze, al continuador o al tallador. Surt de la marca quan la cobertura permet tancar el buit.",
+    "possession": "Diarra mostra una ajuda curta al portador. Quan surt la passada cap al colze, posa la mà a la línia, recupera i activa el base.",
+    "fit": "Funciona amb un protector al darrere i ales que cobreixen el tirador que deixa lliure en anticipar.",
+    "limits": "Si caça pilotes sense cobertura, concedeix recepcions de gran valor. Les desviacions sense possessió assegurada tenen un benefici parcial.",
+    "physical": "Mans ràpides, força per disputar i agilitat per tornar al lloc.",
+    "near": [
+      {
+        "id": "AP-07",
+        "distinction": "El protector prioritza negar la zona sense cedir posició."
+      },
+      {
+        "id": "AP-09",
+        "distinction": "L’especialista de rebot recupera sobretot després del tir."
+      },
+      {
+        "id": "P-11",
+        "distinction": "El protector de cistella se centra en l’acabament rival."
+      }
+    ],
+    "assignment": "Busca recuperacions i desviacions interiors repetides, amb cost defensiu assumible.",
+    "engine": "Comparar la finestra d’intercepció amb el risc d’abandonar la marca i registrar si la pilota queda viva.",
+    "indicators": [
+      "Intercepcions interiors",
+      "desviacions",
+      "pilotes soltes guanyades",
+      "tirs concedits després del salt"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-MAHAMADOU-DIARRA",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-009",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D3",
+          "D5",
+          "D6",
+          "A6"
+        ],
+        [
+          "D1",
+          "A2",
+          "C6",
+          "A3"
+        ],
+        [
+          "D7",
+          "C1",
+          "A5"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "◐",
+        "●",
+        "●"
+      ]
+    }
+  },
+  "AP-04": {
+    "family": "Creació interior",
+    "identity": "Organitza l’atac des del colze o el pal alt i torna a connectar els exteriors amb la pintura.",
+    "offense": "Rep de cara, inverteix, troba el tall o gira cap al cèrcol si li cedeixen el centre. Pot sostenir una seqüència sencera com a distribuïdor.",
+    "offBallDefense": "Es desplaça al punt de recepció quan neguen la sortida al base. En defensa coordina ajudes si disposa de lectura.",
+    "possession": "Busquets rep al colze, aguanta la mirada al tirador i espera que el defensor exterior faci un pas cap a ell. En aquell instant passa al tallador.",
+    "fit": "Dos exteriors que tallin i un cinc que fixi per baix multipliquen les passades disponibles.",
+    "limits": "Si no té tir curt ni amenaça cap a cistella, el defensor es pot enfonsar i prendre-li els talls.",
+    "physical": "Abast i equilibri en recepció; la qualitat de lectura pesa més que el salt o la velocitat llarga.",
+    "near": [
+      {
+        "id": "P-05",
+        "distinction": "El pivot associatiu connecta des del cinc i habitualment des de més a prop del cèrcol."
+      },
+      {
+        "id": "AP-11",
+        "distinction": "El connector accelera passades curtes després del contacte, amb menys responsabilitat d’organitzar la possessió."
+      }
+    ],
+    "assignment": "Comprova si l’equip torna repetidament a l’ala pivot per distribuir i ordenar el joc.",
+    "engine": "Obrir una via al pal alt quan sigui viable. Tractar el tall, la inversió i el tir curt com a alternatives a la mateixa recepció.",
+    "indicators": [
+      "Recepcions al colze",
+      "passades al tall",
+      "canvis de costat",
+      "possessions reorganitzades"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-006",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-RUBEN-DE-LA-RED",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-010",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C1",
+          "C4",
+          "C5",
+          "C6"
+        ],
+        [
+          "S5",
+          "S2",
+          "F4",
+          "C2"
+        ],
+        [
+          "D6",
+          "A3",
+          "S1"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "○",
+        "○",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AP-05": {
+    "family": "Moviment sense pilota",
+    "identity": "Arriba al buit que deixa el primer corredor o la primera ajuda i ofereix una segona diana.",
+    "offense": "Pot acabar en cursa, frenar per rebre al colze o retornar la pilota si l’interior no surt.",
+    "offBallDefense": "Retarda una fracció l’arribada perquè el primer atac ocupi el defensor. Alterna segona onada en transició i talls d’atac posicional.",
+    "possession": "El primer corredor arrossega l’últim defensor. L’ala pivot arriba pel mig dos passos més tard, rep la passada enrere i anota abans que torni l’ajuda.",
+    "fit": "Encaixa amb un primer finalitzador ràpid i un creador que alça el cap quan la primera via es tanca.",
+    "limits": "Si arriba al mateix moment que el continuador, col·lapsa la pintura. El seu impacte baixa si no hi ha cap amenaça inicial.",
+    "physical": "Temps d’arribada, mans i agilitat per frenar sense perdre la línia.",
+    "near": [
+      {
+        "id": "AP-02",
+        "distinction": "El motor suma activitat en més fases; AP-05 es reconeix per l’ordre de les arribades."
+      },
+      {
+        "id": "AP-12",
+        "distinction": "AP-12 guanya sobretot per impuls i força en l’acabament."
+      },
+      {
+        "id": "AL-07",
+        "distinction": "L’aler arriba des de posicions més exteriors i acostuma a combinar més sortides de perímetre."
+      }
+    ],
+    "assignment": "Identifica atacs en què apareix just després que el primer corredor o el creador desplaci la defensa.",
+    "engine": "Activar la ruta tardana quan la primera acció ja ha desplaçat un defensor i queda un segon carril clar.",
+    "indicators": [
+      "Arribades de segona onada",
+      "recepcions al colze en cursa",
+      "punts contra defensa en rotació",
+      "col·lisions de carril"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-003",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-RAUL-GONZALEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-013",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A1",
+          "C6",
+          "S1",
+          "F1"
+        ],
+        [
+          "A2",
+          "S5",
+          "F2",
+          "A5"
+        ],
+        [
+          "C1",
+          "A4",
+          "A6"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "◐",
+        "◐",
+        "○"
+      ]
+    }
+  },
+  "AP-06": {
+    "family": "Blocatge i continuació",
+    "identity": "Construeix l’avantatge amb l’angle del blocatge i l’elecció entre continuar, obrir-se o repetir-lo.",
+    "offense": "Després del blocatge llegeix la trajectòria del defensor. Pot rebre en continuació curta, atacar un pas o fer una passada exterior.",
+    "offBallDefense": "Ajusta l’angle sense moure el blocatge al contacte. Dona un segon blocatge si el portador perd la primera via.",
+    "possession": "Amb el cinc ocupant el costat feble, l’ala pivot gira l’angle del blocatge, obre el carril i rep a mitja distància per trobar la cantonada.",
+    "fit": "Funciona amb un manejador que utilitza el blocatge i un cinc que no reclama alhora el mateix espai.",
+    "limits": "Si l’angle o el temps són dolents pot concedir una falta ofensiva. Repetir continuacions interiors amb dos grans pot tancar l’acció.",
+    "physical": "Base estable, força i mobilitat per sortir del contacte amb control.",
+    "near": [
+      {
+        "id": "P-07",
+        "distinction": "El cinc finalitzador converteix la continuació en punts més sovint; AP-06 genera i prolonga l’avantatge amb més variants."
+      },
+      {
+        "id": "AP-11",
+        "distinction": "El connector pot fixar i descarregar sense necessitat de blocatge directe."
+      }
+    ],
+    "assignment": "Observa si la qualitat del blocatge i el moviment posterior expliquen l’avantatge, encara que finalitzi un company.",
+    "engine": "Tractar angle, resposta defensiva i trajectòria posterior com a decisions separades. Repetir el blocatge només si queda espai.",
+    "indicators": [
+      "Avantatges de blocatge",
+      "recepcions curtes",
+      "passades i tirs de continuació",
+      "faltes de blocatge"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "S5",
+          "C6",
+          "C4"
+        ],
+        [
+          "F1",
+          "S1",
+          "A2",
+          "C1"
+        ],
+        [
+          "F2",
+          "A5",
+          "S2"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "◐",
+        "◐",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "AP-07": {
+    "family": "Defensa interior",
+    "identity": "Controla la zona com a segon interior i tanca el costat feble quan la pilota supera la primera línia.",
+    "offense": "Ataca amb moviments senzills, recepcions curtes i segells que preserven les distàncies del quintet.",
+    "offBallDefense": "Decideix fins on sortir de la seva marca per negar la pintura. Torna al seu home quan el cinc recupera posició.",
+    "possession": "El cinc conté el portador a la banda. L’ala pivot cobreix el tallador al costat feble, força una passada enrere i recupera a l’exterior.",
+    "fit": "Aporta seguretat al costat d’un cinc que surt a cobrir blocatges i d’ales que poden baixar a fer la primera rotació.",
+    "limits": "Contra un quatre tirador, ajudar massa aviat deixa un tir obert. Un tap tardà també pot costar una falta.",
+    "physical": "Abast, força i mobilitat de recorregut curt. La lectura ajuda a sortir abans i recórrer menys distància.",
+    "near": [
+      {
+        "id": "P-11",
+        "distinction": "El cinc protector és l’última barrera al cèrcol; AP-07 protegeix la zona al seu costat."
+      },
+      {
+        "id": "AP-13",
+        "distinction": "El de cobertura resol més tipus d’assignació, també lluny de la pintura."
+      },
+      {
+        "id": "AP-03",
+        "distinction": "El recuperador busca la pilota amb més agressivitat."
+      }
+    ],
+    "assignment": "Busca penetracions desviades i talls eliminats abans que aparegui el tir.",
+    "engine": "Ajustar profunditat d’ajuda a la posició del cinc i el tir del seu emparellament.",
+    "indicators": [
+      "Accessos a la zona denegats",
+      "ajudes a temps",
+      "recuperacions al tirador",
+      "faltes interiors"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FRANCISCO-JAVIER-GARCIA-FERNANDEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-008",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D1",
+          "D6",
+          "D4",
+          "A4"
+        ],
+        [
+          "D5",
+          "A3",
+          "R2",
+          "D7"
+        ],
+        [
+          "A2",
+          "A6",
+          "D2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "◐",
+        "●",
+        "●"
+      ]
+    }
+  },
+  "AP-08": {
+    "family": "Anotació híbrida",
+    "identity": "Anota de cara com un aler i manté la capacitat d’atacar un emparellament interior com a quatre.",
+    "offense": "Alterna tir de mitja distància, bot curt i recepció al pal mitjà. Tria segons si el rival és més alt, més ràpid o més petit.",
+    "offBallDefense": "Flota entre ala i colze, i pot tallar quan un cinc ocupa l’anella. En defensa canvia d’esquema segons la seva contenció real.",
+    "possession": "Rep al colze amb un quatre lent i ataca de cara. Després d’un canvi, guanya posició contra un exterior i aprofita un tir curt.",
+    "fit": "Dona un segon focus anotador amb un cinc defensiu i un base de passada. En un quintet obert pot assumir possessions al final del rellotge.",
+    "limits": "Els rivals que igualen cos i mobilitat poden reduir el ventall. El volum de suspensions difícils penalitza quan deixa de llegir la cobertura.",
+    "physical": "Equilibri per frenar i força per treballar contra marques més petites.",
+    "near": [
+      {
+        "id": "AL-04",
+        "distinction": "L’aler anotador total parteix del perímetre i concentra menys possessions contra interiors."
+      },
+      {
+        "id": "AP-14",
+        "distinction": "L’interior de llarg abast es defineix per l’espaiat; AP-08 anota en més zones."
+      },
+      {
+        "id": "P-08",
+        "distinction": "El cinc de joc d’esquena té el pal baix com a via principal."
+      }
+    ],
+    "assignment": "Demana producció recurrent en emparellaments exteriors i interiors dins del paper de quatre.",
+    "engine": "Escollir origen i tipus de tir segons mida, mobilitat i cobertura del defensor, evitant concentrar-lo en una acció fixa.",
+    "indicators": [
+      "Punts per zona",
+      "possessions de cara i al pal",
+      "eficiència per tipus de marca",
+      "tirs amb rellotge baix"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "S2",
+          "F1",
+          "S5",
+          "F4"
+        ],
+        [
+          "C2",
+          "S3",
+          "S1",
+          "F7"
+        ],
+        [
+          "F6",
+          "C6",
+          "A3"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "●",
+        "◐",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "AP-09": {
+    "family": "Rebot",
+    "identity": "Converteix el rebot en una responsabilitat central del quatre als dos costats de la pista.",
+    "offense": "Assegura la pilota ofensiva i tria finalitzar o obrir. Després del rebot defensiu pot fer una primera passada ràpida.",
+    "offBallDefense": "Localitza el tirador i el rival més pròxim, estableix contacte i reacciona a la trajectòria de la pilota.",
+    "possession": "Davant un triple rival, bloqueja el quatre que ve de l’ala, corregeix dos passos quan la pilota surt llarga i assegura la possessió.",
+    "fit": "Complementa un cinc que surt lluny del cèrcol o un quintet que prefereix enviar un sol jugador al rebot ofensiu.",
+    "limits": "Carregar sense assignació defensa pitjor la transició. Dependre del salt sense bloquejar facilita captures al rival.",
+    "physical": "Força de base, salt, esforç i control de mans. Una bona lectura cobreix part del desavantatge d’alçada.",
+    "near": [
+      {
+        "id": "AL-12",
+        "distinction": "L’aler de rebot arriba principalment des de fora."
+      },
+      {
+        "id": "P-10",
+        "distinction": "P-10 concentra l’impacte en el tauler ofensiu; AP-09 sosté tots dos rebots."
+      },
+      {
+        "id": "AP-03",
+        "distinction": "AP-03 recupera sobretot abans del tir."
+      }
+    ],
+    "assignment": "Valora captures, bloquejos i compliment del balanç, més enllà d’un total brut elevat.",
+    "engine": "Calcular la posició al tir, assignar contacte i premiar la decisió de carregar o tornar segons la cobertura.",
+    "indicators": [
+      "Rebots disputats",
+      "captures ofensives i defensives",
+      "bloquejos útils",
+      "balanç després de carregar"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-003",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "R1",
+          "R2",
+          "A3",
+          "A6"
+        ],
+        [
+          "A4",
+          "C6",
+          "D6",
+          "A2"
+        ],
+        [
+          "A5",
+          "S1",
+          "D1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AP-10": {
+    "family": "Mobilitat interior",
+    "identity": "Fa de segon interior mòbil i pot assumir el cinc en trams sense perdre capacitat de tancar espais.",
+    "offense": "Alterna continuacions, recepcions de cara i talls curts entre colze, ala i pintura.",
+    "offBallDefense": "Accedeix a cobertures altes i torna a protegir el rebot. Al costat d’un cinc fix s’encarrega més sovint dels espais intermedis.",
+    "possession": "L’ala pivot surt al blocatge rival, recupera al costat feble i, després del rebot, corre fins al colze per rebre de cara.",
+    "fit": "Encaixa amb un protector que cobreix la cistella quan surt; en un quintet baix pot ser el cinc de referència durant un tram.",
+    "limits": "Contra un cinc molt fort, fer-lo defensar el pal tota l’estona li treu mobilitat i energia. Cal protegir el rebot quan canvia lluny.",
+    "physical": "Canvis de direcció, resistència i mida funcional per defensar en diversos rangs.",
+    "near": [
+      {
+        "id": "P-09",
+        "distinction": "P-09 fa la mateixa mena de mobilitat assumint el cinc com a paper principal."
+      },
+      {
+        "id": "AP-13",
+        "distinction": "AP-13 es defineix més per la lectura de cobertura que pel recorregut d’anada i tornada."
+      }
+    ],
+    "assignment": "Compara els trams al quatre i al cinc. El valor distintiu és conservar feina interior amb recorregut i disponibilitat per canviar.",
+    "engine": "Ajustar sortides, recuperacions i ruta ofensiva segons el cinc que acompanya i la distància disponible.",
+    "indicators": [
+      "Cobertures altes recuperades",
+      "recepcions en zones diferents",
+      "rebot en quintet baix",
+      "minuts útils al quatre i al cinc"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-GONZALO-HIGUAIN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-014",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A2",
+          "A1",
+          "A5",
+          "D6"
+        ],
+        [
+          "D2",
+          "D1",
+          "F1",
+          "C6"
+        ],
+        [
+          "R2",
+          "A4",
+          "S2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "AP-11": {
+    "family": "Creació interior",
+    "identity": "Fixa un defensor amb contacte i transmet l’avantatge amb una decisió curta.",
+    "offense": "Utilitza contacte de cos per mantenir la diana i, quan rep, gira, fa una mà a mà o descarrega abans de la segona ajuda.",
+    "offBallDefense": "Segella i deixa lliure un company. En defensa sosté el contacte i torna a la tasca de cobertura sense quedar enganxat.",
+    "possession": "Aguanta la pressió al colze, fa un pas per fixar el defensor i toca de primer al tallador que entra pel seu darrere.",
+    "fit": "Millora amb talls coordinats i creadors que usen bé la mà a mà. Permet accedir al centre sense bot prolongat.",
+    "limits": "Si el rival evita seguir el tallador, necessita una amenaça curta pròpia. Amb mans lentes el contacte li pot arrencar la pilota.",
+    "physical": "Força funcional, recepció segura i agilitat curta per girar sota pressió.",
+    "near": [
+      {
+        "id": "AP-04",
+        "distinction": "AP-04 organitza i tria accions per al conjunt; AP-11 enllaça després de fixar amb contacte."
+      },
+      {
+        "id": "P-06",
+        "distinction": "P-06 descarrega des de la responsabilitat de cinc i sovint sota pressió interior més profunda."
+      },
+      {
+        "id": "AP-01",
+        "distinction": "AP-01 pot guanyar posició per produir punts propis de manera més directa."
+      }
+    ],
+    "assignment": "Busca si el contacte obre línies per al següent receptor i si el traspàs d’avantatge és immediat.",
+    "engine": "Detectar contacte útil abans de la passada curta. Separar la fixació del defensor de l’assistència o recepció posterior.",
+    "indicators": [
+      "Recepcions disputades controlades",
+      "mans a mà",
+      "passades després de fixar",
+      "accions encadenades"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-006",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-007",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "C6",
+          "C1",
+          "C4"
+        ],
+        [
+          "F4",
+          "C5",
+          "S5",
+          "D6"
+        ],
+        [
+          "S1",
+          "F7",
+          "A2"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "○",
+        "●",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "AP-12": {
+    "family": "Finalització física",
+    "identity": "Arriba amb impuls a l’espai entre el defensor i el cèrcol i acaba tot i el contacte.",
+    "offense": "Prefereix rebre en moviment, carregar un pas de potència i protegir la finalització amb el cos.",
+    "offBallDefense": "Talla des de fora de la pintura quan l’ajuda mira el portador. Pot ordenar l’arribada des de la cantonada o el carril central.",
+    "possession": "Parteix de l’ala, entra quan el base arrastra l’interior i rep en cursa. Absorbeix el contacte lateral i acaba sense perdre la línia cap al cèrcol.",
+    "fit": "Rendeix amb espai abans de l’arribada i passadors que lliuren la pilota en cursa. El cinc pot obrir-li el recorregut.",
+    "limits": "Amb una defensa que l’espera abans que acceleri, necessita parada o passada. El contacte forçat pot acabar en falta ofensiva.",
+    "physical": "Força i control de l’impuls. Salt i acceleració permeten convertir el recorregut curt en finalització.",
+    "near": [
+      {
+        "id": "AP-05",
+        "distinction": "AP-05 destaca pel moment de la segona onada; AP-12 per l’impuls i el contacte al final."
+      },
+      {
+        "id": "P-02",
+        "distinction": "P-02 absorbeix el contacte com a cinc i també amb recepcions estàtiques."
+      },
+      {
+        "id": "AP-01",
+        "distinction": "AP-01 guanya posició abans o al començament de l’acció amb més freqüència."
+      }
+    ],
+    "assignment": "Identifica recepcions en marxa amb acabaments físics repetits, més enllà de tenir un atribut de força alt.",
+    "engine": "Afavorir rutes amb espai d’impuls. Resoldre l’equilibri i l’angle d’acabament segons el contacte real.",
+    "indicators": [
+      "Punts en arribada sota contacte",
+      "addicionals",
+      "faltes ofensives",
+      "percentatge d’acabament en cursa"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-003",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "F1",
+          "F7",
+          "F2"
+        ],
+        [
+          "A1",
+          "C6",
+          "A4",
+          "S1"
+        ],
+        [
+          "A2",
+          "A6",
+          "S5"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "●",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "AP-13": {
+    "family": "Defensa i ajustos",
+    "identity": "Corregeix desajustos entre exterior i interior, amb cobertures que canvien segons el quintet i el rival.",
+    "offense": "A l’atac fa blocatges de suport, ofereix sortides simples i ocupa l’espai que deixa lliure el cinc.",
+    "offBallDefense": "Pot mostrar-se i recuperar, canviar a l’exterior durant uns segons o cobrir el costat feble després d’una rotació anterior.",
+    "possession": "Javi surt a la primera amenaça. Quan el base es refà, recupera al colze i passa l’interior rival al cinc, que ja ha tornat a lloc.",
+    "fit": "Dona marge a equips que alternen canvis, defensa baixa i ajudes agressives. Val especialment quan els altres quatre coneixen la rotació.",
+    "limits": "Si intenta resoldre dues amenaces sense suport, cedeix l’última passada. Els canvis llargs poden exposar-lo al bot d’elit.",
+    "physical": "Agilitat, esforç i resistència per canviar direcció. La distància d’ajuda i la lectura en redueixen el cost físic.",
+    "near": [
+      {
+        "id": "AP-07",
+        "distinction": "AP-07 se centra en protegir la pintura; AP-13 canvia la tasca dins de l’esquema."
+      },
+      {
+        "id": "AP-10",
+        "distinction": "AP-10 aporta mobilitat als dos costats; AP-13 destaca per resoldre la responsabilitat defensiva correcta."
+      },
+      {
+        "id": "P-14",
+        "distinction": "P-14 sosté accions de suport des del cinc."
+      }
+    ],
+    "assignment": "Revisa trams amb cobertures diferents i identifica si sap tornar a l’assignació correcta després del primer ajust.",
+    "engine": "Escollir l’ajuda a partir del pla de l’equip i l’amenaça més imminent. Registrar l’assignació final i la qualitat del tir concedit.",
+    "indicators": [
+      "Canvis sostinguts",
+      "ajudes i recuperacions",
+      "errors de rotació",
+      "qualitat del tir rival"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FRANCISCO-JAVIER-GARCIA-FERNANDEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-008",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-MAHAMADOU-DIARRA",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-009",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D6",
+          "D2",
+          "D5",
+          "A2"
+        ],
+        [
+          "D1",
+          "D7",
+          "A5",
+          "A6"
+        ],
+        [
+          "D3",
+          "A3",
+          "R2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "◐",
+        "◐",
+        "●"
+      ]
+    }
+  },
+  "AP-14": {
+    "family": "Tir interior obert",
+    "identity": "Allunya el seu defensor de la pintura amb un tir exterior fiable des del lloc de quatre.",
+    "offense": "Obre després de blocar o es manté disponible a l’ala. Pot fer un bot curt contra un tancament llarg i tornar a connectar l’atac.",
+    "offBallDefense": "Ajusta la distància respecte al cinc perquè la seva marca hagi de triar entre ajudar i perseguir. En defensa recupera des de l’ajuda segons la seva mobilitat.",
+    "possession": "Fa un blocatge lateral i s’obre més enllà del triple mentre el cinc segueix prop del cèrcol. L’ajuda es queda a la pintura i deixa una passada de retorn clara.",
+    "fit": "Encaixa especialment amb un cinc interior i penetradors que necessiten un carril lliure.",
+    "limits": "Si el tir no mereix respecte, l’espai queda només sobre el paper. Un rival que negui la primera passada el força a moure’s o atacar el tancament.",
+    "physical": "Equilibri de peus i mans fiables. La mida ajuda a tirar sobre una recuperació curta.",
+    "near": [
+      {
+        "id": "P-13",
+        "distinction": "P-13 estira el protector principal del rival des del cinc; AP-14 acostuma a obrir el segon defensor interior."
+      },
+      {
+        "id": "AP-08",
+        "distinction": "AP-08 construeix volum de punts en més zones."
+      },
+      {
+        "id": "ES-02",
+        "distinction": "L’escolta especialitzat estira una marca exterior, amb altres tasques de bloqueig i rebot."
+      }
+    ],
+    "assignment": "Demana intents viables amb volum suficient i comprova si el defensor s’allunya efectivament del cèrcol.",
+    "engine": "Assignar obertures quan el quintet necessita espaiat interior i calcular la resposta defensiva segons la seva amenaça de tir.",
+    "indicators": [
+      "Triples de quatre",
+      "obertures després de blocatge",
+      "ajudes negades",
+      "atacs de tancament"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RUBEN-DE-LA-RED",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-010",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-011",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "S3",
+          "S5",
+          "C6",
+          "S2"
+        ],
+        [
+          "S4",
+          "C1",
+          "A2",
+          "S6"
+        ],
+        [
+          "F1",
+          "D6",
+          "R2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "○",
+        "◐",
+        "○"
+      ]
+    }
+  },
+  "AP-15": {
+    "family": "Versatilitat interior",
+    "identity": "Sosté diversos papers del quatre amb aportació real en atac, defensa i rebot quan canvia el quintet.",
+    "offense": "Pot connectar al colze, obrir-se o acabar la continuació curta en funció d’on es troba el cinc i de qui dirigeix.",
+    "offBallDefense": "Alterna ajudes, canvis curts i càrrega de rebot; pot assumir una part de la feina del cinc quan l’equip juga baix.",
+    "possession": "Amb un cinc fix inicia al colze i obre el costat feble. Quan canvia el quintet, assumeix la cobertura interior i continua cap a cistella després del blocatge.",
+    "fit": "Permet canviar de sistema sense substituir tot el joc interior. L’entrenador pot redistribuir qui passa, reboteja i protegeix el cèrcol.",
+    "limits": "Un rival especialista pot forçar que es quedi en el seu paper menys sòlid. La diversitat d’atributs no demostra que executi bé cada funció.",
+    "physical": "Bona combinació de força i mobilitat amb resistència per alternar responsabilitats.",
+    "near": [
+      {
+        "id": "P-15",
+        "distinction": "P-15 sosté la referència de cinc en contextos diversos; AP-15 canvia sobretot el paper del quatre."
+      },
+      {
+        "id": "AP-04",
+        "distinction": "AP-04 té un centre de gravetat en la direcció interior."
+      },
+      {
+        "id": "AP-10",
+        "distinction": "AP-10 es defineix per la mobilitat, mentre AP-15 manté valor també quan ha d’aguantar posició."
+      }
+    ],
+    "assignment": "Comprova comportaments útils en diversos sistemes i papers, sense convertir l’OVR en un requisit de versatilitat.",
+    "engine": "Reassignar la tasca segons el quintet i resoldre cada paper amb els atributs pertinents. Evitar bonificacions generals.",
+    "indicators": [
+      "Rols útils per formació",
+      "assistències interiors",
+      "rebot",
+      "qualitat del tir concedida en cobertures diferents"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-006",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D6",
+          "R2",
+          "C4",
+          "C6"
+        ],
+        [
+          "A3",
+          "D1",
+          "S5",
+          "F1"
+        ],
+        [
+          "S3",
+          "A2",
+          "R1"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "◐",
+        "◐",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "P-01": {
+    "family": "Ocupació interior",
+    "identity": "Fixa la defensa al voltant de la cistella i ofereix una diana estable en atac posicional.",
+    "offense": "Guanya profunditat abans de rebre i manté sortida curta si l’ajuda baixa. Acaba a prop o torna la pilota perquè el quintet reataqui.",
+    "offBallDefense": "Obliga el defensor central a vigilar la recepció. En defensa, la seva posició al centre facilita rebot i ajuda segons els atributs.",
+    "possession": "El pivot segella el defensor de costat feble. En veure que arriba una ajuda, retorna la pilota a l’ala, torna a guanyar posició i rep més a prop.",
+    "fit": "Funciona amb passadors capaços d’alimentar la pintura i tir exterior que obri línies d’entrada.",
+    "limits": "Un quintet sense amplitud permet negar la primera recepció. Contra rivals mòbils pot quedar exposat lluny de l’anella.",
+    "physical": "Posició de base estable, força per segellar i mans fiables a la recepció.",
+    "near": [
+      {
+        "id": "P-04",
+        "distinction": "P-04 destaca per desplaçar posició amb força; P-01 per fixar la zona de manera sostinguda."
+      },
+      {
+        "id": "P-08",
+        "distinction": "P-08 s’especialitza en com resol d’esquena després de rebre."
+      },
+      {
+        "id": "AP-01",
+        "distinction": "El quatre dominador comparteix feina interior amb un cinc."
+      }
+    ],
+    "assignment": "Busca que l’atac torni a ell com a punt de referència i que la seva ocupació modifiqui les ajudes repetidament.",
+    "engine": "Mantenir disponible una diana interior si té posició. Fer que els defensors reaccionin a la profunditat i al perill de la passada.",
+    "indicators": [
+      "Segells i recepcions profundes",
+      "fixacions de la darrera ajuda",
+      "punts de pintura",
+      "passades de retorn"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RUUD-VAN-NISTELROOY",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-017",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "F4",
+          "A3",
+          "C6",
+          "S1"
+        ],
+        [
+          "D1",
+          "R2",
+          "F1",
+          "F3"
+        ],
+        [
+          "C4",
+          "F7",
+          "A5"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "◐",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "P-02": {
+    "family": "Finalització física",
+    "identity": "Converteix una recepció a prop de cistella en punts quan arriba contacte defensiu.",
+    "offense": "Protegeix la pilota, tria mà i angle i manté un acabament viable sota impacte. Pot guanyar tirs lliures si la defensa arriba tard.",
+    "offBallDefense": "Dona una diana curta i evita un segon bot si ja té angle. En defensa, absorbir contacte ofensiu no prediu la seva protecció de cistella.",
+    "possession": "Rep davant l’anella quan l’ajuda ja ve de costat. Protegeix amb el cos, acaba amb la mà exterior i converteix tot i el cop.",
+    "fit": "Aprofita passadors capaços de fer-li arribar la pilota prop del cèrcol encara que el defensor hi estigui a sobre.",
+    "limits": "Contra defensors verticals i llargs pot quedar tapat si sempre busca col·lisió. Necessita sortida exterior quan tanca la segona ajuda.",
+    "physical": "Força funcional, mans i equilibri per mantenir l’acció mentre rep contacte.",
+    "near": [
+      {
+        "id": "P-04",
+        "distinction": "P-04 guanya espai principalment abans d’acabar."
+      },
+      {
+        "id": "P-03",
+        "distinction": "P-03 es defineix per la superioritat vertical."
+      },
+      {
+        "id": "AP-12",
+        "distinction": "AP-12 sol arribar a l’acció amb impuls des del quatre."
+      }
+    ],
+    "assignment": "Revisa el rendiment quan el contacte arriba a l’acabament amb una posició inicial similar.",
+    "engine": "Afavorir acabaments curts amb angle útil. Modelar el contacte i la falta amb les mateixes regles que per a la resta de perfils.",
+    "indicators": [
+      "Acabaments sota contacte",
+      "addicionals",
+      "lliures per recepció profunda",
+      "tirs taponats"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "F1",
+          "F7",
+          "A3",
+          "S1"
+        ],
+        [
+          "F3",
+          "C6",
+          "F4",
+          "A4"
+        ],
+        [
+          "S4",
+          "S5",
+          "A6"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "●",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-03": {
+    "family": "Verticalitat",
+    "identity": "Controla l’espai per damunt del cèrcol com a diana ofensiva i presencia en captures altes.",
+    "offense": "Ofereix la passada alta després de blocar o tallar, i pot convertir una pilota difícil en acabament immediat.",
+    "offBallDefense": "Guanya la primera posició de salt, disputa rebots alts i pot negar una passada aèria segons la seva lectura defensiva.",
+    "possession": "El base ocupa dos defensors després del blocatge. El pivot accelera un pas, rep per damunt de la darrera ajuda i finalitza a l’aire.",
+    "fit": "Un manejador amb bona passada alta i un espaiat que faci allunyar l’ajuda obren més angles de salt.",
+    "limits": "Amb poc carrer per enlairar-se necessita una resposta a peu pla. Saltar abans d’hora pot deixar el rebot o la marca al rival.",
+    "physical": "Salt, abast i coordinació en recepcions altes. La força ajuda a mantenir el cos alineat sota contacte.",
+    "near": [
+      {
+        "id": "AL-03",
+        "distinction": "L’aler s’activa sovint des de fora o el costat feble; P-03 és una diana vertical central."
+      },
+      {
+        "id": "P-11",
+        "distinction": "P-11 es defineix per negar tirs a cistella, també sense saltar."
+      },
+      {
+        "id": "P-07",
+        "distinction": "P-07 treu valor de la seqüència de blocatge encara que acabi a peu pla."
+      }
+    ],
+    "assignment": "Busca una aportació repetida que depengui de dominar el punt alt de recepció o captura.",
+    "engine": "Determinar si hi ha finestra de passada alta i espai d’enlairament. Resoldre captura, interferència i finalització separadament.",
+    "indicators": [
+      "Recepcions altes",
+      "esmaixades de passada alta",
+      "captures disputades a l’aire",
+      "passades altes perdudes"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A4",
+          "F3",
+          "F2",
+          "C6"
+        ],
+        [
+          "D4",
+          "R1",
+          "A3",
+          "S1"
+        ],
+        [
+          "R2",
+          "F1",
+          "A2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "P-04": {
+    "family": "Presència física",
+    "identity": "Imposa el cos com a cinc per guanyar espai de recepció, aguantar posició i orientar el duel interior.",
+    "offense": "Clava la posició amb els peus, segella i fa un bot de força si guanya l’angle. Pot fer el mateix per fixar una ajuda i deixar un tall obert.",
+    "offBallDefense": "Bloqueja amb una base estable i treu el rival del punt de rebot amb posició legal. En defensa sosté duels profunds.",
+    "possession": "Amb el defensor darrere, guanya mig metre abans de rebre. Acaba amb un gir curt, mentre el quatre manté l’ajuda lluny.",
+    "fit": "Ideal amb tiradors i un quatre mòbil que pugui donar cobertura al perímetre.",
+    "limits": "Les marques que s’avancen i les ajudes al segon bot poden rebutjar la recepció. L’espaiat i els peus condicionen el risc de faltes d’atac.",
+    "physical": "Força de tronc i cames, equilibri i control del cos. La talla ajuda però la posició determina l’accés a l’espai.",
+    "near": [
+      {
+        "id": "P-02",
+        "distinction": "P-02 converteix el contacte al moment de finalitzar; P-04 guanya espai al llarg del duel."
+      },
+      {
+        "id": "AP-01",
+        "distinction": "AP-01 exerceix el domini físic al costat d’un altre cinc."
+      },
+      {
+        "id": "P-08",
+        "distinction": "P-08 usa el repertori d’esquena com a primera via, amb força o sense."
+      }
+    ],
+    "assignment": "Observa victòries físiques abans de rebre, bloqueig de rebot i defensa de posició, més enllà dels punts.",
+    "engine": "Modelar la lluita per la posició i el segell abans de la recepció. Evitar bonificar tirs si no hi ha avantatge útil.",
+    "indicators": [
+      "Posicions profundes guanyades",
+      "segells",
+      "rebots bloquejats",
+      "faltes d’atac"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RUUD-VAN-NISTELROOY",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-017",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A3",
+          "F4",
+          "D1",
+          "R2"
+        ],
+        [
+          "F3",
+          "C6",
+          "F7",
+          "R1"
+        ],
+        [
+          "S1",
+          "A5",
+          "A6"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "P-05": {
+    "family": "Creació interior",
+    "identity": "Connecta la pintura amb els exteriors des de la posició de cinc i sosté accions de passada compartida.",
+    "offense": "Rep al pal o al colze, combina amb talladors i pot invertir el joc. Sap retornar, aguantar o acabar si el rival abandona el seu espai.",
+    "offBallDefense": "Fa de suport sense pilota amb mà a mà, pantalla o segell. En defensa, la qualitat associativa no substitueix el rebot ni la cobertura.",
+    "possession": "Guðjohnsen rep al pal baix, retorna a l’ala, canvia l’angle amb un pas i rep de nou. Quan arriba el doble marcatge, troba el tallador del costat feble.",
+    "fit": "Amb exteriors que tallen i un quatre obert, el joc pot passar pel pivot diverses vegades en una possessió.",
+    "limits": "Sense amenaça de cistella o sense moviment exterior, les passades es tornen previsibles. La pressió persistent pot negar el retorn.",
+    "physical": "Mans i força per protegir recepcions i conservar angle. La mirada i els peus obren la passada sota contacte.",
+    "near": [
+      {
+        "id": "AP-04",
+        "distinction": "L’ala pivot organitzador acostuma a dirigir des del pal alt amb un altre cinc; P-05 manté el paper central del pivot."
+      },
+      {
+        "id": "P-06",
+        "distinction": "P-06 es defineix per castigar ràpidament l’ajuda després de fixar o continuar."
+      },
+      {
+        "id": "P-08",
+        "distinction": "P-08 prioritza resoldre d’esquena."
+      }
+    ],
+    "assignment": "Comprova si se li confien recepcions de manera recurrent perquè el quintet encadeni diverses accions col·lectives.",
+    "engine": "Donar-li recepcions interiors quan hi ha tall o retorn plausible. Registrar els canvis d’angle i la contribució a la passada posterior.",
+    "indicators": [
+      "Recepcions que connecten",
+      "assistències interiors",
+      "mans a mà",
+      "accions col·lectives amb retorn"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-007",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-006",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C1",
+          "C4",
+          "C5",
+          "C6"
+        ],
+        [
+          "F4",
+          "S1",
+          "A3",
+          "S5"
+        ],
+        [
+          "D6",
+          "S2",
+          "R2"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "○",
+        "○",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-06": {
+    "family": "Creació interior",
+    "identity": "Transforma una ajuda compromesa en una passada de sortida immediata des de la pintura o la continuació curta.",
+    "offense": "Rep en moviment, deixa que els defensors convergeixin i descarrega a la cantonada, al tall o al company a peu de cistella.",
+    "offBallDefense": "Ofereix un punt de recepció curt entre les dues capes de defensa. Després de passar pot tornar a segellar o bloquejar.",
+    "possession": "Dos defensors salten al base. El pivot rep al colze, força el defensor baix a avançar i toca de primer al tirador que acaba de deixar.",
+    "fit": "Funciona amb un creador que atrau pressió, tiradors visibles i un tallador útil al costat feble.",
+    "limits": "Si no amenaça d’acabar, la defensa pot quedar-se amb els receptors. Retenir massa converteix la descàrrega en una passada contestada.",
+    "physical": "Mans, equilibri i capacitat de frenar amb pilota abans que arribi la segona ajuda.",
+    "near": [
+      {
+        "id": "P-05",
+        "distinction": "P-05 organitza una cadena més àmplia; P-06 destaca pel moment de descarregar un cop fixada l’ajuda."
+      },
+      {
+        "id": "P-07",
+        "distinction": "P-07 acostuma a acabar la continuació."
+      },
+      {
+        "id": "AP-11",
+        "distinction": "L’ala pivot connector treballa més al costat d’un cinc i sovint amb contacte previ."
+      }
+    ],
+    "assignment": "Identifica recepcions interiors en superioritat i confirma que la passada ràpida és el seu mecanisme principal per convertir-les.",
+    "engine": "Obrir sortides segons l’ajuda que salta. Ponderar el temps de decisió abans que es tanqui el receptor.",
+    "indicators": [
+      "Descàrregues contra ajuda",
+      "ocasions després de continuació curta",
+      "temps de decisió",
+      "pèrdues amb segona marca"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-007",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-006",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C6",
+          "C4",
+          "C1",
+          "C5"
+        ],
+        [
+          "S1",
+          "F4",
+          "F1",
+          "S5"
+        ],
+        [
+          "A2",
+          "A3",
+          "C2"
+        ]
+      ],
+      "dimensions": [
+        "●",
+        "◐",
+        "○",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-07": {
+    "family": "Blocatge i continuació",
+    "identity": "Converteix en punts la via que obre una bona continuació cap al cèrcol.",
+    "offense": "Després de blocar, corre la línia que deixa el defensor i rep amb el cos orientat a acabar. Pot rebre sota o per sobre de l’ajuda.",
+    "offBallDefense": "Calcula el temps de sortida sense avançar-se al portador. Si no rep, continua fixant el protector o torna a blocar si hi ha espai.",
+    "possession": "Huntelaar bloca i el rival espera baix. Espera que el base tregui el seu defensor del mig, entra pel carril lliure i rep la passada picada per acabar.",
+    "fit": "Amb un base que amenaci de tir i una cantonada oberta obliga el protector a triar entre portador i continuador.",
+    "limits": "Contra canvis ben sostinguts pot no tenir línia fins a la zona. Necessita segell, parada o passada si el rival tanca la continuació llarga.",
+    "physical": "Acceleració en trajecte curt, mans i força per acabar en moviment.",
+    "near": [
+      {
+        "id": "AP-06",
+        "distinction": "AP-06 genera avantatge amb blocatge i també amb obertures i passades, habitualment com a segon gran."
+      },
+      {
+        "id": "P-06",
+        "distinction": "P-06 aprofita la recepció per donar l’última passada."
+      },
+      {
+        "id": "P-03",
+        "distinction": "P-03 arriba a culminar per dalt en més situacions, amb blocatge o sense."
+      }
+    ],
+    "assignment": "Comprova si una part important dels seus punts arriba després de blocar i continuar en coordinació amb el portador.",
+    "engine": "Vincular la ruta de continuació a la resposta defensiva i al temps del portador. Calcular recepció i acabament per separat.",
+    "indicators": [
+      "Recepcions de continuació",
+      "punts per jugada",
+      "defenses castigades",
+      "pèrdues en passada curta"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "C6",
+          "F1",
+          "S1",
+          "F2"
+        ],
+        [
+          "A1",
+          "A3",
+          "A4",
+          "F3"
+        ],
+        [
+          "S5",
+          "F7",
+          "A2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "◐",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-08": {
+    "family": "Joc d’esquena",
+    "identity": "Fa del pal baix d’esquena un focus anotador amb girs, fintes i acabaments de proximitat.",
+    "offense": "Palpa la marca, ajusta la posició amb un bot curt i tria ganxo, gir, suspensió enrere o passada quan arriba l’ajuda.",
+    "offBallDefense": "Segella abans de rebre i torna a oferir-se si la pilota canvia de costat. Evita ocupar el pal quan un company ja té entrada neta.",
+    "possession": "Van Nistelrooy rep d’esquena, ensenya el gir cap al centre i espera la reacció del defensor. Finalment gira cap a línia de fons i acaba amb la mà exterior.",
+    "fit": "Encaixa amb tiradors i un segon interior al pal alt que manté distància. Pot donar una via clara al final de possessió.",
+    "limits": "Si li neguen el pal o l’ajuda arriba aviat, el seu valor depèn de la passada i del joc de cara. Els bots addicionals poden regalar una recuperació.",
+    "physical": "Equilibri i força de base. L’abast ajuda al ganxo i el control dels peus manté diverses sortides.",
+    "near": [
+      {
+        "id": "P-04",
+        "distinction": "P-04 es defineix per guanyar espai amb força en més fases del joc."
+      },
+      {
+        "id": "P-01",
+        "distinction": "P-01 fixa la zona encara que no jugui sovint d’esquena."
+      },
+      {
+        "id": "AP-08",
+        "distinction": "El quatre anotador alterna més possessions de cara i de tir de mitja distància."
+      }
+    ],
+    "assignment": "Busca varietat i eficàcia repetida en possessions d’esquena, amb lectures d’ajuda i acabaments diferenciats.",
+    "engine": "Proposar recepció al pal si hi ha línia. Triar moviment segons la posició de la marca i la proximitat de l’ajuda.",
+    "indicators": [
+      "Possessions d’esquena",
+      "eficiència per moviment",
+      "passades contra doble marca",
+      "pèrdues al pal"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-RUUD-VAN-NISTELROOY",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-017",
+        "kind": "pilot"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "F4",
+          "F5",
+          "F6",
+          "S1"
+        ],
+        [
+          "A3",
+          "C6",
+          "S5",
+          "F7"
+        ],
+        [
+          "C4",
+          "C1",
+          "S4"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "◐",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-09": {
+    "family": "Mobilitat interior",
+    "identity": "Assumeix el cinc i continua sent útil quan l’acció el porta fora de la pintura en atac o defensa.",
+    "offense": "Canvia d’angle després de blocar, rep de cara en zones diverses i pot atacar un espai curt sense haver de rebre d’esquena.",
+    "offBallDefense": "Surt a cobertures altes o a canvis curts i recupera al cèrcol si el sistema li ho permet. Manté responsabilitat de rebot.",
+    "possession": "Higuaín surt al nivell del blocatge, recupera a temps per tancar el rebot i a l’altra pista rep de cara al colze per atacar una ajuda tardana.",
+    "fit": "Encaixa amb esquemes de canvi i interiors complementaris que ajuden a tancar quan surt. Permet jugar obert amb un cinc nominal.",
+    "limits": "Pot patir si l’obliguen a mantenir posició contra un pivot físic tot el partit. Les sortides llargues poden deixar el rebot exposat.",
+    "physical": "Agilitat, velocitat i resistència, amb mida i força suficients per continuar assumint feina de cinc.",
+    "near": [
+      {
+        "id": "AP-10",
+        "distinction": "AP-10 és un quatre que pot cobrir el cinc per trams; P-09 té aquesta responsabilitat com a punt de partida."
+      },
+      {
+        "id": "P-12",
+        "distinction": "P-12 treu la major part de l’avantatge en transició."
+      },
+      {
+        "id": "P-15",
+        "distinction": "P-15 abasta també accions que depenen d’aguantar espai, protegir i distribuir."
+      }
+    ],
+    "assignment": "Valora la seva mobilitat amb responsabilitats reals de cinc i comprova si recupera després de sortir.",
+    "engine": "Permetre desplaçaments llargs quan la cobertura ho admet. Comptar el cost de recuperar i el rebot que deixa obert.",
+    "indicators": [
+      "Canvis sostinguts",
+      "recuperacions al cèrcol",
+      "zones de recepció",
+      "rebots després de sortida"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-GONZALO-HIGUAIN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-014",
+        "kind": "pilot"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A2",
+          "A1",
+          "A5",
+          "D6"
+        ],
+        [
+          "D2",
+          "D1",
+          "F1",
+          "C6"
+        ],
+        [
+          "R2",
+          "A4",
+          "S2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "◐"
+      ]
+    }
+  },
+  "P-10": {
+    "family": "Rebot ofensiu",
+    "identity": "Prolonga possessions atacant el tauler ofensiu i converteix pilotes soltes en segones oportunitats.",
+    "offense": "Després de capturar identifica si pot acabar abans de la cobertura o si una passada de sortida genera un tir millor.",
+    "offBallDefense": "Busca col·locació des que surt el tir, evita el bloqueig rival i treballa captures i tocs cap a companys.",
+    "possession": "Un triple del costat contrari surt llarg. El pivot canvia de maluc, captura amb dues mans i retorna a l’exterior quan dos rivals baixen a tancar-lo.",
+    "fit": "Encaixa amb un quatre que sosté el balanç i un atac amb tir exterior que produeix captures llunyanes.",
+    "limits": "Carregar indiscriminadament pot obrir contraatacs. Quan queda massa profund, un rival pot bloquejar-lo fora del recorregut del rebot llarg.",
+    "physical": "Força, abast, esforç i segon salt. Les mans són importants per convertir un toc en possessió.",
+    "near": [
+      {
+        "id": "AP-09",
+        "distinction": "AP-09 es defineix per cobrir els dos rebots des del quatre."
+      },
+      {
+        "id": "P-03",
+        "distinction": "P-03 domina captures altes en més contextos; P-10 prioritza preservar l’atac després del tir."
+      },
+      {
+        "id": "P-14",
+        "distinction": "P-14 pot cedir la captura per bloquejar i garantir que la pilota quedi al seu equip."
+      }
+    ],
+    "assignment": "Comprova captures i tocs ofensius, i en quantes possessions es genera un segon tir de qualitat.",
+    "engine": "Assignar la càrrega segons trajectòria, contacte i cobertura de balanç. Decidir si captura, toca o abandona per tornar.",
+    "indicators": [
+      "Rebots ofensius",
+      "tocs conservats",
+      "punts de segona oportunitat",
+      "contraatacs concedits"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "R1",
+          "A6",
+          "A4",
+          "A3"
+        ],
+        [
+          "C6",
+          "F3",
+          "S1",
+          "A2"
+        ],
+        [
+          "R2",
+          "A5",
+          "C1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "◐",
+        "●",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-11": {
+    "family": "Defensa del cèrcol",
+    "identity": "És l’última barrera de l’equip, condiciona la decisió del penetrador i protegeix l’anella.",
+    "offense": "A l’altre cèrcol dona una diana simple i un blocatge útil. Pot mantenir amenaça a prop per evitar que el seu defensor surti gratuïtament.",
+    "offBallDefense": "Llegeix quan mantenir verticalitat, quan sortir un pas i quan esperar el tir. Després busca la captura o el bloqueig de rebot.",
+    "possession": "El base rival supera la primera línia. El pivot es manté vertical, li tanca la mà dominant i força un tir alt difícil, que acaba en rebot defensiu.",
+    "fit": "És especialment valuós amb exteriors que condueixen el portador cap a l’ajuda i un quatre que recull talls quan s’hi compromet.",
+    "limits": "Un rival amb cinc obert l’obliga a abandonar posició. Saltar a fintes o perseguir taps pot comprometre faltes i rebot.",
+    "physical": "Abast, salt i base estable. La lectura i la verticalitat poden evitar tirs útils sense entrar en contacte.",
+    "near": [
+      {
+        "id": "AP-07",
+        "distinction": "AP-07 protegeix la zona com a segon gran; P-11 té la responsabilitat final de l’anella."
+      },
+      {
+        "id": "P-03",
+        "distinction": "P-03 domina en alçada en atac i captura; P-11 redueix qualitat i volum a la cistella rival."
+      },
+      {
+        "id": "P-14",
+        "distinction": "P-14 prioritza l’estabilitat col·lectiva i els treballs de suport."
+      }
+    ],
+    "assignment": "Busca tirs dissuadits o alterats, vigilància dels talls i faltes assumibles, a més dels taps comptats.",
+    "engine": "Combinar dissuasió, contestació i ajuda. Separar penetracions que canvien decisió, tir contestat i tap real.",
+    "indicators": [
+      "Tirs dissuadits",
+      "qualitat al cèrcol",
+      "taps",
+      "faltes i rebot després d’ajuda"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FRANCISCO-JAVIER-GARCIA-FERNANDEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-008",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D1",
+          "D4",
+          "D6",
+          "A4"
+        ],
+        [
+          "D5",
+          "A3",
+          "R2",
+          "D7"
+        ],
+        [
+          "A2",
+          "A6",
+          "D2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "◐",
+        "●",
+        "●"
+      ]
+    }
+  },
+  "P-12": {
+    "family": "Ritme i camp obert",
+    "identity": "Guanya la cursa al cèrcol rival com a cinc i transforma un canvi de possessió en pressió interior immediata.",
+    "offense": "Pot córrer al davant o arribar com a remolcador. Rep en marxa i tria acabar, segellar o obrir una passada ràpida si la primera via es tanca.",
+    "offBallDefense": "Surt quan la pilota està controlada i dona una diana central abans que es refaci la defensa. El balanç és prioritari si és l’últim gran a tornar.",
+    "possession": "Després d’un rebot del company, el pivot ocupa de seguida el carril central, guanya posició a l’àrea i finalitza amb la passada avançada.",
+    "fit": "Encaixa amb un base de primera passada ràpida i un quatre que pot assegurar el rebot o el retorn quan ell corre.",
+    "limits": "Si l’equip no recupera pilota amb avantatge, té menys oportunitats. Marxar abans de la captura pot cedir segones possessions.",
+    "physical": "Velocitat de cursa, resistència i mans per rebre sota impuls. Ha de poder conservar posició en contactar a l’arribada.",
+    "near": [
+      {
+        "id": "P-09",
+        "distinction": "P-09 aporta mobilitat també en joc posicional i en cobertures diverses."
+      },
+      {
+        "id": "AL-06",
+        "distinction": "L’aler corre sobretot carrils exteriors i pot donar la passada intermèdia."
+      },
+      {
+        "id": "P-07",
+        "distinction": "P-07 es defineix pel blocatge i la continuació, normalment en atac organitzat."
+      }
+    ],
+    "assignment": "Observa avantatges creats quan arriba abans que el protector i quina part de la producció depèn d’aquest ritme.",
+    "engine": "Prioritzar carril central o segona arribada segons control del rebot i balanç. Habilitar un segell ràpid si ja hi ha defensor.",
+    "indicators": [
+      "Recepcions primerenques de cinc",
+      "punts de transició",
+      "segells en arribada",
+      "errors de balanç"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-GONZALO-HIGUAIN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-014",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-KLAAS-JAN-HUNTELAAR",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-015",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A1",
+          "A5",
+          "C6",
+          "F1"
+        ],
+        [
+          "A4",
+          "F2",
+          "A3",
+          "S1"
+        ],
+        [
+          "C3",
+          "A6",
+          "R2"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "●",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-13": {
+    "family": "Tir interior obert",
+    "identity": "Treu el protector principal de la pintura gràcies a l’amenaça exterior exercida des del cinc.",
+    "offense": "Obre després de blocar o rep al frontal preparat per tirar. Si el defensor arriba, pot donar mà a mà, passar o fer un bot curt.",
+    "offBallDefense": "Col·loca la seva amenaça de tir just on l’ajuda voldria quedar-se. En defensa pot haver de sostenir el rebot i la zona sense un altre pivot.",
+    "possession": "Fa un blocatge alt i s’obre al frontal. El protector no el pot seguir i cobrir alhora el tall, de manera que el base troba la passada exterior.",
+    "fit": "Canvia l’espaiat fins i tot si finalitza poc. Funciona amb penetradors i un quatre capaç de carregar o tancar el rebot.",
+    "limits": "Si el rival no respecta el tir, pot quedar lluny del rebot sense haver creat espai. Contra un cinc molt físic cal suport defensiu.",
+    "physical": "Mans i equilibri en recepció exterior, amb força i abast suficients per complir el paper de cinc.",
+    "near": [
+      {
+        "id": "AP-14",
+        "distinction": "AP-14 acostuma a estirar el segon gran mentre un cinc ocupa la zona."
+      },
+      {
+        "id": "P-05",
+        "distinction": "P-05 deforma la defensa sobretot amb circulació i passada interior."
+      },
+      {
+        "id": "P-09",
+        "distinction": "P-09 obre espais amb mobilitat variada, sense dependència d’amenaça exterior."
+      }
+    ],
+    "assignment": "Comprova si la marca exterior és el protector principal i si la seva posició canvia de debò el tir disponible per als companys.",
+    "engine": "Ponderar l’obertura del cinc segons el tir real i la cobertura. Registrar si es desplaça el protector abans de triar l’acabament.",
+    "indicators": [
+      "Triples de cinc",
+      "obertures",
+      "desplaçaments del protector",
+      "qualitat al cèrcol dels companys"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FCB-2008-09-007",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-RUBEN-DE-LA-RED",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-010",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "S3",
+          "S5",
+          "C6",
+          "S2"
+        ],
+        [
+          "S4",
+          "C1",
+          "D1",
+          "S6"
+        ],
+        [
+          "R2",
+          "A2",
+          "F1"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "●",
+        "○",
+        "●",
+        "○"
+      ]
+    }
+  },
+  "P-14": {
+    "family": "Defensa i suport",
+    "identity": "Sosté el quintet amb blocatges, bloqueig de rebot i cobertures que permeten rendir als altres quatre.",
+    "offense": "Dona el blocatge útil, retorna la pilota sense retenir-la i manté una diana curta quan un company es queda sense sortida.",
+    "offBallDefense": "Tanca el rival per assegurar la captura d’un company, cobreix una ajuda i torna a la posició amb disciplina.",
+    "possession": "El pivot tanca el seu rival perquè el base reculli el rebot. A l’altra pista, ajusta un blocatge i el manejador troba el tir sense que ell toqui pilota.",
+    "fit": "Valuós al costat de creadors forts i en quintets que necessiten estabilitat de rebot i defensa.",
+    "limits": "Amb poc tir o finalització pot permetre una ajuda addicional. Cal una tasca clara perquè el bon treball de suport es tradueixi en avantatge.",
+    "physical": "Força, resistència i esforç per repetir contactes. Lectura i agilitat curta redueixen passos i faltes.",
+    "near": [
+      {
+        "id": "P-11",
+        "distinction": "P-11 assumeix especialment la protecció final del cèrcol."
+      },
+      {
+        "id": "P-10",
+        "distinction": "P-10 busca activament capturar el rebot ofensiu."
+      },
+      {
+        "id": "AP-13",
+        "distinction": "L’ala pivot de cobertura corregeix sobretot des del quatre i més lluny del cèrcol."
+      }
+    ],
+    "assignment": "Busca accions de valor per al quintet que poden quedar fora dels punts i rebots individuals, en particular si són repetides.",
+    "engine": "Registrar blocatge, bloqueig de rebot i cobertura com a accions de suport, amb resultat atribuïble quan es conserva l’avantatge.",
+    "indicators": [
+      "Blocatges útils",
+      "rebots d’equip assegurats",
+      "cobertures a temps",
+      "faltes de blocatge"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-FRANCISCO-JAVIER-GARCIA-FERNANDEZ",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-008",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-MAHAMADOU-DIARRA",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-009",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "A6",
+          "A3",
+          "D6",
+          "R2"
+        ],
+        [
+          "D1",
+          "C6",
+          "D7",
+          "A5"
+        ],
+        [
+          "R1",
+          "C1",
+          "D5"
+        ]
+      ],
+      "dimensions": [
+        "○",
+        "○",
+        "◐",
+        "●",
+        "●"
+      ]
+    }
+  },
+  "P-15": {
+    "family": "Versatilitat interior",
+    "identity": "Pot continuar sent la referència de cinc quan el quintet canvia d’estructura, amb respostes en més d’una fase.",
+    "offense": "Alterna recepció profunda, passada de suport, blocatge i continuació o obertura si té tir. Tria segons el pla col·lectiu.",
+    "offBallDefense": "Pot protegir, rebotejar o sortir a la primera cobertura mantenint una assignació interior clara. Compensa el paper que abandona el quatre.",
+    "possession": "Amb un quatre obert, protegeix cistella i segella. Quan entra un segon gran, distribueix des del colze i coordina qui cobreix darrere del blocatge.",
+    "fit": "Sosté transicions entre quintets oponents i permet adaptar el pla sense perdre una referència interior.",
+    "limits": "Una fitxa equilibrada no garanteix domini universal. Els emparellaments extrems poden obligar-lo a cedir una tasca a un especialista.",
+    "physical": "Mida, força i mobilitat compatibles amb el paper de cinc. La lectura permet passar d’un rol a l’altre sense limitar totes les accions a un sol recurs.",
+    "near": [
+      {
+        "id": "AP-15",
+        "distinction": "AP-15 adapta el paper del quatre sovint amb un altre pivot; P-15 continua sent el cinc principal."
+      },
+      {
+        "id": "P-01",
+        "distinction": "P-01 té el seu centre en la fixació de zona."
+      },
+      {
+        "id": "P-09",
+        "distinction": "P-09 es defineix per la mobilitat, mentre P-15 també manté utilitat quan toca aguantar posició."
+      }
+    ],
+    "assignment": "Comprova ús real en diversos sistemes amb responsabilitats de cinc. Una nota global alta és insuficient per justificar-lo.",
+    "engine": "Assignar la funció interior segons cobertura, companys i rival. Resoldre cada tasca amb els atributs específics i conservar la traça dels canvis.",
+    "indicators": [
+      "Rols executats",
+      "protecció i rebot per sistema",
+      "creació interior",
+      "eficiència per tipus de recepció"
+    ],
+    "references": [
+      {
+        "playerId": "PLY-GONZALO-HIGUAIN",
+        "membershipId": "PS-ESP-PRI-2008-09-RMA-014",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-007",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+        "kind": "contrast"
+      },
+      {
+        "playerId": "PLY-FCB-2008-09-005",
+        "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+        "kind": "contrast"
+      }
+    ],
+    "proposal": {
+      "groups": [
+        [
+          "D1",
+          "R2",
+          "C4",
+          "C6"
+        ],
+        [
+          "A3",
+          "D6",
+          "S1",
+          "F1"
+        ],
+        [
+          "D4",
+          "S3",
+          "A2"
+        ]
+      ],
+      "dimensions": [
+        "◐",
+        "◐",
+        "◐",
+        "●",
+        "◐"
+      ]
+    }
   }
 }
