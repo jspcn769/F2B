@@ -25,3 +25,11 @@
 - Un club pot tenir múltiples participacions TeamSeason.
 - Un fixture és l'estructura de l'enfrontament; el seu resultat F2B és un registre separat.
 - Cap marcador o estadística absent es reemplaça amb dades futbolístiques.
+
+## Addició v0.6
+
+- `pilot-base.json` conserva els IDs i les relacions de l’enciclopèdia v0.5.
+- `conversions.json` desa cada conversió amb `membershipId` i `playerId`, posicions ordenades, mesures, OVR/POT, estats de confirmació, codi d’arquetip, notes de disponibilitat i valors dels 36 atributs. Inclou una llista de posicions parcials.
+- `inter.json` desa les fitxes sota l’ID d’equip de temporada de l’Inter. Els IDs compartits apunten als jugadors presents a l’enciclopèdia. La vista històrica és independent del calendari pilot espanyol.
+- `archetypes.json` separa el catàleg de les files metodològiques recuperades. L’absència d’una fila indica que la matriu d’aquell arquetip és pendent.
+- `regulation.json` fixa la configuració general de 48 minuts. `experiments-2008-09.json` conté la configuració particular de les proves de 40 minuts.

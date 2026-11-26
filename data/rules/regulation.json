@@ -1,0 +1,10 @@
+{
+  "decision": "DEC-006",
+  "status": "APPROVED",
+  "confirmationDate": "2026-11-26",
+  "playersOnCourtPerTeam": 5,
+  "periods": 4,
+  "minutesPerPeriod": 12,
+  "regulationMinutes": 48,
+  "teamPlayerMinutes": 240
+}

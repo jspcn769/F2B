@@ -1,0 +1,459 @@
+{
+  "status": "APPROVED",
+  "entries": [
+    {
+      "id": "BA-01",
+      "position": "BA",
+      "name": "Director de joc total"
+    },
+    {
+      "id": "BA-02",
+      "position": "BA",
+      "name": "Creador de passada"
+    },
+    {
+      "id": "BA-03",
+      "position": "BA",
+      "name": "Gestor de ritme"
+    },
+    {
+      "id": "BA-04",
+      "position": "BA",
+      "name": "Mestre del blocatge i continuació"
+    },
+    {
+      "id": "BA-05",
+      "position": "BA",
+      "name": "Rupturista i descarregador"
+    },
+    {
+      "id": "BA-06",
+      "position": "BA",
+      "name": "Base golejador"
+    },
+    {
+      "id": "BA-07",
+      "position": "BA",
+      "name": "Base-escorta híbrid"
+    },
+    {
+      "id": "BA-08",
+      "position": "BA",
+      "name": "Rupturista de cistella"
+    },
+    {
+      "id": "BA-09",
+      "position": "BA",
+      "name": "Motor de transició"
+    },
+    {
+      "id": "BA-10",
+      "position": "BA",
+      "name": "Creador de tir en conducció"
+    },
+    {
+      "id": "BA-11",
+      "position": "BA",
+      "name": "Creador de llarg abast"
+    },
+    {
+      "id": "BA-12",
+      "position": "BA",
+      "name": "Base de contenció"
+    },
+    {
+      "id": "BA-13",
+      "position": "BA",
+      "name": "Caçapilotes"
+    },
+    {
+      "id": "BA-14",
+      "position": "BA",
+      "name": "Director de contacte"
+    },
+    {
+      "id": "BA-15",
+      "position": "BA",
+      "name": "Connector de joc"
+    },
+    {
+      "id": "ES-01",
+      "position": "ES",
+      "name": "Anotador de desequilibri"
+    },
+    {
+      "id": "ES-02",
+      "position": "ES",
+      "name": "Especialista de tir"
+    },
+    {
+      "id": "ES-03",
+      "position": "ES",
+      "name": "Segon creador"
+    },
+    {
+      "id": "ES-04",
+      "position": "ES",
+      "name": "Duelista de conducció"
+    },
+    {
+      "id": "ES-05",
+      "position": "ES",
+      "name": "Finalitzador de recepció"
+    },
+    {
+      "id": "ES-06",
+      "position": "ES",
+      "name": "Caçador d’espais"
+    },
+    {
+      "id": "ES-07",
+      "position": "ES",
+      "name": "Executor de contraatac"
+    },
+    {
+      "id": "ES-08",
+      "position": "ES",
+      "name": "Tirador de volum"
+    },
+    {
+      "id": "ES-09",
+      "position": "ES",
+      "name": "Creador de falta"
+    },
+    {
+      "id": "ES-10",
+      "position": "ES",
+      "name": "Combinador ofensiu"
+    },
+    {
+      "id": "ES-11",
+      "position": "ES",
+      "name": "Atacant de línia de fons"
+    },
+    {
+      "id": "ES-12",
+      "position": "ES",
+      "name": "Escorta defensiu"
+    },
+    {
+      "id": "ES-13",
+      "position": "ES",
+      "name": "Especialista d’intercepció"
+    },
+    {
+      "id": "ES-14",
+      "position": "ES",
+      "name": "Anotador de continuació"
+    },
+    {
+      "id": "ES-15",
+      "position": "ES",
+      "name": "Escorta tot terreny"
+    },
+    {
+      "id": "AL-01",
+      "position": "AL",
+      "name": "Atacant de profunditat"
+    },
+    {
+      "id": "AL-02",
+      "position": "AL",
+      "name": "Potència de conducció"
+    },
+    {
+      "id": "AL-03",
+      "position": "AL",
+      "name": "Finalitzador aeri"
+    },
+    {
+      "id": "AL-04",
+      "position": "AL",
+      "name": "Aler anotador total"
+    },
+    {
+      "id": "AL-05",
+      "position": "AL",
+      "name": "Duelista físic"
+    },
+    {
+      "id": "AL-06",
+      "position": "AL",
+      "name": "Aler de transició"
+    },
+    {
+      "id": "AL-07",
+      "position": "AL",
+      "name": "Atacant de segona línia"
+    },
+    {
+      "id": "AL-08",
+      "position": "AL",
+      "name": "Creador exterior"
+    },
+    {
+      "id": "AL-09",
+      "position": "AL",
+      "name": "Aler de ruptura"
+    },
+    {
+      "id": "AL-10",
+      "position": "AL",
+      "name": "Especialista de banda"
+    },
+    {
+      "id": "AL-11",
+      "position": "AL",
+      "name": "Aler de dos sentits"
+    },
+    {
+      "id": "AL-12",
+      "position": "AL",
+      "name": "Caçador de rebot"
+    },
+    {
+      "id": "AL-13",
+      "position": "AL",
+      "name": "Aler de contacte"
+    },
+    {
+      "id": "AL-14",
+      "position": "AL",
+      "name": "Desbordador creatiu"
+    },
+    {
+      "id": "AL-15",
+      "position": "AL",
+      "name": "Aler universal"
+    },
+    {
+      "id": "AP-01",
+      "position": "AP",
+      "name": "Dominador de contacte"
+    },
+    {
+      "id": "AP-02",
+      "position": "AP",
+      "name": "Motor de segona línia"
+    },
+    {
+      "id": "AP-03",
+      "position": "AP",
+      "name": "Recuperador interior"
+    },
+    {
+      "id": "AP-04",
+      "position": "AP",
+      "name": "Organitzador interior"
+    },
+    {
+      "id": "AP-05",
+      "position": "AP",
+      "name": "Arribador de segona onada"
+    },
+    {
+      "id": "AP-06",
+      "position": "AP",
+      "name": "Bloquejador i continuador"
+    },
+    {
+      "id": "AP-07",
+      "position": "AP",
+      "name": "Protector de zona"
+    },
+    {
+      "id": "AP-08",
+      "position": "AP",
+      "name": "Aler-pivot anotador"
+    },
+    {
+      "id": "AP-09",
+      "position": "AP",
+      "name": "Especialista de rebot"
+    },
+    {
+      "id": "AP-10",
+      "position": "AP",
+      "name": "Pivot mòbil"
+    },
+    {
+      "id": "AP-11",
+      "position": "AP",
+      "name": "Connector de contacte"
+    },
+    {
+      "id": "AP-12",
+      "position": "AP",
+      "name": "Arribador de potència"
+    },
+    {
+      "id": "AP-13",
+      "position": "AP",
+      "name": "Especialista de cobertura"
+    },
+    {
+      "id": "AP-14",
+      "position": "AP",
+      "name": "Interior de llarg abast"
+    },
+    {
+      "id": "AP-15",
+      "position": "AP",
+      "name": "Interior total"
+    },
+    {
+      "id": "P-01",
+      "position": "P",
+      "name": "Referència de zona"
+    },
+    {
+      "id": "P-02",
+      "position": "P",
+      "name": "Finalitzador de contacte"
+    },
+    {
+      "id": "P-03",
+      "position": "P",
+      "name": "Dominador aeri"
+    },
+    {
+      "id": "P-04",
+      "position": "P",
+      "name": "Pivot de potència"
+    },
+    {
+      "id": "P-05",
+      "position": "P",
+      "name": "Pivot associatiu"
+    },
+    {
+      "id": "P-06",
+      "position": "P",
+      "name": "Mestre de la descàrrega"
+    },
+    {
+      "id": "P-07",
+      "position": "P",
+      "name": "Finalitzador de continuació"
+    },
+    {
+      "id": "P-08",
+      "position": "P",
+      "name": "Especialista de joc d’esquena"
+    },
+    {
+      "id": "P-09",
+      "position": "P",
+      "name": "Pivot de mobilitat"
+    },
+    {
+      "id": "P-10",
+      "position": "P",
+      "name": "Caçador de rebot ofensiu"
+    },
+    {
+      "id": "P-11",
+      "position": "P",
+      "name": "Protector de cistella"
+    },
+    {
+      "id": "P-12",
+      "position": "P",
+      "name": "Pivot de transició"
+    },
+    {
+      "id": "P-13",
+      "position": "P",
+      "name": "Pivot de llarg abast"
+    },
+    {
+      "id": "P-14",
+      "position": "P",
+      "name": "Pivot de sacrifici"
+    },
+    {
+      "id": "P-15",
+      "position": "P",
+      "name": "Pivot total"
+    }
+  ],
+  "comparison": {
+    "dimensions": [
+      "Creació i conducció",
+      "Anotació i finalització",
+      "Física i atletisme",
+      "Joc interior",
+      "Defensa i recuperació"
+    ],
+    "levels": {
+      "primary": "●",
+      "secondary": "◐",
+      "complementary": "○",
+      "notDeterminant": "—"
+    },
+    "rows": {
+      "BA-01": [
+        "●",
+        "◐",
+        "○",
+        "—",
+        "◐"
+      ],
+      "ES-01": [
+        "◐",
+        "●",
+        "◐",
+        "—",
+        "○"
+      ]
+    }
+  },
+  "fit": {
+    "status": "PARTIAL",
+    "weights": {
+      "defining": 0.6,
+      "support": 0.3,
+      "complementary": 0.1
+    },
+    "rows": {
+      "BA-01": [
+        [
+          "C1",
+          "C2",
+          "C4",
+          "C5"
+        ],
+        [
+          "C6",
+          "A2",
+          "A5",
+          "S5"
+        ],
+        [
+          "C3",
+          "D2",
+          "M1"
+        ]
+      ],
+      "ES-01": [
+        [
+          "C2",
+          "F1",
+          "S2",
+          "S5"
+        ],
+        [
+          "S3",
+          "F7",
+          "C3",
+          "A2"
+        ],
+        [
+          "C1",
+          "S1",
+          "S6"
+        ]
+      ]
+    }
+  }
+}

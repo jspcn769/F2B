@@ -1,0 +1,146 @@
+[
+  [
+    "S1",
+    "Tir de prop"
+  ],
+  [
+    "S2",
+    "Tir de mitja distància"
+  ],
+  [
+    "S3",
+    "Tir de tres"
+  ],
+  [
+    "S4",
+    "Tir lliure"
+  ],
+  [
+    "S5",
+    "Selecció de tir"
+  ],
+  [
+    "S6",
+    "Regularitat ofensiva"
+  ],
+  [
+    "F1",
+    "Safata en penetració"
+  ],
+  [
+    "F2",
+    "Esmaixada en cursa"
+  ],
+  [
+    "F3",
+    "Esmaixada en estàtic"
+  ],
+  [
+    "F4",
+    "Control al pal baix"
+  ],
+  [
+    "F5",
+    "Ganxo al pal baix"
+  ],
+  [
+    "F6",
+    "Tir en suspensió enrere al pal baix"
+  ],
+  [
+    "F7",
+    "Forçar faltes"
+  ],
+  [
+    "C1",
+    "Precisió de passada"
+  ],
+  [
+    "C2",
+    "Maneig de pilota"
+  ],
+  [
+    "C3",
+    "Velocitat amb pilota"
+  ],
+  [
+    "C4",
+    "Criteri de passada"
+  ],
+  [
+    "C5",
+    "Visió de passada"
+  ],
+  [
+    "C6",
+    "Mans"
+  ],
+  [
+    "D1",
+    "Defensa interior"
+  ],
+  [
+    "D2",
+    "Defensa perimetral"
+  ],
+  [
+    "D3",
+    "Robatori"
+  ],
+  [
+    "D4",
+    "Tap"
+  ],
+  [
+    "D5",
+    "Lectura de línies de passada"
+  ],
+  [
+    "D6",
+    "Lectura de les ajudes"
+  ],
+  [
+    "D7",
+    "Regularitat defensiva"
+  ],
+  [
+    "R1",
+    "Rebot ofensiu"
+  ],
+  [
+    "R2",
+    "Rebot defensiu"
+  ],
+  [
+    "A1",
+    "Velocitat"
+  ],
+  [
+    "A2",
+    "Agilitat"
+  ],
+  [
+    "A3",
+    "Força"
+  ],
+  [
+    "A4",
+    "Salt vertical"
+  ],
+  [
+    "A5",
+    "Resistència"
+  ],
+  [
+    "A6",
+    "Esforç"
+  ],
+  [
+    "M1",
+    "Intangibles"
+  ],
+  [
+    "M2",
+    "Potencial"
+  ]
+]

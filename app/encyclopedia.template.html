@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101914">
+  <meta name="description" content="F2B — Enciclopèdia de bàsquet. Primera Divisió 2008/09, temporada pilot.">
+  <title>F2B — Enciclopèdia de bàsquet</title>
+
+</head>
+<body>
+  <div class="mobile-scrim" id="mobileScrim"></div>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#/home" data-route="/home" aria-label="F2B inici">
+      <span class="brandmark">F2B</span>
+      <span><b>F2B</b><small>FOOTBALL TO BASKETBALL</small></span>
+    </a>
+    <div class="navlabel">ENCICLOPÈDIA</div>
+    <nav class="nav" id="mainNav">
+      <a href="#/home" data-route="/home" data-nav="home"><span class="nav-icon">⌂</span> Inici</a>
+      <a href="#/competitions" data-route="/competitions" data-nav="competitions"><span class="nav-icon">▤</span> Competicions</a>
+      <a href="#/seasons" data-route="/seasons" data-nav="seasons"><span class="nav-icon">◷</span> Temporades</a>
+      <a href="#/clubs" data-route="/clubs" data-nav="clubs"><span class="nav-icon">◈</span> Clubs i equips</a>
+      <a href="#/players" data-route="/players" data-nav="players"><span class="nav-icon">♟</span> Jugadors</a>
+      <a href="#/archetypes" data-route="/archetypes" data-nav="archetypes"><span class="nav-icon">◇</span> Arquetips</a>
+      <a href="#/inter-2009-10" data-route="/inter-2009-10" data-nav="inter-2009-10"><span class="nav-icon">◈</span> Inter 2009/10</a>
+      <a href="#/rounds" data-route="/rounds" data-nav="rounds"><span class="nav-icon">▦</span> Jornades i partits</a>
+    </nav>
+    <div class="navlabel">SISTEMA</div>
+    <nav class="nav">
+      <a href="#/database" data-route="/database" data-nav="database"><span class="nav-icon">⌘</span> Base de dades</a>
+    </nav>
+    <div class="sidebar-season">
+      <div class="sidebar-season-kicker">TEMPORADA PILOT</div>
+      <b>Primera Divisió</b>
+      <span>2008/09 · Espanya</span>
+      <a href="#/season/SEA-ESP-PRI-2008-09/overview" data-route="/season/SEA-ESP-PRI-2008-09/overview">Obrir temporada <span>↗</span></a>
+    </div>
+    <div class="sidebar-foot"><span class="status-dot"></span> v0.6 · Plantilles i arquetips</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Obrir menú">☰</button>
+        <div class="breadcrumb" id="breadcrumb">F2B <span>/</span> Inici</div>
+      </div>
+      <div class="topbar-right">
+        <div class="global-search">
+          <span class="search-icon">⌕</span>
+          <input id="globalSearch" type="search" autocomplete="off" placeholder="Cerca competició, club, jugador, jornada…" aria-label="Cerca a F2B">
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+        <div class="data-tools">
+          <button class="tool-btn edit-toggle" id="editToggle" type="button">✎ Editar dades</button>
+          <button class="tool-btn" id="exportData" type="button" title="Exportar totes les fitxes i canvis locals">↓ JSON</button>
+          <label class="tool-btn import-label" for="importFile" title="Importar una còpia JSON">↑ Importar</label>
+          <input id="importFile" type="file" accept="application/json,.json" hidden>
+          <span id="saveState" class="save-state" data-state="idle">Canvis locals automàtics</span>
+        </div>
+        <span class="top-version">F2B · v0.6</span>
+      </div>
+    </header>
+    <div class="content" id="content" aria-live="polite">
+      <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
+    </div>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>La història de la pista comença aquí.</span></footer>
+  </main>
+  <style>
+:root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{cursor:pointer}.sidebar{position:fixed;inset:0 auto 0 0;width:246px;background:var(--dark);color:#f1f5ef;padding:20px 15px 15px;display:flex;flex-direction:column;z-index:40;overflow:auto}.brand{display:flex;align-items:center;gap:11px;padding:2px 7px 21px;border-bottom:1px solid #2b382f}.brandmark{background:var(--lime);color:var(--dark);font-weight:1000;letter-spacing:-2px;font-size:16px;width:42px;height:42px;display:grid;place-items:center;border-radius:11px;flex:none}.brand b{display:block;font-size:14px;letter-spacing:.1em}.brand small{display:block;color:#89978c;font-size:8px;letter-spacing:.13em;margin-top:3px}.navlabel{font-size:9px;color:#758579;letter-spacing:.18em;font-weight:900;margin:24px 9px 8px}.nav{display:grid;gap:4px}.nav a{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:8px;color:#b1bdb3;font-size:12px;font-weight:680;transition:.15s}.nav a:hover{background:#202e24;color:#fff}.nav a.active{background:var(--lime);color:var(--dark);font-weight:850}.nav-icon{width:18px;text-align:center;font-size:16px}.sidebar-season{margin-top:auto;background:#1b2920;border:1px solid #304036;padding:13px;border-radius:11px}.sidebar-season-kicker{color:var(--lime);font-size:8px;font-weight:900;letter-spacing:.17em;margin-bottom:8px}.sidebar-season b{display:block;font-size:12px}.sidebar-season span{display:block;color:#a2b0a5;font-size:10px;margin-top:3px}.sidebar-season a{display:flex;justify-content:space-between;color:var(--lime);font-size:10px;font-weight:800;margin-top:13px}.sidebar-foot{font-size:9px;color:#859387;padding:15px 8px 0}.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9bc85a;margin-right:6px;vertical-align:1px}.main{margin-left:246px;min-height:100vh;display:flex;flex-direction:column}.topbar{height:65px;position:sticky;top:0;z-index:25;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 30px}.topbar-left,.topbar-right{display:flex;align-items:center;gap:13px;min-width:0}.breadcrumb{font-size:10px;color:#8c988e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.breadcrumb span{padding:0 7px;color:#c4cbc4}.breadcrumb b{color:var(--ink)}.global-search{position:relative;width:min(370px,38vw)}.global-search input{width:100%;border:1px solid var(--line);border-radius:9px;background:#f8faf7;padding:9px 12px 9px 34px;font-size:10px;outline:none}.global-search input:focus{border-color:#a9ce67;background:#fff}.search-icon{position:absolute;left:12px;top:6px;color:#879389;font-size:19px;z-index:1}.top-version{font-size:8px;font-weight:900;letter-spacing:.12em;color:#6e7b70;background:var(--lime-soft);padding:7px 9px;border-radius:30px;white-space:nowrap}.mobile-menu{display:none;border:0;background:none;font-size:18px;color:var(--ink)}.content{width:100%;max-width:1500px;margin:0 auto;padding:27px 30px 55px;flex:1}.page-footer{border-top:1px solid var(--line);padding:15px 30px;color:#9aa49b;font-size:9px;display:flex;justify-content:space-between;gap:10px}.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:19px}.eyebrow{font-size:9px;color:#89968c;text-transform:uppercase;letter-spacing:.18em;font-weight:900;margin-bottom:7px}.page-title{font-size:29px;line-height:1.08;letter-spacing:-1.1px;font-weight:930;margin:0}.page-desc{color:#7e8a80;font-size:11px;line-height:1.55;max-width:760px;margin:8px 0 0}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:8px 11px;font-size:10px;font-weight:800;transition:.15s}.btn:hover{border-color:#b6d27f;background:#fcfff7}.btn.dark{background:var(--dark);border-color:var(--dark);color:#fff}.btn.lime{background:var(--lime);border-color:var(--lime);color:#1b281c}.btn.soft{background:var(--lime-soft);border-color:#e5efce;color:#526a2b}.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#101914 0%,#203227 100%);border-radius:17px;padding:27px 29px;color:#f4f7f1;display:grid;grid-template-columns:1.45fr .55fr;gap:20px;min-height:218px}.hero:after{content:"F2B";position:absolute;right:20%;bottom:-76px;font-size:225px;letter-spacing:-20px;font-weight:1000;color:#ffffff08;pointer-events:none}.hero-kicker{font-size:8px;color:var(--lime);font-weight:900;letter-spacing:.2em}.hero h2{font-size:31px;line-height:1.03;letter-spacing:-1.2px;max-width:650px;margin:10px 0}.hero p{font-size:11px;line-height:1.65;color:#b0bdb2;max-width:600px;margin:0 0 17px}.hero .actions{position:relative;z-index:2}.hero-art{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}.hero-orb{width:125px;height:125px;border:1px solid #c9ef705c;border-radius:50%;display:grid;place-items:center;color:var(--lime);font-size:34px;font-weight:950;transform:rotate(-8deg)}.hero-orb small{display:block;font-size:7px;letter-spacing:.19em;text-align:center;color:#b0bd9f;margin-top:-35px}.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 20px}.stat-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 15px}.stat-number{font-size:25px;letter-spacing:-.9px;font-weight:930}.stat-label{font-size:9px;color:#87948a;margin-top:2px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:23px 0 11px}.section-head h3{font-size:13px;margin:0;letter-spacing:-.2px}.section-head p{font-size:9px;color:#8a968d;margin:3px 0 0}.grid{display:grid;gap:10px}.cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}.cards-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:15px;min-width:0}.card.click{transition:.16s}.card.click:hover{border-color:#b9d78a;transform:translateY(-2px);box-shadow:var(--shadow)}.card-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.card-mark{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:#fafcf9;display:grid;place-items:center;font-size:11px;font-weight:900;color:#425343}.card h3,.card h4{font-size:12px;margin:11px 0 4px}.card p{font-size:10px;color:#829087;margin:0;line-height:1.5}.meta{font-size:9px;color:#97a198;margin-top:10px}.tag{display:inline-flex;align-items:center;gap:4px;border-radius:30px;padding:5px 8px;background:#eef1ec;color:#6c796e;font-size:8px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.tag.green{background:var(--lime-soft);color:#5e762d}.tag.orange{background:#fff0e9;color:#b35f3e}.tag.blue{background:#edf3fc;color:#55759d}.tag.grey{background:#f1f3f1;color:#7e8a80}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line)}.panel-head h3{font-size:11px;margin:0}.panel-head p{font-size:9px;color:#8c988f;margin:3px 0 0}.panel-body{padding:14px}.panel-head .tag{flex:none}.two-col{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(245px,.7fr);gap:11px}.kv{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid #eff2ee;font-size:10px}.kv:last-child{border-bottom:0}.kv span{color:#869389}.kv b{text-align:right;font-weight:800}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;text-align:left;min-width:620px}.data-table th{background:#f8faf7;color:#89958b;font-size:8px;text-transform:uppercase;letter-spacing:.1em;padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}.data-table td{font-size:10px;color:#4a584e;padding:10px 12px;border-bottom:1px solid #edf0ec;white-space:nowrap}.data-table tr:last-child td{border:0}.data-table tr.link-row{cursor:pointer}.data-table tr.link-row:hover td{background:#fbfff5}.club-cell{display:flex;align-items:center;gap:9px}.crest{width:29px;height:29px;border:1px solid var(--line);border-radius:8px;background:#fafcf9;display:grid;place-items:center;font-size:9px;font-weight:950;color:#344337;flex:none}.club-name{font-weight:850;color:#26332a}.muted{color:#8b978e}.tabs{display:flex;gap:4px;overflow:auto;border-bottom:1px solid var(--line);background:#fff;padding:0 12px}.tabs a{display:inline-flex;align-items:center;padding:12px 12px 10px;border-bottom:2px solid transparent;color:#849087;font-size:9px;font-weight:850;white-space:nowrap}.tabs a.active{color:var(--ink);border-color:#8fbc4b}.tab-content{padding:14px}.banner{display:flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(110deg,#17241b,#2a3b2c);color:#fff;border-radius:15px;padding:17px 19px;margin-bottom:13px}.banner-left{display:flex;align-items:center;gap:13px;min-width:0}.banner-crest{width:52px;height:52px;background:#ffffff12;border:1px solid #ffffff27;border-radius:12px;display:grid;place-items:center;color:var(--lime);font-size:16px;font-weight:950;flex:none}.banner h2{font-size:19px;letter-spacing:-.5px;margin:0}.banner p{font-size:9px;color:#b7c4b8;margin:4px 0 0}.banner-meta{text-align:right;font-size:9px;color:#bdc9bf;white-space:nowrap}.breadcrumb-row{display:flex;align-items:center;flex-wrap:wrap;gap:7px;color:#8b978d;font-size:9px;margin-bottom:14px}.breadcrumb-row a{color:#536456;font-weight:800}.breadcrumb-row span{color:#bcc5bd}.round-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.round-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px;transition:.15s}.round-card:hover{border-color:#b9d78a;transform:translateY(-1px)}.round-card b{display:block;font-size:12px}.round-card span{display:block;color:#849087;font-size:9px;margin-top:4px}.fixture-list{display:grid;gap:7px}.fixture-row{display:grid;grid-template-columns:75px minmax(0,1fr) auto;align-items:center;gap:12px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;transition:.15s}.fixture-row:hover{border-color:#b7d584;background:#fcfff8}.fixture-round{color:#8a968d;font-size:8px;font-weight:850;letter-spacing:.06em}.fixture-matchup{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0}.fixture-team{display:flex;align-items:center;gap:7px;min-width:0;font-size:10px;font-weight:850}.fixture-team.home{justify-content:flex-end;text-align:right}.fixture-team.away{justify-content:flex-start;text-align:left}.fixture-team span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.vs{font-size:8px;color:#a5aea7;font-weight:900}.fixture-state{justify-self:end}.fixture-row .crest{width:25px;height:25px;font-size:8px}.fixture-hero{background:#fff;border:1px solid var(--line);border-radius:15px;padding:23px;text-align:center}.fixture-teams{display:grid;grid-template-columns:1fr 65px 1fr;align-items:center;gap:14px;max-width:740px;margin:0 auto}.fixture-side{display:grid;justify-items:center;gap:10px}.fixture-side .crest{width:58px;height:58px;font-size:16px;border-radius:15px}.fixture-side b{font-size:15px}.fixture-vs{font-size:10px;color:#a0aaa2;font-weight:950;letter-spacing:.12em}.fixture-placeholder{max-width:420px;margin:18px auto 0;border-top:1px solid var(--line);padding-top:17px}.fixture-placeholder strong{display:block;font-size:12px}.fixture-placeholder p{margin:5px 0 0;font-size:10px;line-height:1.6;color:#849087}.empty{border:1px dashed #d7dfd5;border-radius:11px;background:#fbfcfa;text-align:center;padding:25px 17px}.empty-icon{font-size:22px;color:#8da56a;margin-bottom:7px}.empty b{display:block;font-size:12px}.empty p{font-size:10px;line-height:1.6;color:#879389;max-width:490px;margin:6px auto 0}.note{padding:11px 13px;border-radius:9px;background:#f5f8f0;border:1px solid #e8efdc;color:#697a55;font-size:9px;line-height:1.55}.note strong{color:#43542e}.search-results{position:absolute;top:calc(100% + 7px);right:0;width:min(460px,88vw);background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);padding:6px;z-index:70;max-height:440px;overflow:auto}.search-item{display:flex;align-items:center;gap:10px;width:100%;border:0;background:#fff;text-align:left;padding:10px;border-radius:8px}.search-item:hover{background:#f6f9f2}.search-item b{display:block;font-size:10px}.search-item small{display:block;color:#89958b;font-size:8px;margin-top:2px}.search-item .crest{width:28px;height:28px}.loading{min-height:60vh;display:grid;place-content:center;justify-items:center;color:#879389}.loading p{font-size:11px}.mobile-scrim{display:none}.mobile-scrim.open{display:block;position:fixed;inset:0;background:#0b120dc2;z-index:35}
+@media(max-width:1120px){.cards-4{grid-template-columns:repeat(2,minmax(0,1fr))}.cards-3{grid-template-columns:repeat(2,minmax(0,1fr))}.round-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.content{padding:24px 22px 45px}.topbar{padding:0 22px}}
+@media(max-width:760px){.sidebar{transform:translateX(-102%);transition:transform .22s ease}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.mobile-menu{display:block}.topbar{height:59px;padding:0 14px}.topbar-left{gap:8px}.top-version{display:none}.global-search{width:min(54vw,300px)}.global-search input{font-size:9px}.content{padding:19px 14px 38px}.page-title{font-size:25px}.page-head{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr;padding:22px;min-height:0}.hero h2{font-size:27px}.hero-art{display:none}.hero:after{right:0;font-size:140px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.round-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cards-3,.cards-4{grid-template-columns:repeat(2,minmax(0,1fr))}.banner{align-items:flex-start}.banner-meta{display:none}.fixture-row{grid-template-columns:56px minmax(0,1fr) auto;gap:6px;padding:9px}.fixture-team{font-size:9px;gap:4px}.fixture-team .crest{display:none}.fixture-teams{grid-template-columns:1fr 30px 1fr;gap:6px}.fixture-side b{font-size:11px}.fixture-side .crest{width:45px;height:45px}.page-footer{padding:13px 14px;font-size:8px}}
+@media(max-width:420px){.cards-3,.cards-4{grid-template-columns:1fr}.round-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fixture-state .tag{font-size:7px;padding:4px 5px}.fixture-row{grid-template-columns:45px minmax(0,1fr) auto}.fixture-round{font-size:7px}.topbar-right{gap:0}.global-search{width:58vw}}
+
+/* v0.4 — plantilles, fitxes de jugador i edició directa */
+.data-tools{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}.tool-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid var(--line);background:#fff;color:#344438;border-radius:8px;padding:7px 9px;font-size:9px;font-weight:850;white-space:nowrap;cursor:pointer}.tool-btn:hover{border-color:#b6d27f;background:#fbfff6}.tool-btn.active,.edit-toggle.active{background:var(--lime);border-color:var(--lime);color:#17221b}.save-state{font-size:8px;color:#8b978d;white-space:nowrap;max-width:125px;overflow:hidden;text-overflow:ellipsis}.save-state[data-state="saved"]{color:#52772a}.save-state[data-state="error"]{color:#b94c4c}.player-banner{display:flex;align-items:center;gap:15px;background:linear-gradient(110deg,#17241b,#2a3b2c);color:#fff;border-radius:15px;padding:17px 20px;margin-bottom:10px}.player-avatar{width:58px;height:58px;display:grid;place-items:center;border-radius:15px;background:var(--lime);color:#17221b;font-size:15px;font-weight:950;flex:none}.player-title{min-width:0;flex:1}.player-title .eyebrow{color:var(--lime);margin-bottom:5px}.player-title h1{font-size:20px;line-height:1.2;margin:0;color:#fff}.player-title h1 .edit-field{display:block}.player-title h1 .edit-label{display:none}.player-title p{font-size:9px;color:#c0cbbf;margin:6px 0 0}.player-banner-meta{display:grid;justify-items:end;gap:7px}.player-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#8b978d;font-size:9px;margin:0 0 14px}.player-columns{align-items:start}.edit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 16px}.edit-field{display:flex;flex-direction:column;gap:5px;min-width:0;padding:8px 0;border-bottom:1px solid #eff2ee}.edit-label{font-size:8px;letter-spacing:.04em;color:#879389;font-weight:750}.edit-control{font-size:10px;min-width:0}.field-value{display:block;text-align:left;color:#27352b;font-size:10px;font-weight:800;min-height:16px;overflow-wrap:anywhere}.inline-editor{width:100%;max-width:100%;min-width:0;border:1px solid #dce5d6;background:#fbfdf9;border-radius:7px;color:#1d2a21;padding:7px 8px;font-size:10px;font-weight:700;outline:none}.inline-editor:focus{border-color:#9bc85a;box-shadow:0 0 0 2px #c9ef7045;background:#fff}.inline-editor.edited{border-color:#a8c977;background:#fbfff4}.inline-editor-area{resize:vertical;min-height:48px;font-weight:500}.subsection-label{font-size:8px;text-transform:uppercase;letter-spacing:.13em;color:#7b897e;font-weight:900;margin:9px 0 3px}.attribute-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.attribute-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;min-width:0}.attribute-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}.attribute-head h4{font-size:10px;margin:0}.attribute-card .edit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 10px}.roster-summary{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}.roster-summary span{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:9px;color:#829087}.roster-summary b{font-size:13px;color:#243329;margin-right:4px}.roster-table .link-row{cursor:pointer}.roster-table .link-row:hover td{background:#f8fcf2}.roster-panel .data-table{min-width:680px}.player-bottom-note{border:1px solid #e7eddf;background:#f8fbf3;border-radius:10px;padding:12px 14px;margin-top:14px;color:#75816b;font-size:9px;line-height:1.55}.player-bottom-note b{color:#4f6a2c}.edit-mode .player-banner{outline:2px solid #c9ef70;outline-offset:2px}.edit-mode .edit-field{background:#fcfff8}.edit-mode .edit-label{color:#627e36}.team-roster-link{color:#587a2c;font-weight:850}
+@media(max-width:1120px){.data-tools{gap:4px}.save-state{display:none}.topbar-right{gap:8px}.attribute-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.topbar{height:auto;min-height:59px;padding:8px 12px;align-items:flex-start}.topbar-right{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}.global-search{width:min(58vw,250px)}.data-tools{order:2;width:100%;justify-content:flex-end}.save-state{display:inline-block;max-width:110px}.tool-btn{padding:6px 7px;font-size:8px}.top-version{display:none}.player-banner{align-items:flex-start;padding:14px;gap:10px}.player-avatar{width:44px;height:44px;font-size:12px}.player-banner-meta{display:none}.player-title h1{font-size:16px}.edit-grid{grid-template-columns:1fr}.attribute-grid{grid-template-columns:1fr}.player-toolbar{align-items:flex-start}.roster-summary span{flex:1 1 40%}}
+@media(max-width:420px){.data-tools{justify-content:space-between}.save-state{max-width:95px}.global-search{width:55vw}.attribute-card .edit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* v0.4.1 — inline title edit and roster refinements */
+.title-inline-editor{display:inline-block;width:min(100%,560px);min-width:220px;font-size:inherit;line-height:inherit;font-weight:inherit;letter-spacing:inherit;color:inherit;background:#ffffff12;border-color:#c9ef7070}.player-title h1 .title-inline-editor{color:#fff}.player-title h1 .title-inline-editor:focus{background:#203227;border-color:var(--lime)}.player-banner-meta .tag{max-width:180px}.roster-table td{vertical-align:middle}.edit-field:focus-within{background:#f6faef}.player-title h1{overflow-wrap:anywhere}
+
+/* v0.5 — roster roles, membership and eligibility review */
+.role-primary{display:block;font-weight:850;color:#344438}.role-detail{display:block;margin-top:3px;color:#89958b;font-size:8px;white-space:normal;max-width:260px}.roster-table td{white-space:normal}.roster-table .role-detail{white-space:normal}.roster-summary span{display:flex;align-items:center;gap:4px}.player-banner-meta{max-width:210px}.player-banner-meta .tag{white-space:normal;text-align:center;justify-content:center}
+@media(max-width:760px){.player-banner-meta{display:none}.roster-panel .data-table{min-width:850px}}
+
+  </style>
+  <script>window.F2B_DATA=__F2B_EMBEDDED_DATA__;</script>
+  <script>
+(() => {
+  'use strict';
+  const $ = (s, root=document) => root.querySelector(s);
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const seasonId = 'SEA-ESP-PRI-2008-09';
+  const compId = 'CMP-ESP-PRIMERA';
+  let DB = null;
+  let indexes = {};
+  const LOCAL_KEY = 'F2B_LOCAL_PLAYER_DATA_V06';
+  let editMode = false;
+  let saveAvailable = true;
+
+  async function fetchJson(file){
+    let response=await fetch(file);
+    if(response.ok) return response.json();
+    // GitHub distribution may store the large fixture catalogue as gzip to keep the repository light.
+    const compressed=await fetch(`${file}.gz`);
+    if(!compressed.ok) throw new Error(`No s'ha pogut carregar ${file} (${response.status}) ni la seva versió comprimida (${compressed.status})`);
+    if(typeof DecompressionStream==='undefined') throw new Error('Aquest navegador no suporta la càrrega de dades comprimides. Descarrega el paquet ZIP i executa la versió local.');
+    const stream=compressed.body.pipeThrough(new DecompressionStream('gzip'));
+    return JSON.parse(await new Response(stream).text());
+  }
+  async function loadData(){
+    if(window.F2B_DATA){ DB=window.F2B_DATA; }
+    else {
+      const files = [
+        'data/catalog/competitions.json','data/catalog/clubs.json','data/sources/sources.json',
+        'data/seasons/laliga/2008-09/season.json','data/seasons/laliga/2008-09/participants.json',
+        'data/seasons/laliga/2008-09/rounds.json','data/seasons/laliga/2008-09/fixtures.json',
+        'data/catalog/players.json','data/seasons/laliga/2008-09/player-seasons.json'
+      ];
+      const values = await Promise.all(files.map(fetchJson));
+      DB={competitions:values[0],clubs:values[1],sources:values[2],season:values[3],participants:values[4],rounds:values[5],fixtures:values[6],players:values[7],playerSeasons:values[8]};
+    }
+    DB.players=Array.isArray(DB.players)?DB.players:[];
+    DB.playerSeasons=Array.isArray(DB.playerSeasons)?DB.playerSeasons:[];
+    applyLocalEdits();
+    rebuildIndexes();
+  }
+  function deepMerge(base, saved){
+    if(Array.isArray(saved)) return saved;
+    if(saved && typeof saved==='object'){
+      const out={...(base&&typeof base==='object'&&!Array.isArray(base)?base:{})};
+      for(const [key,value] of Object.entries(saved)) out[key]=deepMerge(out[key],value);
+      return out;
+    }
+    return saved===undefined?base:saved;
+  }
+  function mergeById(defaults, saved){
+    const savedMap=new Map((saved||[]).filter(x=>x&&x.id).map(x=>[x.id,x]));
+    return (defaults||[]).map(item=>savedMap.has(item.id)?deepMerge(item,savedMap.get(item.id)):item);
+  }
+  function applyLocalEdits(){
+    try{
+      const raw=localStorage.getItem(LOCAL_KEY);
+      if(!raw) return;
+      const saved=JSON.parse(raw);
+      if(!['0.6'].includes(saved?.schemaVersion) || !Array.isArray(saved.players) || !Array.isArray(saved.playerSeasons)) return;
+      DB.players=mergeById(DB.players,saved.players);
+      DB.playerSeasons=mergeById(DB.playerSeasons,saved.playerSeasons);
+    }catch(error){ saveAvailable=false; }
+  }
+  function rebuildIndexes(){
+    indexes.competitions=new Map(DB.competitions.map(x=>[x.id,x]));
+    indexes.clubs=new Map(DB.clubs.map(x=>[x.id,x]));
+    indexes.teams=new Map(DB.participants.map(x=>[x.id,x]));
+    indexes.rounds=new Map(DB.rounds.map(x=>[x.id,x]));
+    indexes.fixtures=new Map(DB.fixtures.map(x=>[x.id,x]));
+    indexes.players=new Map(DB.players.map(x=>[x.id,x]));
+    indexes.playerSeasons=new Map(DB.playerSeasons.map(x=>[x.id,x]));
+    indexes.playerSeasonsByTeam=new Map(DB.participants.map(t=>[t.id,DB.playerSeasons.filter(x=>x.teamSeasonId===t.id)]));
+    indexes.playerSeasonsByPlayer=new Map(DB.players.map(p=>[p.id,DB.playerSeasons.filter(x=>x.playerId===p.id)]));
+    indexes.fixturesByRound=new Map(DB.rounds.map(r=>[r.id,r.fixtureIds.map(id=>indexes.fixtures.get(id))]));
+    indexes.clubByShort=new Map(DB.clubs.map(c=>[c.id.replace('CLU-',''),c]));
+  }
+  function persistLocalEdits(){
+    try{
+      localStorage.setItem(LOCAL_KEY,JSON.stringify({schemaVersion:'0.6',savedAt:new Date().toISOString(),players:DB.players,playerSeasons:DB.playerSeasons}));
+      saveAvailable=true; setSaveState('Canvis guardats en aquest navegador','saved');
+    }catch(error){
+      saveAvailable=false; setSaveState('No s’ha pogut desar al navegador','error');
+    }
+  }
+  function setSaveState(message,state='idle'){
+    const el=$('#saveState'); if(!el) return;
+    el.textContent=message; el.dataset.state=state;
+  }
+  function getPath(obj,path){ return path.split('.').reduce((v,k)=>v==null?undefined:v[k],obj); }
+  function setPath(obj,path,value){
+    const bits=path.split('.'); let target=obj;
+    for(let i=0;i<bits.length-1;i++){ if(!target[bits[i]]||typeof target[bits[i]]!=='object') target[bits[i]]={}; target=target[bits[i]]; }
+    target[bits.at(-1)]=value;
+  }
+  function editableTitleField(entity,id,path,label){
+    const obj=entity==='player'?indexes.players.get(id):indexes.playerSeasons.get(id);
+    const value=obj?getPath(obj,path):'';
+    if(!editMode) return `<span>${esc(value||'—')}</span>`;
+    return `<input class="inline-editor title-inline-editor" type="text" value="${esc(value??'')}" aria-label="${esc(label)}" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}">`;
+  }
+  function editableField(entity,id,path,label,kind='text',options=[]){
+    const obj=entity==='player'?indexes.players.get(id):indexes.playerSeasons.get(id);
+    const value=obj?getPath(obj,path):null;
+    const display=value===null||value===undefined||value===''?'—':String(value);
+    let control='';
+    if(editMode){
+      if(kind==='select'){
+        control=`<select class="inline-editor" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}"><option value="">— Sense assignar —</option>${options.map(x=>`<option value="${esc(x.value)}" ${String(value??'')===String(x.value)?'selected':''}>${esc(x.label)}</option>`).join('')}</select>`;
+      }else if(kind==='textarea'){
+        control=`<textarea class="inline-editor inline-editor-area" rows="2" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}">${esc(value??'')}</textarea>`;
+      }else{
+        const inputType=kind==='number'?'number':kind==='date'?'date':'text';
+        control=`<input class="inline-editor" type="${inputType}" ${kind==='number'?'step="1"':''} value="${esc(value??'')}" placeholder="—" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}">`;
+      }
+    }else control=`<b class="field-value">${esc(display)}</b>`;
+    return `<div class="edit-field"><span class="edit-label">${esc(label)}</span><div class="edit-control">${control}</div></div>`;
+  }
+  const player = id => indexes.players.get(id);
+  const playerSeason = id => indexes.playerSeasons.get(id);
+  const playerPath = id => `/player/${id}`;
+  const playerSeasonFor = (teamId,playerId) => DB.playerSeasons.find(x=>x.teamSeasonId===teamId&&x.playerId===playerId);
+  function exportLocalData(){
+    const payload={app:'F2B',schemaVersion:'0.6',exportedAt:new Date().toISOString(),seasonId,players:DB.players,playerSeasons:DB.playerSeasons};
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='F2B-player-data-backup-2008-09-v06.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    setSaveState('Còpia JSON exportada','saved');
+  }
+  async function importLocalData(file){
+    const payload=JSON.parse(await file.text());
+    if(payload?.app!=='F2B'||!['0.6'].includes(payload?.schemaVersion)||!Array.isArray(payload.players)||!Array.isArray(payload.playerSeasons)) throw new Error('El fitxer no és una còpia compatible de F2B v0.6.');
+    const playerIds=new Set(payload.players.map(x=>x.id));
+    const teamIds=new Set(DB.participants.map(x=>x.id));
+    if(payload.playerSeasons.some(x=>!playerIds.has(x.playerId)||!teamIds.has(x.teamSeasonId))) throw new Error('La còpia conté relacions de jugador o equip que no existeixen en aquesta temporada.');
+    DB.players=payload.players; DB.playerSeasons=payload.playerSeasons; rebuildIndexes(); persistLocalEdits(); render();
+  }
+
+  const club = id => indexes.clubs.get(id);
+  const team = id => indexes.teams.get(id);
+  const round = id => indexes.rounds.get(id);
+  const fixture = id => indexes.fixtures.get(id);
+  const clubForTeam = t => t ? club(t.clubId) : null;
+  const teamForClub = id => DB.participants.find(t=>t.clubId===id);
+  const fixturesForClub = id => DB.fixtures.filter(f=>f.homeClubId===id||f.awayClubId===id).sort((a,b)=>a.roundNumber-b.roundNumber);
+  const fixturesForRound = n => DB.fixtures.filter(f=>f.roundNumber===Number(n)).sort((a,b)=>a.id.localeCompare(b.id));
+  const initials = name => (name||'F2B').replace(/[^A-Za-zÀ-ÿ ]/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  const fmtClub = c => c?.name || 'Club no identificat';
+  const pathSeason = (tab='overview') => `/season/${seasonId}/${tab}`;
+  const teamPath = (t,tab='overview') => `/team/${t.id}/${tab}`;
+  const clubPath = id => `/club/${id}`;
+  const roundPath = id => `/round/${id}`;
+  const fixturePath = id => `/fixture/${id}`;
+  const routeLink=(path,label,cls='')=>`<a class="${cls}" href="#${esc(path)}" data-route="${esc(path)}">${label}</a>`;
+  const crest = c => `<span class="crest" aria-hidden="true">${esc(initials(c?.shortName||c?.name))}</span>`;
+  const statusTag = text => `<span class="tag orange">${esc(text)}</span>`;
+  const pageHead=(eyebrow,title,desc,actions='')=>`<div class="page-head"><div><div class="eyebrow">${esc(eyebrow)}</div><h1 class="page-title">${esc(title)}</h1><p class="page-desc">${esc(desc)}</p></div>${actions?`<div class="actions">${actions}</div>`:''}</div>`;
+  const stat=(n,label)=>`<div class="stat-card"><div class="stat-number">${esc(n)}</div><div class="stat-label">${esc(label)}</div></div>`;
+  const empty=(icon,title,desc)=>`<div class="empty"><div class="empty-icon">${icon}</div><b>${esc(title)}</b><p>${esc(desc)}</p></div>`;
+  const breadcrumbRow=items=>`<div class="breadcrumb-row">${items.map((item,i)=>`${i?'<span>›</span>':''}${item.path?routeLink(item.path,esc(item.label)):esc(item.label)}`).join('')}</div>`;
+
+  let route={page:'home'};
+  function navigate(path,replace=false){
+    const hash='#'+path;
+    if(replace) history.replaceState(null,'',hash); else if(location.hash!==hash) history.pushState(null,'',hash);
+    parseRoute(); render(); closeMobile();
+  }
+  function parseRoute(){
+    const bits=(location.hash.replace(/^#\/?/, '').split('/').filter(Boolean));
+    const [page,...p]=bits;
+    route={page:page||'home'};
+    if(page==='competition') route.competitionId=p[0]||compId;
+    if(page==='season'){route.seasonId=p[0]||seasonId;route.tab=p[1]||'overview';}
+    if(page==='club') route.clubId=p[0];
+    if(page==='team'){route.teamId=p[0];route.tab=p[1]||'overview';}
+    if(page==='round') route.roundId=p[0];
+    if(page==='fixture') route.fixtureId=p[0];
+    if(page==='player') route.playerId=p[0];
+  }
+  function closeMobile(){ $('#sidebar').classList.remove('open'); $('#mobileScrim').classList.remove('open'); }
+  function setNav(){
+    let active=route.page;
+    if(['competition','season'].includes(active)) active=active==='competition'?'competitions':'seasons';
+    if(['club','team'].includes(active)) active='clubs';
+    if(active==='player') active='players';
+    if(['round','fixture'].includes(active)) active='rounds';
+    document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===active));
+  }
+  function setBreadcrumb(){
+    const c=DB.competitions[0];
+    const parts=['F2B'];
+    if(route.page==='home') parts.push('Inici');
+    else if(route.page==='competitions') parts.push('Competicions');
+    else if(route.page==='competition') parts.push(c.name);
+    else if(route.page==='seasons') parts.push('Temporades');
+    else if(route.page==='season') parts.push(c.name,'2008/09');
+    else if(route.page==='clubs') parts.push('Clubs i equips');
+    else if(route.page==='club') parts.push('Clubs',fmtClub(club(route.clubId)));
+    else if(route.page==='team') parts.push(c.name,'2008/09',fmtClub(clubForTeam(team(route.teamId))));
+    else if(route.page==='round') parts.push(c.name,'2008/09',round(route.roundId)?.label||'Jornada');
+    else if(route.page==='fixture') parts.push(c.name,'2008/09','Partit');
+    else if(route.page==='rounds') parts.push('Jornades i partits');
+    else if(route.page==='database') parts.push('Base de dades');
+    else if(route.page==='archetypes') parts.push('Arquetips');
+    else if(route.page==='inter-2009-10') parts.push('Plantilles històriques','Inter 2009/10');
+    else if(route.page==='players') parts.push('Jugadors');
+    else if(route.page==='player') parts.push('Jugadors',player(route.playerId)?.fullName||'Jugador');
+    $('#breadcrumb').innerHTML=parts.map((x,i)=>i===parts.length-1?`<b>${esc(x)}</b>`:esc(x)).join(' <span>/</span> ');
+  }
+
+  function renderHome(){
+    const c=DB.competitions[0]; const s=DB.season;
+    return `${`<section class="hero"><div><div class="hero-kicker">L'ENCICLOPÈDIA F2B · TEMPORADA PILOT</div><h2>La història del bàsquet que encara està per escriure.</h2><p>F2B transforma l'univers del futbol en una història alternativa de bàsquet. Comencem per la Primera Divisió 2008/09: 20 clubs, 38 jornades i 380 enfrontaments preparats per donar vida a la simulació.</p><div class="actions">${routeLink(`/season/${seasonId}/overview`,'Explorar temporada 2008/09','btn lime')}${routeLink('/competitions','Veure competició','btn ghost')}</div></div><div class="hero-art"><div class="hero-orb">F2B<small>NEW HISTORY</small></div></div></section>`}
+    <div class="stats-grid">${stat('20','Clubs participants')}${stat('38','Jornades preparades')}${stat('380','Enfrontaments F2B')}${stat(DB.players.length,'Fitxes de jugador creades')}</div>
+    <div class="section-head"><div><h3>Comença per la temporada pilot</h3><p>La primera competició carregada a l'enciclopèdia.</p></div>${routeLink('/competitions','Totes les competicions →','btn')}</div>
+    <div class="grid cards-3"><a class="card click" href="#/competition/${c.id}" data-route="/competition/${c.id}"><div class="card-head"><span class="card-mark">ESP</span><span class="tag green">DISPONIBLE</span></div><h3>${esc(c.name)} · Espanya</h3><p>Competició de primera categoria adaptada al bàsquet F2B.</p><div class="meta">1 temporada incorporada · 2008/09 ↗</div></a>
+    <a class="card click" href="#/clubs" data-route="/clubs"><div class="card-head"><span class="card-mark">◈</span><span class="tag">20 CLUBS</span></div><h3>Clubs i equips</h3><p>Identitats estables i una participació pròpia de cada club a la temporada pilot.</p><div class="meta">Accedir al directori ↗</div></a>
+    <a class="card click" href="#/rounds" data-route="/rounds"><div class="card-head"><span class="card-mark">▦</span><span class="tag">380 FIXTURES</span></div><h3>Jornades i partits</h3><p>38 jornades i tots els emparellaments local/visitant, sense marcadors de futbol.</p><div class="meta">Explorar calendari ↗</div></a></div>
+    <div class="section-head"><div><h3>Principi de dades</h3><p>Conservem l'estructura necessària; la història esportiva serà F2B.</p></div></div>
+    <div class="note"><strong>REAL només com a referència estructural.</strong> Aquesta versió conserva competició, temporada, clubs, participants, jornades i emparellaments. No importa resultats, classificacions ni estadístiques del futbol. Els resultats, la classificació i les estadístiques F2B s'ompliran quan es desenvolupi la simulació.</div>`;
+  }
+  function renderCompetitions(){
+    return `${pageHead('Arxiu de competicions','Competicions','Directori de competicions incorporades a l’univers F2B. Només es mostren les competicions que ja tenen una fitxa creada.')}
+      <div class="grid cards-3">${DB.competitions.map(c=>`<a class="card click" href="#/competition/${c.id}" data-route="/competition/${c.id}"><div class="card-head"><span class="card-mark">${esc(c.countryCode)}</span><span class="tag green">PILOT ACTIU</span></div><h3>${esc(c.name)}</h3><p>${esc(c.country)} · Primera categoria</p><div class="meta">Temporades: 2008/09 ↗</div></a>`).join('')}</div>`;
+  }
+  function renderCompetition(){
+    const c=indexes.competitions.get(route.competitionId)||DB.competitions[0];
+    return `${breadcrumbRow([{label:'Competicions',path:'/competitions'},{label:c.name}])}
+      <div class="banner"><div class="banner-left"><div class="banner-crest">ESP</div><div><h2>${esc(c.name)}</h2><p>${esc(c.country)} · Primera categoria · Competició F2B</p></div></div><div class="banner-meta">1 temporada<br>pilot incorporada</div></div>
+      ${pageHead('Fitxa de competició','Temporades','Selecciona una edició per consultar els clubs participants, el calendari i les futures dades de bàsquet.')}
+      <div class="grid cards-3"><a class="card click" href="#/season/${seasonId}/overview" data-route="/season/${seasonId}/overview"><div class="card-head"><span class="card-mark">08/09</span><span class="tag green">ESTRUCTURA CARREGADA</span></div><h3>Temporada 2008/09</h3><p>20 clubs · 38 jornades · 380 enfrontaments preparats</p><div class="meta">Obrir temporada ↗</div></a></div>`;
+  }
+  function renderSeason(){
+    const s=DB.season; const tabs=[['overview','Resum'],['teams','Equips'],['calendar','Jornades'],['statistics','Estadístiques']];
+    const active=route.tab||'overview';
+    let body='';
+    if(active==='teams') body=renderSeasonTeams();
+    else if(active==='calendar') body=renderSeasonCalendar();
+    else if(active==='statistics') body=renderSeasonStatistics();
+    else body=renderSeasonOverview();
+    return `${breadcrumbRow([{label:'Competicions',path:'/competitions'},{label:'Primera Divisió',path:`/competition/${compId}`},{label:'2008/09'}])}
+      <div class="banner"><div class="banner-left"><div class="banner-crest">08<br>09</div><div><h2>Primera Divisió · 2008/09</h2><p>Espanya · Format de doble volta · 20 participants</p></div></div><div class="banner-meta">TEMPORADA PILOT<br>ESTRUCTURA CARREGADA</div></div>
+      <div class="tabs">${tabs.map(([id,label])=>routeLink(pathSeason(id),label,active===id?'active':'')).join('')}</div><div class="tab-content">${body}</div>`;
+  }
+  function renderSeasonOverview(){
+    return `<div class="stats-grid">${stat('20','Equips participants')}${stat('38','Jornades')}${stat('380','Enfrontaments')}${stat('0','Resultats F2B')}</div>
+      <div class="two-col"><section class="panel"><div class="panel-head"><div><h3>Identitat de la temporada</h3><p>Paràmetres estructurals de la competició.</p></div><span class="tag green">CARREGADA</span></div><div class="panel-body"><div class="kv"><span>Competició</span><b>Primera Divisió · Espanya</b></div><div class="kv"><span>Temporada</span><b>2008/09</b></div><div class="kv"><span>Format</span><b>Doble volta</b></div><div class="kv"><span>Participants</span><b>20 clubs</b></div><div class="kv"><span>Jornades</span><b>38</b></div><div class="kv"><span>Enfrontaments</span><b>380</b></div><div class="kv"><span>Fitxes de jugador</span><b>${DB.playerSeasons.length} · 6 clubs</b></div></div></section>
+      <section class="panel"><div class="panel-head"><div><h3>Estat de la simulació</h3><p>La temporada encara no ha començat a la pista.</p></div><span class="tag orange">NO SIMULADA</span></div><div class="panel-body"><div class="kv"><span>Resultats</span><b>0 / 380</b></div><div class="kv"><span>Classificació F2B</span><b>No generada</b></div><div class="kv"><span>Estadístiques d'equip</span><b>No generades</b></div><div class="kv"><span>Estadístiques individuals</span><b>Sense conversió ni simulació</b></div><div class="kv"><span>Premis i rècords</span><b>Encara no disponibles</b></div></div></section></div>
+      <div class="section-head"><div><h3>Accés directe</h3><p>Explora els elements de la temporada.</p></div></div>
+      <div class="grid cards-3"><a class="card click" href="#/season/${seasonId}/teams" data-route="/season/${seasonId}/teams"><div class="card-mark">20</div><h3>Equips participants</h3><p>Consulta els 20 clubs i les seves fitxes d'equip de temporada.</p><div class="meta">Obrir equips ↗</div></a><a class="card click" href="#/season/${seasonId}/calendar" data-route="/season/${seasonId}/calendar"><div class="card-mark">38</div><h3>Jornades i calendari</h3><p>Els 380 emparellaments, amb resultats F2B pendents de simulació.</p><div class="meta">Obrir calendari ↗</div></a><a class="card click" href="#/season/${seasonId}/statistics" data-route="/season/${seasonId}/statistics"><div class="card-mark">▥</div><h3>Estadístiques F2B</h3><p>Espai preparat per a les estadístiques que derivaran dels partits.</p><div class="meta">Veure estat ↗</div></a></div>`;
+  }
+  function renderSeasonTeams(){
+    const rosterClubIds=new Set(DB.playerSeasons.map(x=>x.clubId));
+    return `${pageHead('Participants · 20 clubs','Equips de la temporada','Sis clubs ja tenen fitxes de migcampistes i davanters. La resta continuen preparats per incorporar-hi les seves plantilles.')}
+      <div class="grid cards-3">${DB.participants.map(t=>{const c=clubForTeam(t);const count=(indexes.playerSeasonsByTeam.get(t.id)||[]).length;return `<a class="card click" href="#${teamPath(t)}" data-route="${teamPath(t)}"><div class="card-head">${crest(c)}<span class="tag ${count?'green':'grey'}">${count?`${count} JUGADORS`:'PENDENT'}</span></div><h3>${esc(fmtClub(c))}</h3><p>${esc(c.city)} · Equip de temporada 2008/09</p><div class="meta">${count?'Fitxes de jugadors incorporades':'Plantilla pendent'} · Fitxa d'equip ↗</div></a>`}).join('')}</div>
+      <div class="section-head"><div><h3>Directori de fitxes de jugador</h3><p>${DB.players.length} fitxes repartides entre sis equips.</p></div>${routeLink('/players','Obrir directori →','btn')}</div>`;
+  }
+  function renderSeasonCalendar(){
+    return `${pageHead('Calendari F2B · 38 jornades','Jornades','El calendari conserva els emparellaments i l’ordre local/visitant de referència. No conté dates ni marcadors del futbol.')}
+      <div class="round-grid">${DB.rounds.map(r=>`<a class="round-card" href="#${roundPath(r.id)}" data-route="${roundPath(r.id)}"><b>${esc(r.label)}</b><span>10 enfrontaments · 0 simulats</span></a>`).join('')}</div>`;
+  }
+  function renderSeasonStatistics(){
+    return `${pageHead('Rendiment · F2B','Estadístiques de temporada','Les estadístiques no s’han d’importar del futbol ni estimar abans de simular els partits de bàsquet.')}
+      ${empty('▥','Encara no hi ha estadístiques F2B','Aquest apartat s’omplirà automàticament a partir dels resultats i les actuacions dels partits F2B. No s’hi mostren dades de gols, punts o classificacions del futbol.')}`;
+  }
+  function renderClubs(){
+    return `${pageHead('Directori · 20 entitats','Clubs i equips','Els clubs són entitats estables. La fitxa d’equip de temporada identifica la seva participació concreta a Primera Divisió 2008/09.')}
+      <div class="grid cards-3">${DB.clubs.map(c=>{const t=teamForClub(c.id);return `<a class="card click" href="#${clubPath(c.id)}" data-route="${clubPath(c.id)}"><div class="card-head">${crest(c)}<span class="tag">2008/09</span></div><h3>${esc(c.name)}</h3><p>${esc(c.city)} · Espanya</p><div class="meta">Fitxa del club · Equip 2008/09 ↗</div></a>`}).join('')}</div>`;
+  }
+  function renderClub(){
+    const c=club(route.clubId); if(!c) return empty('◈','Club no trobat','El club sol·licitat no és a la base de dades actual.');
+    const t=teamForClub(c.id); const rosterCount=(indexes.playerSeasonsByTeam.get(t.id)||[]).length;
+    return `${breadcrumbRow([{label:'Clubs',path:'/clubs'},{label:c.name}])}
+      <div class="banner"><div class="banner-left">${crest(c)}<div><h2>${esc(c.name)}</h2><p>${esc(c.city)} · Espanya · Identitat de club</p></div></div><div class="banner-meta">1 participació<br>${rosterCount?`${rosterCount} fitxes de jugador`:`plantilla pendent`}</div></div>
+      ${pageHead('Fitxa de club','Identitat i participació','Aquesta pàgina representa el club al llarg del temps. Les estadístiques i resultats pertanyen a cada equip de temporada, no a una plantilla atemporal.')}
+      <div class="two-col"><section class="panel"><div class="panel-head"><div><h3>Identitat</h3><p>Dades bàsiques per identificar l'entitat.</p></div></div><div class="panel-body"><div class="kv"><span>Nom principal</span><b>${esc(c.name)}</b></div><div class="kv"><span>Ciutat</span><b>${esc(c.city)}</b></div><div class="kv"><span>País</span><b>Espanya</b></div><div class="kv"><span>Identificador</span><b>${esc(c.id)}</b></div></div></section>
+      <section class="panel"><div class="panel-head"><div><h3>Temporades F2B incorporades</h3><p>Participacions disponibles en aquesta base.</p></div><span class="tag green">1</span></div><div class="panel-body"><a class="card click" style="display:block" href="#${teamPath(t)}" data-route="${teamPath(t)}"><div class="card-head"><b>Primera Divisió 2008/09</b><span class="tag green">EQUIP</span></div><p>${rosterCount} fitxes de jugador · enfrontaments i espais per a les dades F2B.</p><div class="meta">Obrir equip 2008/09 ↗</div></a></div></section></div>`;
+  }
+  function teamBanner(t){const c=clubForTeam(t);const n=(indexes.playerSeasonsByTeam.get(t.id)||[]).length;return `<div class="banner"><div class="banner-left">${crest(c)}<div><h2>${esc(c.name)}</h2><p>Equip de Primera Divisió · Temporada 2008/09 · ${esc(c.city)}</p></div></div><div class="banner-meta">EQUIP DE TEMPORADA<br>${n?`${n} FITXES DE JUGADOR`:`PLANTILLA PENDENT`}</div></div>`;}
+  function renderTeam(){
+    const t=team(route.teamId); if(!t)return empty('◈','Equip no trobat','No existeix aquesta participació de club en la temporada pilot.');
+    const c=clubForTeam(t); const active=route.tab||'overview'; const tabs=[['overview','Resum'],['calendar','Enfrontaments'],['stats','Estadístiques'],['roster','Plantilla']];
+    let body='';
+    if(active==='calendar') body=renderTeamCalendar(t);
+    else if(active==='stats') body=renderTeamStats(t);
+    else if(active==='roster') body=renderTeamRoster(t);
+    else body=renderTeamOverview(t);
+    return `${breadcrumbRow([{label:'Clubs',path:'/clubs'},{label:c.name,path:clubPath(c.id)},{label:'Primera Divisió 2008/09'}])}${teamBanner(t)}<div class="tabs">${tabs.map(([id,label])=>routeLink(teamPath(t,id),label,active===id?'active':'')).join('')}</div><div class="tab-content">${body}</div>`;
+  }
+  function renderTeamOverview(t){
+    const fs=fixturesForClub(t.clubId); const c=clubForTeam(t); const first=fs[0];
+    return `<div class="stats-grid">${stat('38','Enfrontaments de calendari')}${stat('19','Com a local')}${stat('19','Com a visitant')}${stat((indexes.playerSeasonsByTeam.get(t.id)||[]).length,'Fitxes de jugador')}</div>
+      <div class="two-col"><section class="panel"><div class="panel-head"><div><h3>Identitat de l'equip</h3><p>Participació a Primera Divisió 2008/09.</p></div><span class="tag green">PARTICIPANT</span></div><div class="panel-body"><div class="kv"><span>Club</span><b>${esc(c.name)}</b></div><div class="kv"><span>Ciutat</span><b>${esc(c.city)}</b></div><div class="kv"><span>Temporada</span><b>2008/09</b></div><div class="kv"><span>Participació ID</span><b>${esc(t.id)}</b></div><div class="kv"><span>Fitxes de jugador</span><b>${(indexes.playerSeasonsByTeam.get(t.id)||[]).length}</b></div></div></section>
+      <section class="panel"><div class="panel-head"><div><h3>Estat F2B</h3><p>Encara no hi ha resultats simulats.</p></div>${statusTag('PENDENT')}</div><div class="panel-body"><div class="kv"><span>Victòries / derrotes</span><b>—</b></div><div class="kv"><span>Punts F2B</span><b>—</b></div><div class="kv"><span>Posició</span><b>—</b></div><div class="kv"><span>Estadístiques</span><b>No generades</b></div></div></section></div>
+      <div class="section-head"><div><h3>Primer enfrontament de calendari</h3><p>El marcador F2B s'afegirà quan es simuli el partit.</p></div></div>
+      ${first?fixtureRow(first):''}
+      <div class="actions" style="margin-top:12px">${routeLink(teamPath(t,'calendar'),'Veure els 38 enfrontaments','btn')}</div>`;
+  }
+  function renderTeamCalendar(t){
+    const fs=fixturesForClub(t.clubId);
+    return `${pageHead("Calendari d’equip · 38 partits",'Enfrontaments','Tots els partits de la temporada amb l’equip com a local o visitant. Les dades esportives encara no s’han simulat.')}
+      <div class="fixture-list">${fs.map(f=>fixtureRow(f)).join('')}</div>`;
+  }
+  function renderTeamStats(t){
+    return `${pageHead('Rendiment · F2B',"Estadístiques d’equip",'Les mètriques es calcularan quan existeixin resultats F2B.')}${empty('▥','Sense estadístiques encara',`${fmtClub(clubForTeam(t))} encara no ha disputat partits a la simulació F2B. No s'importa cap registre de gols o estadístiques del futbol.`)}`;
+  }
+  function renderTeamRoster(t){
+    const roster=indexes.playerSeasonsByTeam.get(t.id)||[];
+    const ordered=[...roster].sort((a,b)=>a.footballRoleGroup===b.footballRoleGroup?(a.squadNumber??99)-(b.squadNumber??99):a.footballRoleGroup==='MIDFIELDER'?-1:1);
+    const c=clubForTeam(t);
+    if(!roster.length) return `${pageHead('Plantilla · 2008/09',"Plantilla de l’equip",'Aquest club encara no forma part de la primera càrrega de plantilles.')}${empty('◉','Plantilla pendent','Les fitxes de jugadors elegibles s’incorporaran en una fase posterior.')}`;
+    const reviewCount=roster.filter(x=>x.eligibilityStatus==='REVIEW').length;
+    return `${pageHead(`Plantilla · ${roster.length} fitxes de jugador`,"Plantilla de jugadors 2008/09",'Només migcampistes i davanters adscrits al primer equip. Les fitxes estan creades, però cap jugador no s’ha convertit encara a F2B.')}
+      <div class="roster-summary"><span><b>${roster.filter(x=>x.footballRoleGroup==='MIDFIELDER').length}</b> migcampistes</span><span><b>${roster.filter(x=>x.footballRoleGroup==='FORWARD').length}</b> davanters</span><span><b>${roster.filter(x=>x.eligibilityStatus==='ELIGIBLE').length}</b> elegibilitat sense incidències</span><span><b>${reviewCount}</b> per revisar</span></div>
+      <div class="panel roster-panel"><div class="panel-head"><div><h3>${esc(fmtClub(c))} · 2008/09</h3><p>Obre una fitxa individual. Les dades de conversió es poden editar directament al seu camp.</p></div><span class="tag green">${roster.length} FITXES</span></div>
+      <div class="table-wrap"><table class="data-table roster-table"><thead><tr><th>Dorsal</th><th>Jugador</th><th>Rol futbolístic</th><th>Situació 2008/09</th><th>Posicions F2B</th><th>OVR / POT</th><th>Elegibilitat F2B</th><th>Selecció</th></tr></thead><tbody>${ordered.map(m=>{const p=player(m.playerId);const eligibility=m.eligibilityStatus||'PENDING';return `<tr class="link-row" data-route="${playerPath(p.id)}" tabindex="0"><td>${m.squadNumber??'—'}</td><td><div class="club-cell">${crest({shortName:p.displayName})}<span class="club-name">${esc(p.fullName)}</span></div></td><td><span class="role-primary">${m.footballRoleGroup==='MIDFIELDER'?'Migcampista':'Davanter'}</span><small class="role-detail">${esc(p.detailedFootballRole||'Rol detallat pendent')}</small></td><td>${esc(membershipLabel(m.membershipType))}</td><td>${esc([m.conversion.primaryPosition,m.conversion.secondaryPosition,m.conversion.tertiaryPosition].filter(Boolean).join(' / ')||'—')}</td><td>${m.conversion.ovr??'—'} / ${m.conversion.potential??'—'}</td><td><span class="tag ${eligibility==='ELIGIBLE'?'green':'orange'}">${esc(eligibility==='ELIGIBLE'?'ELEGIBLE':eligibility==='REVIEW'?'REVISAR':'PENDENT')}</span></td><td><span class="tag ${m.membershipStatus==='APPROVED'?'green':'orange'}">${esc(m.membershipStatus||'PENDING')}</span></td></tr>`}).join('')}</tbody></table></div></div>
+      <div class="note" style="margin-top:12px"><strong>Abast i criteri:</strong> s’inclouen els migcampistes i davanters del primer equip, també les incorporacions d’hivern i les promocions identificades. Els casos amb encaix de rol o pertinença discutible queden marcats per revisar; no es descarten silenciosament. Les posicions i valoracions provenen de les fitxes de temporada.</div>`;
+  }
+  function membershipLabel(type){
+    return ({FIRST_TEAM_CORE:'Primer equip',MID_SEASON_SIGNING:'Incorporació hivernal',MID_SEASON_DEPARTURE:'Baixa durant la temporada',PROMOTED_TO_FIRST_TEAM:'Promocionat al primer equip',FIRST_TEAM_LOAN:'Primer equip · cessió durant temporada',FIRST_TEAM_SQUAD:'Membre de plantilla'})[type]||type||'Pendent';
+  }
+  function fixtureRow(f){
+    const h=club(f.homeClubId),a=club(f.awayClubId);
+    return `<a class="fixture-row" href="#${fixturePath(f.id)}" data-route="${fixturePath(f.id)}"><span class="fixture-round">JORNADA ${f.roundNumber}</span><span class="fixture-matchup"><span class="fixture-team home">${crest(h)}<span>${esc(h.name)}</span></span><span class="vs">VS</span><span class="fixture-team away"><span>${esc(a.name)}</span>${crest(a)}</span></span><span class="fixture-state"><span class="tag orange">PENDENT</span></span></a>`;
+  }
+  function renderRounds(){
+    return `${pageHead('Calendari de competició · 2008/09','Jornades i partits','Explora les 38 jornades de la temporada. Cada jornada conté 10 enfrontaments i tots tenen la seva fitxa F2B pròpia.')}
+      <div class="round-grid">${DB.rounds.map(r=>`<a class="round-card" href="#${roundPath(r.id)}" data-route="${roundPath(r.id)}"><b>${esc(r.label)}</b><span>10 enfrontaments · 0 simulats</span></a>`).join('')}</div>`;
+  }
+  function renderRound(){
+    const r=round(route.roundId); if(!r)return empty('▦','Jornada no trobada','No existeix aquesta jornada a la temporada pilot.');
+    const games=indexes.fixturesByRound.get(r.id)||[];
+    const prev=r.roundNumber>1?DB.rounds[r.roundNumber-2]:null; const next=r.roundNumber<38?DB.rounds[r.roundNumber]:null;
+    return `${breadcrumbRow([{label:'Temporades',path:'/seasons'},{label:'2008/09',path:pathSeason('overview')},{label:'Jornades',path:pathSeason('calendar')},{label:r.label}])}
+      ${pageHead('Primera Divisió · 2008/09',r.label,`${games.length} enfrontaments · Resultats F2B pendents de simulació.`,`${prev?routeLink(roundPath(prev.id),'← Anterior','btn'):''}${next?routeLink(roundPath(next.id),'Següent →','btn dark'):''}`)}
+      <div class="stats-grid">${stat('10','Enfrontaments')}${stat('20','Clubs en acció')}${stat('0','Partits simulats')}${stat('—','Resultats')}</div>
+      <div class="fixture-list">${games.map(f=>fixtureRow(f)).join('')}</div>`;
+  }
+  function renderFixture(){
+    const f=fixture(route.fixtureId); if(!f)return empty('◉','Enfrontament no trobat','No existeix aquest registre de calendari.');
+    const h=club(f.homeClubId),a=club(f.awayClubId),r=DB.rounds[f.roundNumber-1];
+    return `${breadcrumbRow([{label:'Temporada 2008/09',path:pathSeason('overview')},{label:r.label,path:roundPath(r.id)},{label:`${h.name} — ${a.name}`}])}
+      ${pageHead(`Primera Divisió · 2008/09 · ${r.label}`,'Fitxa d’enfrontament','Aquest registre conserva només l’emparellament de calendari per a la simulació F2B. No conté el marcador del partit de futbol.')}
+      <section class="fixture-hero"><div class="fixture-teams"><div class="fixture-side">${crest(h)}<b>${esc(h.name)}</b><span class="tag">LOCAL</span></div><div class="fixture-vs">VS</div><div class="fixture-side">${crest(a)}<b>${esc(a.name)}</b><span class="tag">VISITANT</span></div></div><div class="fixture-placeholder"><span class="tag orange">PENDENT DE SIMULACIÓ</span><strong>Resultat F2B encara no disponible</strong><p>Quan aquest partit es simuli, aquí apareixeran el marcador de bàsquet, les estadístiques d'equip i les actuacions dels jugadors.</p></div></section>
+      <div class="two-col" style="margin-top:12px"><section class="panel"><div class="panel-head"><div><h3>Identificació del partit</h3><p>Informació estructural.</p></div></div><div class="panel-body"><div class="kv"><span>Identificador</span><b>${esc(f.id)}</b></div><div class="kv"><span>Competició</span><b>Primera Divisió</b></div><div class="kv"><span>Temporada</span><b>2008/09</b></div><div class="kv"><span>Jornada</span><b>${f.roundNumber}</b></div><div class="kv"><span>Enfrontament base</span><b>REAL · localia referenciada</b></div><div class="kv"><span>Estat F2B</span><b>No simulat</b></div></div></section>
+      <section class="panel"><div class="panel-head"><div><h3>Equips relacionats</h3><p>Accés a les fitxes de temporada.</p></div></div><div class="panel-body"><div class="kv">${routeLink(teamPath(team(f.homeTeamSeasonId)),esc(h.name))}<span>Local</span></div><div class="kv">${routeLink(teamPath(team(f.awayTeamSeasonId)),esc(a.name))}<span>Visitant</span></div><div class="kv">${routeLink(roundPath(r.id),esc(r.label))}<span>Jornada</span></div></div></section></div>
+      <div class="note" style="margin-top:12px">Font de referència de l'emparellament: <a href="https://www.bdfutbol.com/es/t/t2008-09.html" target="_blank" rel="noopener">BDFutbol · Primera División 2008-09</a>. F2B no conserva ni mostra el resultat de futbol.</div>`;
+  }
+  function renderSeasons(){
+    return `${pageHead('Arxiu cronològic','Temporades','L’enciclopèdia només mostra temporades que tenen una estructura F2B incorporada. La 2008/09 és el primer model de referència.')}
+      <div class="grid cards-3"><a class="card click" href="#${pathSeason('overview')}" data-route="${pathSeason('overview')}"><div class="card-head"><span class="card-mark">08/09</span><span class="tag green">PILOT</span></div><h3>Primera Divisió 2008/09</h3><p>20 clubs · 38 jornades · 380 enfrontaments</p><div class="meta">Obrir temporada ↗</div></a></div>`;
+  }
+  function renderPlayers(){
+    const rows=DB.playerSeasons.map(m=>({m,p:player(m.playerId),c:club(m.clubId)})).filter(x=>x.p).sort((a,b)=>a.c.name.localeCompare(b.c.name,'ca')||a.p.fullName.localeCompare(b.p.fullName,'ca'));
+    return `${pageHead('Directori · temporada 2008/09',`${DB.players.length} fitxes de jugador`,'Plantilles de sis clubs de Primera Divisió. Barça i Madrid tenen fitxes convertides; el València té posicions revisades.')}
+      <div class="stats-grid">${stat(DB.players.length,'Fitxes individuals')}${stat(new Set(rows.map(x=>x.c.id)).size,'Clubs')}${stat(rows.filter(x=>x.m.footballRoleGroup==='MIDFIELDER').length,'Migcampistes')}${stat(rows.filter(x=>x.m.footballRoleGroup==='FORWARD').length,'Davanters')}</div>
+      <div class="section-head"><div><h3>Plantilles per club</h3><p>Obre cada club o jugador per continuar navegant.</p></div></div>
+      <div class="grid cards-3">${['FCB','RMA','SEV','ATM','VIL','VAL'].map(code=>{const c=DB.clubs.find(x=>x.id==='CLU-'+code);const t=teamForClub(c.id);const count=(indexes.playerSeasonsByTeam.get(t.id)||[]).length;return `<a class="card click" href="#${teamPath(t,'roster')}" data-route="${teamPath(t,'roster')}"><div class="card-head">${crest(c)}<span class="tag green">${count} JUGADORS</span></div><h3>${esc(c.name)}</h3><p>${(indexes.playerSeasonsByTeam.get(t.id)||[]).filter(m=>m.footballRoleGroup==='MIDFIELDER').length} migcampistes · ${(indexes.playerSeasonsByTeam.get(t.id)||[]).filter(m=>m.footballRoleGroup==='FORWARD').length} davanters</p><div class="meta">Obrir plantilla ↗</div></a>`}).join('')}</div>
+      <div class="section-head"><div><h3>Tots els jugadors</h3><p>La cerca superior també permet localitzar qualsevol fitxa individual.</p></div></div>
+      <div class="panel"><div class="table-wrap"><table class="data-table roster-table"><thead><tr><th>Jugador</th><th>Club 2008/09</th><th>Dorsal</th><th>Rol futbolístic</th><th>Elegibilitat</th><th>Conversió</th></tr></thead><tbody>${rows.map(({m,p,c})=>`<tr class="link-row" data-route="${playerPath(p.id)}" tabindex="0"><td><b>${esc(p.fullName)}</b></td><td>${esc(c.name)}</td><td>${m.squadNumber??'—'}</td><td>${m.footballRoleGroup==='MIDFIELDER'?'Migcampista':'Davanter'} · ${esc(p.detailedFootballRole||'')}</td><td><span class="tag ${m.eligibilityStatus==='ELIGIBLE'?'green':'orange'}">${esc(m.eligibilityStatus==='REVIEW'?'REVISAR':'ELEGIBLE')}</span></td><td><span class="tag orange">NO INICIADA</span></td></tr>`).join('')}</tbody></table></div></div>`;
+  }
+  function renderPlayer(){
+    const p=player(route.playerId); if(!p) return empty('◉','Jugador no trobat','La fitxa sol·licitada no és a la base de dades actual.');
+    const memberships=indexes.playerSeasonsByPlayer.get(p.id)||[];
+    const m=memberships.find(x=>x.seasonId===seasonId)||memberships[0];
+    if(!m) return empty('◉','Participació no trobada','Aquest jugador no té cap participació de temporada associada.');
+    const c=club(m.clubId), t=team(m.teamSeasonId), cv=m.conversion;
+    let attrGroups=[
+      ['offense','Atac',[['finishing','Finalització'],['shooting','Tir'],['threePointShooting','Tir exterior'],['midRangeShooting','Tir de mitja distància'],['freeThrow','Tirs lliures'],['offensiveCreation','Creació ofensiva']]],
+      ['playmaking','Creació',[['ballHandling','Control de pilota'],['passing','Passada'],['courtVision','Visió de joc'],['decisionMaking','Presa de decisions']]],
+      ['defense','Defensa',[['perimeterDefense','Defensa exterior'],['interiorDefense','Defensa interior'],['steals','Robatoris'],['blocks','Taps']]],
+      ['physical','Físic i atletisme',[['speed','Velocitat'],['acceleration','Acceleració'],['agility','Agilitat'],['strength','Força'],['vertical','Salt vertical'],['stamina','Resistència'],['balance','Equilibri']]],
+      ['rebounding','Rebot',[['offensiveRebounding','Rebot ofensiu'],['defensiveRebounding','Rebot defensiu']]],
+      ['mental','Mental',[['awareness','Lectura de joc'],['consistency','Regularitat'],['composure','Sang freda'],['leadership','Lideratge']]]
+    ];
+    const playerField=(path,label,kind='text',opts=[])=>editableField('player',p.id,path,label,kind,opts);
+    const memberField=(path,label,kind='text',opts=[])=>editableField('membership',m.id,path,label,kind,opts);
+    const conversionField=(path,label,kind='text',opts=[])=>editableField('membership',m.id,'conversion.'+path,label,kind,opts);
+    const posOptions=[{value:'BA',label:'BA · Base'},{value:'ES',label:'ES · Escolta'},{value:'AL',label:'AL · Aler'},{value:'AP',label:'AP · Ala-pivot'},{value:'P',label:'P · Pivot'}];
+    const statusOptions=['PENDING','DRAFT','REVIEWED','APPROVED'].map(x=>({value:x,label:x}));
+    const convOptions=['NOT_STARTED','PENDING','DRAFT','IN_REVIEW','APPROVED'].map(x=>({value:x,label:x}));
+    const roleOptions=[{value:'MIDFIELDER',label:'Migcampista'},{value:'FORWARD',label:'Davanter'}];
+    const footOptions=['Dretà','Esquerrà','Ambidextre'].map(x=>({value:x,label:x}));
+    const membershipOptions=Object.keys({FIRST_TEAM_CORE:1,MID_SEASON_SIGNING:1,MID_SEASON_DEPARTURE:1,PROMOTED_TO_FIRST_TEAM:1,FIRST_TEAM_LOAN:1,FIRST_TEAM_SQUAD:1}).map(x=>({value:x,label:membershipLabel(x)}));
+    if(cv.attributes?.lab) attrGroups=[['lab','F2B LAB · 36 atributs',DB.attributeDictionary]];
+    const renderAttr=(group,label,fields)=>`<section class="attribute-card"><div class="attribute-head"><h4>${label}</h4><span class="tag grey">${cv.attributeStatus||'PENDING'}</span></div><div class="edit-grid">${fields.map(([field,caption])=>conversionField(`attributes.${group}.${field}`,caption,'number')).join('')}</div></section>`;
+    return `${breadcrumbRow([{label:'Jugadors',path:'/players'},{label:c.name,path:teamPath(t,'roster')},{label:p.fullName}])}
+      <div class="player-banner"><div class="player-avatar">${esc(initials(p.displayName||p.fullName))}</div><div class="player-title"><div class="eyebrow">FITXA INDIVIDUAL · F2B</div><h1>${editableTitleField('player',p.id,'fullName','Nom complet')}</h1><p>${esc(c.name)} · Primera Divisió 2008/09 · ${m.footballRoleGroup==='MIDFIELDER'?'Migcampista':'Davanter'} · ${esc(p.detailedFootballRole||'rol detallat pendent')}</p></div><div class="player-banner-meta"><span class="tag ${m.membershipStatus==='APPROVED'?'green':'orange'}">${esc(m.membershipStatus)}</span><span class="tag ${m.eligibilityStatus==='ELIGIBLE'?'green':'orange'}">${esc(m.eligibilityStatus==='ELIGIBLE'?'ELEGIBLE':m.eligibilityStatus==='REVIEW'?'ELEGIBILITAT A REVISAR':'ELEGIBILITAT PENDENT')}</span><span class="tag orange">CONVERSIÓ NO INICIADA</span></div></div>
+      <div class="player-toolbar"><span>Fitxa ${esc(p.id)} · Participació ${esc(m.id)}</span>${routeLink(teamPath(t,'roster'),'← Tornar a plantilla','btn')}</div>
+      <div class="two-col player-columns">
+        <section class="panel"><div class="panel-head"><div><h3>Identitat i dades futbolístiques</h3><p>Dades d’identificació de l’esport original.</p></div><span class="tag blue">REAL</span></div><div class="panel-body edit-grid">
+          ${playerField('fullName','Nom complet')}${playerField('displayName','Nom de presentació')}${playerField('aliases','Àlies (separats per comes)')}${playerField('dateOfBirth','Data de naixement','date')}${playerField('nationality','Nacionalitat')}${playerField('birthplace','Lloc de naixement')}${playerField('dominantFoot','Cama dominant','select',footOptions)}${playerField('footballRoleGroup','Grup de posició futbolística','select',roleOptions)}${playerField('detailedFootballRole','Posició futbolística detallada')}${playerField('footballRoleStatus','Estat de verificació del rol','select',statusOptions)}${playerField('identityStatus','Estat de verificació de la identitat','select',statusOptions)}${playerField('notes','Notes d’identitat','textarea')}
+        </div></section>
+        <section class="panel"><div class="panel-head"><div><h3>Participació a la temporada</h3><p>Relació del jugador amb el club i l'equip 2008/09.</p></div><span class="tag green">2008/09</span></div><div class="panel-body edit-grid">
+          ${memberField('squadNumber','Dorsal','number')}${memberField('footballRoleGroup','Grup de posició a la temporada','select',roleOptions)}${memberField('footballRoleStatus','Estat de verificació del rol','select',statusOptions)}${memberField('membershipType','Tipus d’incorporació','select',membershipOptions)}${memberField('firstTeamScope','Àmbit de plantilla','select',[{value:'ELIGIBLE_FIRST_TEAM',label:'Primer equip elegible'},{value:'ELIGIBILITY_REVIEW',label:'Revisió d’elegibilitat'},{value:'FIRST_TEAM_SQUAD',label:'Membre de plantilla'},{value:'RESERVE_EXCLUDED',label:'Filial exclòs'}])}${memberField('eligibilityStatus','Estat d’elegibilitat F2B','select',[{value:'ELIGIBLE',label:'Elegible'},{value:'REVIEW',label:'Revisar'},{value:'EXCLUDED',label:'Exclòs'},{value:'PENDING',label:'Pendent'}])}${memberField('eligibilityNotes','Motiu / notes d’elegibilitat','textarea')}${memberField('membershipStatus','Estat de la selecció','select',statusOptions)}${memberField('membershipStart','Data d’alta','date')}${memberField('membershipEnd','Data de baixa/cessió','date')}
+          ${memberField('scopeEvidence','Justificació d’inclusió','textarea')}${memberField('verificationNotes','Notes de verificació','textarea')}
+        </div></section>
+      </div>
+      <div class="section-head"><div><h3>Conversió F2B</h3><p>Els camps estan preparats per a la conversió, però no contenen cap valor calculat.</p></div><span class="tag orange">NO INICIADA</span></div>
+      <div class="two-col">
+        <section class="panel"><div class="panel-head"><div><h3>Mesures físiques</h3><p>Primer s’han de verificar les dades REAL; després s’aplicaran les regles F2B.</p></div></div><div class="panel-body">
+          <div class="subsection-label">Dades físiques REAL</div><div class="edit-grid">${conversionField('realHeightCm','Alçada real (cm)','number')}${conversionField('realWeightKg','Pes real (kg)','number')}${conversionField('realHeightSource','Font de l’alçada')}${conversionField('realWeightSource','Font del pes')}${conversionField('physicalDataStatus','Estat de verificació física','select',statusOptions)}</div>
+          <div class="subsection-label">Regles i resultats F2B</div><div class="edit-grid">${conversionField('heightAdjustmentCm','Ajust d’alçada (cm)','number')}${conversionField('weightAdjustmentKg','Ajust de pes (kg)','number')}${conversionField('f2bHeightCm','Alçada F2B (cm)','number')}${conversionField('f2bWeightKg','Pes F2B (kg)','number')}</div>
+          <div class="note">Regla de projecte configurada: alçada REAL +15 cm i pes REAL +7 kg. L’estat i la font de les mesures consten a la fitxa.</div>
+        </div></section>
+        <section class="panel"><div class="panel-head"><div><h3>Posició i arquetip F2B</h3><p>La posició es decidirà a partir de l’alçada REAL i del perfil futbolístic.</p></div></div><div class="panel-body edit-grid">
+          ${conversionField('primaryPosition','Posició principal F2B','select',posOptions)}${conversionField('primaryPositionStatus','Estat posició principal','select',statusOptions)}${conversionField('secondaryPosition','Posició secundària F2B','select',posOptions)}${conversionField('secondaryPositionStatus','Estat posició secundària','select',statusOptions)}${conversionField('tertiaryPosition','Tercera posició F2B','select',posOptions)}${conversionField('positionNotes','Notes sobre l’assignació de posició','textarea')}${conversionField('archetype','Arquetip F2B')}${conversionField('archetypeStatus','Estat de l’arquetip','select',statusOptions)}${conversionField('status','Estat general de conversió','select',convOptions)}
+          ${conversionField('conversionNotes','Notes de conversió','textarea')}
+        </div></section>
+      </div>
+      <div class="two-col" style="margin-top:12px">
+        <section class="panel"><div class="panel-head"><div><h3>Valoració F2B</h3><p>Valoracions per temporada i estat de confirmació.</p></div></div><div class="panel-body edit-grid">${conversionField('ovr','OVR','number')}${conversionField('ovrStatus','Estat OVR','select',statusOptions)}${conversionField('potential','Potencial','number')}${conversionField('potentialStatus','Estat potencial','select',statusOptions)}</div></section>
+        <section class="panel"><div class="panel-head"><div><h3>Fonts i traçabilitat</h3><p>Referència de la plantilla i informació d’identitat.</p></div></div><div class="panel-body edit-grid">${memberField('sourceId','ID de font')}${playerField('identitySourceIds','IDs de fonts (separats per comes)','text')}${memberField('verificationNotes','Observacions de procedència','textarea')}</div></section>
+      </div>
+      <div class="section-head"><div><h3>Matriu d’atributs F2B</h3><p>Atributs per jugador i estat de calibratge.</p></div>${conversionField('attributeStatus','Estat atributs','select',statusOptions)}</div>
+      <div class="attribute-grid">${attrGroups.map(([group,label,fields])=>renderAttr(group,label,fields)).join('')}</div>
+      <section class="panel" style="margin-top:12px"><div class="panel-head"><div><h3>Notes sobre atributs i calibratge</h3><p>Anotacions de calibratge i procedència.</p></div></div><div class="panel-body edit-grid">${conversionField('attributeNotes','Notes de la matriu d’atributs','textarea')}</div></section>
+      <div class="player-bottom-note">${editMode?'<b>Mode d’edició directa activat.</b> Els canvis es desen automàticament al navegador.':'Activa «Editar dades» a la barra superior per modificar qualsevol camp directament aquí.'} Els canvis locals no s’envien automàticament a GitHub; exporta una còpia JSON per conservar-los o traslladar-los.</div>`;
+  }
+
+  function renderDatabase(){
+    const byRound=DB.rounds.length, fixtures=DB.fixtures.length;
+    const coveredClubs=new Set(DB.playerSeasons.map(x=>x.clubId)).size;
+    const eligibilityReview=DB.playerSeasons.filter(x=>x.eligibilityStatus==='REVIEW').length;
+    const eligibleCount=DB.playerSeasons.filter(x=>x.eligibilityStatus==='ELIGIBLE').length;
+    return `${pageHead('Cobertura i integritat','Base de dades','Visió del volum de dades incorporades, de les plantilles ja carregades i dels camps de conversió encara pendents.')}
+      <div class="stats-grid">${stat(DB.competitions.length,'Competicions')}${stat(DB.clubs.length,'Clubs')}${stat(DB.players.length,'Fitxes de jugador')}${stat(fixtures,'Enfrontaments')}</div>
+      <div class="two-col"><section class="panel"><div class="panel-head"><div><h3>Dades incorporades</h3><p>Identitat i estructura per a la simulació.</p></div><span class="tag green">CARREGADES</span></div><div class="panel-body"><div class="kv"><span>Competició i temporada</span><b>1 / 1</b></div><div class="kv"><span>Identitats de club</span><b>20</b></div><div class="kv"><span>Participacions d'equip</span><b>20</b></div><div class="kv"><span>Jornades</span><b>${byRound}</b></div><div class="kv"><span>Enfrontaments</span><b>${fixtures}</b></div><div class="kv"><span>Fitxes de jugador</span><b>${DB.players.length}</b></div><div class="kv"><span>Participacions de jugador</span><b>${DB.playerSeasons.length}</b></div><div class="kv"><span>Clubs amb plantilla carregada</span><b>${coveredClubs}</b></div><div class="kv"><span>Elegibilitat sense incidències</span><b>${eligibleCount}</b></div><div class="kv"><span>Casos pendents de revisar</span><b>${eligibilityReview}</b></div></div></section>
+      <section class="panel"><div class="panel-head"><div><h3>Dades que no s'han replicat</h3><p>Història original del futbol consultable en fonts externes.</p></div><span class="tag grey">EXCLOSES</span></div><div class="panel-body"><div class="kv"><span>Resultats del futbol</span><b>No</b></div><div class="kv"><span>Classificacions del futbol</span><b>No</b></div><div class="kv"><span>Estadístiques del futbol</span><b>No</b></div><div class="kv"><span>Dates, estadis i àrbitres</span><b>No</b></div></div></section></div>
+      <div class="section-head"><div><h3>Estat de conversió F2B</h3><p>Les fitxes existeixen, però encara no s'ha convertit cap jugador.</p></div></div>
+      <div class="grid cards-3"><div class="card"><h3>Mesures i perfil físic</h3><p>El Barça i el Madrid tenen el físic convertit amb font a la fitxa.</p></div><div class="card"><h3>Posicions i arquetips</h3><p>75 arquetips al catàleg i posicions revisades al Barça, Madrid i València.</p></div><div class="card"><h3>OVR, potencial i atributs</h3><p>28 conversions amb els 36 atributs F2B LAB. L’Inter consta en una vista pròpia.</p></div></div>
+      <div class="section-head"><div><h3>Desament i còpies de seguretat</h3><p>Els canvis s'emmagatzemen al navegador actual.</p></div></div>
+      <div class="note"><strong>Persistència local:</strong> l'edició directa desa automàticament les modificacions a l'emmagatzematge local del navegador. El botó JSON exporta una còpia que pots conservar o importar en un altre navegador. Els canvis no s'envien automàticament al repositori GitHub.</div>
+      <div class="section-head"><div><h3>Fonts de plantilles</h3><p>Fonts de referència registrades per als sis clubs incorporats.</p></div></div>
+      <div class="grid cards-3">${DB.sources.filter(x=>x.id.startsWith('SRC-BDFUTBOL-')&&x.id!=='SRC-BDFUTBOL-LALIGA-0809').map(x=>`<a class="card" href="${esc(x.url)}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.scope||x.use||'Referència de plantilla')}</p><div class="meta">Obrir font ↗</div></a>`).join('')}</div>`;
+  }
+
+  function renderArchetypes(){
+    const groups=Object.groupBy?Object.groupBy(DB.archetypeCatalog.entries,x=>x.position):DB.archetypeCatalog.entries.reduce((acc,x)=>((acc[x.position]??=[]).push(x),acc),{});
+    return pageHead('Catàleg F2B','75 arquetips','15 perfils per posició. Els codis s’utilitzen a les plantilles i al registre de conversions.')+
+      Object.entries(groups).map(([pos,rows])=>`<section class="panel" style="margin-bottom:12px"><div class="panel-head"><h3>${esc(pos)}</h3></div><div class="panel-body"><ol>${rows.map(x=>`<li><b>${esc(x.id)}</b> · ${esc(x.name)}</li>`).join('')}</ol></div></section>`).join('');
+  }
+  function renderInter(){
+    const squad=DB.archiveSquads[0];
+    const archetypes=new Map(DB.archetypeCatalog.entries.map(x=>[x.id,x.name]));
+    return pageHead('Plantilles històriques','Inter de Milà 2009/10','17 fitxes de temporada. Inclou les altes i baixes d’hivern i un perfil del Primavera.')+
+      `<div class="table-wrap" style="overflow:auto"><table class="data-table"><thead><tr><th>Jugador</th><th>Pos.</th><th>Físic F2B</th><th>OVR / POT</th><th>Arquetip</th><th>Etapa</th><th>Funció</th></tr></thead><tbody>${squad.players.map(p=>`<tr><td>${player(p.playerId)?routeLink(playerPath(p.playerId),p.name):esc(p.name)}</td><td>${esc(p.positions.join(' / '))}</td><td>${p.heightF2bCm} cm / ${p.weightF2bKg} kg</td><td>${p.ovr} / ${p.pot}</td><td>${esc(p.archetypeId)} · ${esc(archetypes.get(p.archetypeId))}</td><td>${esc(p.availability)}</td><td>${esc(p.role)}</td></tr>`).join('')}</tbody></table></div>`;
+  }
+  function render(){
+    let html='';
+    switch(route.page){
+      case 'home': html=renderHome(); break;
+      case 'competitions': html=renderCompetitions(); break;
+      case 'competition': html=renderCompetition(); break;
+      case 'season': html=renderSeason(); break;
+      case 'clubs': html=renderClubs(); break;
+      case 'club': html=renderClub(); break;
+      case 'team': html=renderTeam(); break;
+      case 'rounds': html=renderRounds(); break;
+      case 'round': html=renderRound(); break;
+      case 'fixture': html=renderFixture(); break;
+      case 'seasons': html=renderSeasons(); break;
+      case 'database': html=renderDatabase(); break;
+      case 'archetypes': html=renderArchetypes(); break;
+      case 'inter-2009-10': html=renderInter(); break;
+      case 'players': html=renderPlayers(); break;
+      case 'player': html=renderPlayer(); break;
+      default: html=empty('⌂','Pàgina no disponible','La ruta no existeix dins la versió actual de l’enciclopèdia.');
+    }
+    $('#content').innerHTML=html;
+    setBreadcrumb(); setNav();
+  }
+
+  function searchIndex(q){
+    const query=q.trim().toLocaleLowerCase('ca'); if(query.length<2)return [];
+    const results=[];
+    for(const c of DB.clubs){
+      const hay=[c.name,c.shortName,c.city,...c.aliases].join(' ').toLocaleLowerCase('ca');
+      if(hay.includes(query)) results.push({title:c.name,sub:`Club · ${c.city} · Temporada 2008/09`,icon:initials(c.shortName),path:clubPath(c.id)});
+    }
+    if('primera divisió laliga la liga espanya'.includes(query)) results.push({title:'Primera Divisió',sub:'Competició · Espanya',icon:'ESP',path:`/competition/${compId}`});
+    if('2008/09 2008-09 temporada'.includes(query)) results.push({title:'Primera Divisió 2008/09',sub:'Temporada · 20 clubs · 38 jornades',icon:'08/09',path:pathSeason()});
+    const roundMatch=query.match(/(?:jornada|j|round)\s*(\d{1,2})/i);
+    if(roundMatch){const n=Number(roundMatch[1]);if(n>=1&&n<=38)results.push({title:`Jornada ${n}`,sub:'10 enfrontaments · 0 simulats',icon:String(n),path:roundPath(DB.rounds[n-1].id)});}
+    const pair=DB.fixtures.find(f=>{
+      const h=club(f.homeClubId),a=club(f.awayClubId); const name=`${h.name} ${a.name}`.toLocaleLowerCase('ca'); const short=`${h.shortName} ${a.shortName}`.toLocaleLowerCase('ca'); return name.includes(query)||short.includes(query);
+    });
+    if(pair){const h=club(pair.homeClubId),a=club(pair.awayClubId);results.push({title:`${h.name} — ${a.name}`,sub:`Jornada ${pair.roundNumber} · Enfrontament F2B pendent`,icon:'VS',path:fixturePath(pair.id)});}
+    for(const p of DB.players){
+      const ms=indexes.playerSeasonsByPlayer.get(p.id)||[];
+      const hay=[p.fullName,p.displayName,...(p.aliases||[])].join(' ').toLocaleLowerCase('ca');
+      if(hay.includes(query)){
+        const m=ms[0], c=m?club(m.clubId):null;
+        results.push({title:p.fullName,sub:`Jugador · ${c?.name||'F2B'} · Fitxa de conversió`,icon:initials(p.displayName||p.fullName),path:playerPath(p.id)});
+      }
+    }
+    if('jugadors futbolistes fitxes plantilla'.includes(query)) results.push({title:'Directori de jugadors',sub:`${DB.players.length} fitxes · sis clubs`,icon:'PLY',path:'/players'});
+    return results.slice(0,9);
+  }
+  function showSearch(q){
+    const box=$('#searchResults'); const items=searchIndex(q);
+    if(!items.length){box.hidden=true;box.innerHTML='';return;}
+    box.innerHTML=items.map(x=>`<a class="search-item" href="#${esc(x.path)}" data-route="${esc(x.path)}"><span class="crest">${esc(x.icon)}</span><span><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></span></a>`).join('');box.hidden=false;
+  }
+  $('#editToggle').addEventListener('click',()=>{
+    editMode=!editMode; $('#editToggle').classList.toggle('active',editMode); $('#editToggle').textContent=editMode?'✓ Finalitzar edició':'✎ Editar dades';
+    document.body.classList.toggle('edit-mode',editMode); render(); setSaveState(editMode?'Edició directa activada':'Mode de consulta','idle');
+  });
+  $('#exportData').addEventListener('click',exportLocalData);
+  $('#importFile').addEventListener('change',async e=>{
+    const file=e.target.files?.[0]; if(!file)return;
+    try{await importLocalData(file);setSaveState('Còpia importada i desada localment','saved');}
+    catch(error){setSaveState('Error important la còpia','error');alert(error.message||String(error));}
+    e.target.value='';
+  });
+  function handleInlineEdit(e){
+    const input=e.target.closest('[data-entity][data-id][data-field]'); if(!input||!editMode)return;
+    const entity=input.dataset.entity, id=input.dataset.id, field=input.dataset.field;
+    const obj=entity==='player'?player(id):playerSeason(id); if(!obj)return;
+    let value=input.value;
+    if(input.type==='number') value=value===''?null:Number(value);
+    if(entity==='player' && ['identitySourceIds','aliases'].includes(field)) value=value.split(',').map(x=>x.trim()).filter(Boolean);
+    setPath(obj,field,value);
+    input.classList.add('edited');
+    persistLocalEdits();
+  }
+  $('#content').addEventListener('input',handleInlineEdit);
+  $('#content').addEventListener('change',handleInlineEdit);
+  document.addEventListener('click',e=>{
+    const link=e.target.closest('[data-route]');
+    if(link){e.preventDefault();navigate(link.dataset.route);$('#searchResults').hidden=true;return;}
+    if(!e.target.closest('.global-search')) $('#searchResults').hidden=true;
+  });
+  $('#globalSearch').addEventListener('input',e=>showSearch(e.target.value));
+  $('#globalSearch').addEventListener('keydown',e=>{if(e.key==='Escape')$('#searchResults').hidden=true;if(e.key==='Enter'){const first=$('.search-item');if(first)navigate(first.dataset.route);}});
+  $('#mobileMenu').addEventListener('click',()=>{$('#sidebar').classList.add('open');$('#mobileScrim').classList.add('open');});
+  $('#mobileScrim').addEventListener('click',closeMobile);
+  window.addEventListener('hashchange',()=>{parseRoute();render();});
+  loadData().then(()=>{parseRoute();render();}).catch(err=>{$('#content').innerHTML=empty('!','Error carregant les dades',err.message);});
+})();
+
+  </script>
+</body>
+</html>
