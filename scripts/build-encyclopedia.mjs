@@ -4,7 +4,7 @@ import {createPlayerCorrections} from '../app/player-corrections.mjs';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger, countryFlags] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -19,6 +19,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   read('app/encyclopedia.template.html'),
   read('app/player-corrections.mjs'),
   json('data/catalog/player-corrections.json'),
+  json('assets/flags/3x2.json'),
 ]);
 const check = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -281,7 +282,9 @@ for (const [editionId, assignments] of Object.entries(crestCatalog.bySeason)) {
   for (const [clubId, id] of Object.entries(assignments)) check(crestAssets[id]?.clubId === clubId, clubId + ' escut assignat a un altre club');
 }
 const clubCrests = {assets:crestAssets, bySeason:crestCatalog.bySeason};
-Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,seasons,playerHistory,clubCrests,rules});
+check(countryFlags.source && countryFlags.license && Object.entries(countryFlags.flags).every(([code, svg]) =>
+  /^[A-Z]{3}$/.test(code) && typeof svg === 'string' && svg.startsWith('<svg ') && svg.endsWith('</svg>')), 'Catàleg de banderes invàlid');
+Object.assign(db,{countryFlags,archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,seasons,playerHistory,clubCrests,rules});
 const corrections = createPlayerCorrections(db);
 const canonical = corrections.parse(ledger);
 const args = process.argv.slice(2);

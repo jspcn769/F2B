@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.17</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.17.1</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -155,6 +155,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
 .profile-context .crest{width:21px;height:21px;padding:2px}
 .roster-table .crest{width:22px;height:22px;padding:2px}
 @media(max-width:760px){.banner-left .crest.has-crest{width:48px;height:48px;padding:5px}}
+    .roster-table .roster-nationality,.roster-table .roster-measure{text-align:center;white-space:nowrap}
+    .roster-measure{font-variant-numeric:tabular-nums}
+    .roster-flag{display:inline-block;width:21px;height:14px;vertical-align:middle;border-radius:2px;box-shadow:0 0 0 1px rgba(26,39,52,.18)}
     .roster-section{margin-block:24px}.roster-section h2{margin:0 0 8px}.roster-section h2 small{font-size:.7em;color:var(--muted)}
     .correction-form .edit-label{display:block;margin-bottom:4px}.correction-form .inline-editor{width:100%}
     .correction-form fieldset{min-width:0;margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:8px}
@@ -660,16 +663,25 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
       <div class="section-head"><h3>Tots els jugadors</h3></div>
       ${renderPlayerList(rows,true)}`;
   }
+  function rosterFlag(nationality){
+    const svg=Object.hasOwn(DB.countryFlags.flags,nationality)?DB.countryFlags.flags[nationality]:null;
+    const label=Object.hasOwn(playerCountryNames,nationality)?playerCountryNames[nationality]:nationality;
+    return svg?`<img class="roster-flag" src="data:image/svg+xml,${esc(encodeURIComponent(svg))}" width="21" height="14" alt="${esc(label)}" title="${esc(label)}">`:
+      `<span aria-label="${esc(label||'Nacionalitat pendent')}">—</span>`;
+  }
   function renderPlayerList(rows,showClub=false){
+    const rosterColumns='<th scope="col" class="roster-nationality" aria-label="Nacionalitat">Nac.</th><th scope="col" class="roster-measure">Alçada F2B (cm)</th><th scope="col" class="roster-measure">Pes F2B (kg)</th>';
     return `<div class="panel"><div class="table-wrap"><table class="data-table roster-table">
-      <thead><tr><th scope="col">Jugador</th>${showClub?'<th scope="col">Club</th>':''}<th scope="col">Dorsal</th><th scope="col">Posició F2B</th><th scope="col">Arquetip</th><th scope="col">OVR / POT</th><th scope="col">Estat</th></tr></thead>
+      <thead><tr><th scope="col">Jugador</th>${showClub?'<th scope="col">Club</th>':''}<th scope="col">Dorsal</th>${showClub?'':rosterColumns}<th scope="col">Posició F2B</th><th scope="col">Arquetip</th><th scope="col">OVR / POT</th><th scope="col">Estat</th></tr></thead>
       <tbody>${rows.map(({m,p,c})=>{
         const cv=m.conversion;
-        const name=routeLink(playerTabPath(p.id,'resum',m.id),esc(p.fullName),'archive-link');
+        const name=routeLink(playerTabPath(p.id,'resum',m.id),esc(showClub?p.fullName:p.displayName||p.fullName),'archive-link');
+        const rosterCells=showClub?'':`<td class="roster-nationality">${rosterFlag(p.nationality||cv.nationalityReference)}</td>
+          <td class="roster-measure">${esc(cv.f2bHeightCm??'—')}</td><td class="roster-measure">${esc(cv.f2bWeightKg??'—')}</td>`;
         const archetype=archetypeEntry(cv.archetypeId);
         const positions=[cv.primaryPosition,cv.secondaryPosition,cv.tertiaryPosition].filter(Boolean);
         const state=m.eligibilityStatus==='REVIEW'?'Elegibilitat en revisió':m.eligibilityStatus==='EXCLUDED'?'Exclòs':playerStatus[cv.status]??playerStatus.PENDING;
-        return `<tr><td>${name}</td>${showClub?`<td>${routeLink(teamPath(team(m.teamSeasonId),'roster'),crest(c,m.seasonId)+esc(c.name),'club-with-crest')}<div>${routeLink(pathSeason('overview',m.seasonId),esc(editionTitle(edition(m.seasonId))),'archive-link')}</div></td>`:''}<td>${esc(m.squadNumber??'—')}</td><td>${esc(positions.join(' / ')||'—')}</td>
+        return `<tr><td>${name}</td>${showClub?`<td>${routeLink(teamPath(team(m.teamSeasonId),'roster'),crest(c,m.seasonId)+esc(c.name),'club-with-crest')}<div>${routeLink(pathSeason('overview',m.seasonId),esc(editionTitle(edition(m.seasonId))),'archive-link')}</div></td>`:''}<td>${esc(m.squadNumber??'—')}</td>${rosterCells}<td>${esc(positions.join(' / ')||'—')}</td>
           <td>${archetype?archetypeLink(archetype.id,archetype.name):esc(cv.archetype??'—')}</td><td>${esc(cv.ovr??'—')} / ${esc(cv.potential??'—')}</td><td>${esc(state)}</td></tr>`;
       }).join('')}</tbody></table></div></div>`;
   }
