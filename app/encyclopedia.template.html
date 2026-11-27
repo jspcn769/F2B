@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.20.1</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.21</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -170,6 +170,64 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     .correction-form details .edit-grid{margin-top:12px}.correction-form .actions{align-items:center;flex-wrap:wrap}
     .correction-history{padding-left:20px}.correction-history li+li{margin-top:14px}.correction-history ul{padding-left:18px}
     .correction-feedback{color:#9e342d}.correction-reason{margin-top:16px}
+
+    /* Fitxa ampliada d’equip */
+    .team-model{display:grid;gap:16px}
+    .team-model-intro,.team-model-panel{border-radius:12px;padding:clamp(13px,2.5vw,24px);min-width:0}
+    .team-model-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(155px,25%);gap:18px;background:#17253d;color:#f7f1e8;border-left:5px solid #a13458}
+    .team-model-intro h2,.team-section-heading h2{font:700 clamp(21px,3vw,29px)/1.15 Georgia,serif;margin:0 0 6px}
+    .team-model-intro p{max-width:66ch;font-size:15px;line-height:1.6;margin:0 0 12px}
+    .team-model-intro nav{display:flex;flex-wrap:wrap;gap:5px 16px}
+    .team-model-intro a{color:#f2d8a7;text-decoration:underline;text-underline-offset:3px}
+    .team-model-coach{border-left:1px solid #55627a;display:grid;align-content:center;gap:4px;padding-left:16px}
+    .team-model-coach strong{font:700 clamp(20px,2.6vw,28px) Georgia,serif}
+    .team-model-coach small,.team-model-coach span{color:#d9e3ef;font-size:12px}
+    .team-model-panel{background:var(--paper);border:1px solid var(--line)}
+    .team-section-heading{display:flex;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+    .team-section-heading p{color:var(--muted);margin:0;font-size:14px;line-height:1.5}
+    .team-section-heading>strong{background:#e8eef5;color:#223950;padding:6px 10px;border-radius:5px;white-space:nowrap}
+    .team-section-heading label{display:flex;align-items:center;flex-wrap:wrap;gap:5px 9px;font-size:12px;font-weight:700}
+    .team-section-heading select{font:inherit;color:#1d324a;background:#fff;border:1px solid #a6b5c4;border-radius:5px;padding:6px;width:auto;max-width:100%}
+    .team-court-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(12px,3vw,26px);align-items:center}
+    .team-court{position:relative;aspect-ratio:500/370;background:#eed4a9;border:1px solid #a58760;border-radius:8px}
+    .team-court-lines{width:100%;height:100%;color:#8a6244;display:block}
+    .team-court-slot{position:absolute;transform:translate(-50%,-50%);text-align:center}
+    .team-court-slot:nth-of-type(1){left:50%;top:77%}
+    .team-court-slot:nth-of-type(2){left:77%;top:59%}
+    .team-court-slot:nth-of-type(3){left:22%;top:59%}
+    .team-court-slot:nth-of-type(4){left:78%;top:27%}
+    .team-court-slot:nth-of-type(5){left:50%;top:30%}
+    .team-court-slot a{display:grid;gap:0;background:#17253d;color:#fff9ef;border:1px solid #fff0d9;border-radius:7px;padding:4px clamp(4px,1vw,12px);box-shadow:0 2px 6px #2c19274d;max-width:100px;text-decoration:none}
+    .team-court-slot:nth-of-type(even) a{background:#772b49}
+    .team-court-slot a:hover,.team-court-slot a:focus-visible{outline:2px solid #102944;outline-offset:2px}
+    .team-court-slot span{color:#f4d79e;font-weight:750;font-size:10px}
+    .team-court-slot strong{font-size:clamp(10px,1.5vw,14px);line-height:1.1;overflow-wrap:anywhere}
+    .team-lineup-roles p{font-size:14px;line-height:1.55;margin:0 0 10px}
+    .team-lineup-roles dl{margin:0}
+    .team-lineup-roles dl div{display:grid;grid-template-columns:minmax(90px,1fr) 1.15fr;gap:5px 10px;font-size:13px;padding:6px 0;border-top:1px solid var(--line)}
+    .team-lineup-roles dt span{color:#71304f;font-weight:750;display:inline-block;width:2.4em}
+    .team-lineup-roles dd{margin:0;color:var(--muted)}
+    .team-strategy,.team-stints>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .team-strategy section,.team-stints section{padding:12px;background:#f6f4ee;border:1px solid var(--line);border-radius:7px}
+    .team-strategy h3,.team-stints h3{margin:0 0 8px;font-size:16px}
+    .team-strategy dl{margin:0}.team-strategy dt{font-weight:800;font-size:13px;color:#78344f}
+    .team-strategy dd{margin:2px 0 10px;line-height:1.48;font-size:14px}.team-strategy dd:last-child{margin-bottom:0}
+    .team-rotation-heading,.team-rotation-row{display:grid;grid-template-columns:minmax(86px,32%) minmax(0,1fr) 28px;align-items:center;gap:clamp(4px,1vw,10px)}
+    .team-rotation-heading{font-size:12px;font-weight:800;padding-bottom:5px}
+    .team-rotation-heading>div{display:grid;grid-template-columns:repeat(var(--quarters),1fr);text-align:center}
+    .team-rotation-row{border-top:1px solid var(--line);padding:6px 0}
+    .team-rotation-row small{display:block;margin-top:2px;color:var(--muted);font-size:11px}
+    .team-rotation-row>strong,.team-rotation-heading>span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+    .team-rotation-track{height:14px;display:grid;grid-template-columns:repeat(var(--minutes),1fr);background:#ebedf0 repeating-linear-gradient(90deg,transparent 0,transparent calc(100% / var(--quarters) - 1px),#9aadc0 calc(100% / var(--quarters) - 1px),#9aadc0 calc(100% / var(--quarters)));border-radius:3px}
+    .team-rotation-track span{background:#8b365a;margin:1px 1px 1px 0;border-radius:2px}
+    .team-rotation-track.is-starter span{background:#284c71}
+    .team-stints{border-top:1px solid var(--line);margin-top:10px;padding-top:10px}
+    .team-stints summary{cursor:pointer;font-weight:700;margin-bottom:8px}.team-stints p{margin:0;padding:3px 0;font-size:13px}
+    .team-market-section h3{margin:16px 0 8px}
+    .team-market-table tbody th{text-align:left;font-size:13px;padding:8px 10px}
+    .team-market-table td:last-child{min-width:210px}.team-market-table td small{display:block;margin-top:4px}
+    @media(max-width:730px){.team-court-layout{grid-template-columns:1fr}.team-court{width:min(100%,520px);margin-inline:auto}}
+    @media(max-width:540px){.team-model-intro,.team-strategy,.team-stints>div{grid-template-columns:1fr}.team-model-coach{border-left:0;border-top:1px solid #55627a;padding:10px 0 0}.team-rotation-row small{font-size:10px;line-height:1.15}}
   </style>
   <script>window.F2B_DATA=__F2B_EMBEDDED_DATA__;</script>
   <script>
@@ -559,11 +617,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const c=clubForTeam(t), e=edition(t.seasonId), active=route.tab;
     const tabs=[['overview','Resum'],['calendar','Enfrontaments'],['stats','Estadístiques'],['roster','Plantilla']];
     const views={overview:renderTeamOverview,calendar:renderTeamCalendar,stats:renderTeamStats,roster:renderTeamRoster};
+    if(t.teamProfile){tabs.push(['market','Fitxatges i vendes']);views.market=renderTeamMarket;}
     return `${breadcrumbRow([{label:c.name,path:clubPath(c.id)},{label:editionTitle(e),path:pathSeason('teams',e.id)},{label:'Equip'}])}
       ${teamBanner(t)}<nav class="tabs" aria-label="Apartats de l’equip">${tabs.map(([id,label])=>routeLink(teamPath(t,id),label,active===id?'active':'')).join('')}</nav>
       <div class="tab-content">${(Object.hasOwn(views,active)?views[active]:views.overview)(t)}</div>`;
   }
   function renderTeamOverview(t){
+    if(t.teamProfile) return renderDetailedTeamOverview(t,t.teamProfile);
     const c=clubForTeam(t), e=edition(t.seasonId);
     const fs=teamFixtures(t.id), roster=indexes.playerSeasonsByTeam.get(t.id)??[];
     const sameYear=clubTeams(c.id).filter(other=>other.id!==t.id&&indexes.seasons.get(other.seasonId).seasonKey===indexes.seasons.get(t.seasonId).seasonKey);
@@ -573,6 +633,108 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
       ${t.coachingStaff?renderTeamCoaches(t.coachingStaff):''}
       ${t.tacticalProfile?renderTeamTactics(t.tacticalProfile):''}
       ${fs.length?`<section class="archive-section"><h2>Primer enfrontament</h2>${fixtureRow(fs[0])}</section>`:''}`;
+  }
+  function teamPlayer(id){
+    const membership=indexes.playerSeasons.get(id);
+    const identity=player(membership.playerId);
+    return {name:identity.displayName||identity.fullName, path:playerTabPath(identity.id,'resum',id)};
+  }
+  function renderCourt(lineup){
+    const players=lineup.players.map(({membershipId,role},index)=>({...teamPlayer(membershipId),role,position:['BA','ES','AL','AP','P'][index]}));
+    return `<div class="team-court-layout">
+      <div class="team-court" role="group" aria-label="${esc(lineup.name)} a mitja pista">
+        <svg class="team-court-lines" viewBox="0 0 500 370" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 18H487V354H13ZM13 177H57C91 322 409 322 443 177H487M176 18V149H324V18M176 149A74 58 0 0 0 324 149M222 37H278"/>
+            <circle cx="250" cy="50" r="13"/><path d="M202 354A48 43 0 0 1 298 354"/>
+          </g>
+        </svg>
+        ${players.map(({name,path,position})=>`<div class="team-court-slot">${routeLink(path,`<span>${position}</span><strong>${esc(name)}</strong>`)}</div>`).join('')}
+      </div>
+      <div class="team-lineup-roles">
+        <p>${esc(lineup.description)}</p>
+        <dl>${players.map(({name,path,position,role})=>`<div><dt><span>${position}</span>${routeLink(path,esc(name),'archive-link')}</dt><dd>${esc(role)}</dd></div>`).join('')}</dl>
+      </div>
+    </div>`;
+  }
+  function changeTeamLineup(event){
+    const select=event.target.closest('select[data-team-lineup]');
+    if(!select) return;
+    const profile=team(select.dataset.teamLineup)?.teamProfile;
+    const lineup=profile?.lineups.find(option=>option.id===select.value);
+    if(lineup) select.closest('section').querySelector('[data-lineup-view]').innerHTML=renderCourt(lineup);
+  }
+  function renderTeamRotation(profile){
+    const {periods,minutesPerPeriod,regulationMinutes,teamPlayerMinutes}=DB.rules;
+    const quarters=Array.from({length:periods},(_,index)=>index+1);
+    const starters=new Set(profile.lineups[0].players.map(row=>row.membershipId));
+    const rotation=Object.entries(profile.rotationRoles).map(([id,role])=>{
+      const minutes=profile.stints.filter(stint=>stint.memberships.includes(id));
+      return {id,role,minutes,total:minutes.reduce((sum,stint)=>sum+stint.end-stint.start,0),...teamPlayer(id)};
+    }).sort((a,b)=>b.total-a.total);
+    return `<section class="team-model-panel">
+      <div class="team-section-heading"><div><h2>Rotació de referència</h2><p>Minuts previstos en un partit ajustat. Les franges indiquen quan és a pista cada jugador.</p></div>
+        <strong>${teamPlayerMinutes} min d’equip</strong></div>
+      <div class="team-rotation" style="--quarters:${periods};--minutes:${regulationMinutes}">
+        <div class="team-rotation-heading"><span>Jugador</span><div>${quarters.map(q=>`<span>Q${q}</span>`).join('')}</div><span>Min</span></div>
+        ${rotation.map(({id,name,path,role,minutes,total})=>`<div class="team-rotation-row">
+          <div>${routeLink(path,esc(name),'archive-link')}<small>${esc(role)}</small></div>
+          <div class="team-rotation-track${starters.has(id)?' is-starter':''}" aria-hidden="true">${minutes.map(({start,end})=>`<span style="grid-column:${start+1}/${end+1}"></span>`).join('')}</div>
+          <strong>${total}</strong>
+        </div>`).join('')}
+      </div>
+      <details class="team-stints"><summary>Veure els cinc jugadors a pista per tram</summary>
+        <div>${quarters.map(q=>{
+          const offset=(q-1)*minutesPerPeriod;
+          return `<section><h3>Quart ${q}</h3>${profile.stints.filter(stint=>stint.start>=offset&&stint.start<offset+minutesPerPeriod).map(({start,end,memberships})=>`<p><strong>${start}–${end}′</strong> ${memberships.map(id=>{const {name,path}=teamPlayer(id);return routeLink(path,esc(name));}).join(', ')}</p>`).join('')}</section>`;
+        }).join('')}</div>
+      </details>
+    </section>`;
+  }
+  function renderDetailedTeamOverview(t,profile){
+    const c=clubForTeam(t), e=edition(t.seasonId);
+    const coaches=t.coachingStaff.stints.map(coach=>esc(coach.name)).join(' · ');
+    const fs=teamFixtures(t.id), sameYear=clubTeams(c.id).filter(other=>other.id!==t.id&&edition(other.seasonId).seasonKey===e.seasonKey);
+    return `<div class="team-model">
+      <section class="team-model-intro">
+        <div><h2>Identitat de joc</h2><p>${esc(profile.summary)}</p>
+          <nav aria-label="Accés ràpid">${routeLink(teamPath(t,'roster'),'Plantilla')}${routeLink(teamPath(t,'market'),'Fitxatges i vendes')}${routeLink(clubPath(c.id),'Fitxa del club')}</nav></div>
+        <div class="team-model-coach"><small>Entrenador</small><strong>${coaches}</strong><span>${t.coachingStaff.stints.map(coach=>`Jornades ${coach.firstRound}–${coach.lastRound}`).join(' · ')}</span>
+          <div>${sourceLinks([t.coachingStaff.sourceId])}</div></div>
+      </section>
+      <section class="team-model-panel">
+        <div class="team-section-heading"><h2>Quintets</h2><label>Situació de partit <select data-team-lineup="${esc(t.id)}">
+          ${profile.lineups.map(({id,name})=>`<option value="${esc(id)}">${esc(name)}</option>`).join('')}
+        </select></label></div>
+        <div data-lineup-view aria-live="polite">${renderCourt(profile.lineups[0])}</div>
+      </section>
+      <section class="team-model-panel">
+        <div class="team-section-heading"><div><h2>Sistema tàctic</h2><p>Proposta F2B de com ataca, defensa i ajusta l’equip. Context històric de la temporada al ${sourceLinks([profile.historySourceId])}.</p></div></div>
+        <div class="team-strategy">${profile.strategy.map(({title,items})=>`<section><h3>${esc(title)}</h3><dl>
+          ${items.map(([label,body])=>`<dt>${esc(label)}</dt><dd>${esc(body)}</dd>`).join('')}
+        </dl></section>`).join('')}</div>
+      </section>
+      ${renderTeamRotation(profile)}
+      <section class="team-model-panel"><div class="team-section-heading"><div><h2>Arxiu del curs</h2><p>${fs.length} enfrontaments de lliga · ${(indexes.playerSeasonsByTeam.get(t.id)??[]).length} jugadors convertits</p></div></div>
+        <div class="actions">${routeLink(editionPath(e),'Fitxa de l’edició','btn')}${routeLink(competitionPath(e.competitionId),'Fitxa de competició','btn')}${sameYear.map(other=>routeLink(teamPath(other),esc(editionTitle(edition(other.seasonId))),'btn')).join('')}</div>
+        ${fs.length?`<h3>Primer enfrontament</h3>${fixtureRow(fs[0])}`:''}
+      </section>
+    </div>`;
+  }
+  function renderTeamMarket(t){
+    const teamRoster=indexes.playerSeasonsByTeam.get(t.id)??[];
+    return `<div class="team-model"><section class="team-model-panel"><div class="team-section-heading"><div><h2>Fitxatges i vendes</h2>
+      <p>Moviments històrics del primer equip i incorporacions del filial el 2008/09. La lectura F2B descriu l’efecte sobre la plantilla convertida.</p></div></div>
+      ${[['in','Altes','Procedència'],['out','Baixes i cessions','Destí']].map(([direction,title,clubLabel])=>`
+        <section class="team-market-section"><h3>${title}</h3><div class="table-wrap"><table class="data-table team-market-table">
+          <thead><tr><th scope="col">Jugador</th><th scope="col">Operació</th><th scope="col">${clubLabel}</th><th scope="col">Lectura F2B</th></tr></thead>
+          <tbody>${t.teamProfile.market.filter(row=>row.direction===direction).map(row=>{
+            const membership=teamRoster.find(m=>m.playerId===row.playerId);
+            const name=row.playerId?routeLink(playerTabPath(row.playerId,'resum',membership?.id),esc(row.name),'archive-link'):esc(row.name);
+            return `<tr><th scope="row">${name}</th><td>${esc(row.kind)}</td><td>${esc(row.club??"—")}</td><td>${esc(row.impact)}<small>${sourceLinks([row.sourceId])}</small></td></tr>`;
+          }).join('')}</tbody>
+        </table></div></section>`).join('')}
+    </section></div>`;
   }
   function renderTeamCoaches({sourceId,stints}){
     const rows=stints.map(({name,firstRound,lastRound})=>
@@ -1116,6 +1278,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
   });
   $('#content').addEventListener('submit',submitCorrection);
   $('#content').addEventListener('change',syncArchetypeSelect);
+  $('#content').addEventListener('change',changeTeamLineup);
   $('#content').addEventListener('click',event=>{
     const key=event.target.closest('[data-legacy-backup]')?.dataset.legacyBackup;
     if(LEGACY_KEYS.includes(key)) downloadJson(JSON.parse(localStorage.getItem(key)),'F2B-esborrany-'+key+'.json');

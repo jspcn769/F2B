@@ -4,7 +4,7 @@ import {createPlayerCorrections} from '../app/player-corrections.mjs';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger, countryFlags] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger, countryFlags, teamProfiles] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -20,6 +20,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   read('app/player-corrections.mjs'),
   json('data/catalog/player-corrections.json'),
   json('assets/flags/3x2.json'),
+  json('data/seasons/laliga/2008-09/team-profiles.json'),
 ]);
 const check = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -240,6 +241,42 @@ for (const m of db.playerSeasons) {
   check(playerRecords.has(m.playerId) && t && t.clubId === m.clubId && t.seasonId === m.seasonId && m.conversion, m.id + ' jugador o plantilla incompatible');
   check(!m.sourceId || sourceRecords.has(m.sourceId), m.id + ' font desconeguda');
   check(!m.conversion.archetypeId || entries.has(m.conversion.archetypeId), m.id + ' arquetip desconegut');
+}
+
+const hasText = value => typeof value === 'string' && Boolean(value.trim());
+check(unique(teamProfiles, 'teamSeasonId'), 'Fitxes ampliades duplicades');
+for (const profile of teamProfiles) {
+  const {teamSeasonId, historySourceId, summary, lineups, stints, rotationRoles, strategy, market} = profile;
+  const team = teamRecords.get(teamSeasonId);
+  const roster = new Set(db.playerSeasons.filter(row => row.teamSeasonId === teamSeasonId).map(row => row.id));
+  const validFive = ids => ids.length === rules.playersOnCourtPerTeam && new Set(ids).size === ids.length &&
+    ids.every(id => roster.has(id) && members.get(id).conversion.status === 'IN_REVIEW');
+  check(team?.coachingStaff && sourceRecords.has(historySourceId) && hasText(summary), teamSeasonId + ' fitxa ampliada incompleta');
+  check(lineups.length > 0 && unique(lineups, 'id') && lineups.every(lineup =>
+    hasText(lineup.id) && hasText(lineup.name) && hasText(lineup.description) &&
+    validFive(lineup.players.map(row => row.membershipId)) && lineup.players.every(row => hasText(row.role))
+  ), teamSeasonId + ' quintets invàlids');
+
+  const activePlayers = new Set();
+  let nextMinute = 0;
+  for (const {start, end, memberships} of stints) {
+    check(start === nextMinute && Number.isInteger(end) && end > start && end <= rules.regulationMinutes &&
+      Math.floor(start / rules.minutesPerPeriod) === Math.floor((end - 1) / rules.minutesPerPeriod) &&
+      validFive(memberships), teamSeasonId + ' tram de rotació invàlid');
+    memberships.forEach(id => activePlayers.add(id));
+    nextMinute = end;
+  }
+  check(nextMinute === rules.regulationMinutes && lineups[0].players.every(row => stints[0].memberships.includes(row.membershipId)),
+    teamSeasonId + ' cobertura de partit o quintet inicial invàlids');
+  check(Object.keys(rotationRoles).length === activePlayers.size && [...activePlayers].every(id => hasText(rotationRoles[id])) &&
+    [...roster].every(id => members.get(id).conversion.status !== 'IN_REVIEW' || activePlayers.has(id)),
+    teamSeasonId + ' rols de rotació incomplets');
+  check(strategy.length > 0 && strategy.every(section => hasText(section.title) && section.items.length > 0 &&
+    section.items.every(item => item.length === 2 && item.every(hasText))), teamSeasonId + ' sistema tàctic incomplet');
+  check(market.length > 0 && market.every(row => ['in','out'].includes(row.direction) &&
+    [row.name,row.kind,row.impact].every(hasText) && (row.club === null || hasText(row.club)) && sourceRecords.has(row.sourceId) &&
+    (!row.playerId || playerRecords.has(row.playerId))), teamSeasonId + ' mercat invàlid');
+  team.teamProfile = profile;
 }
 
 const requiredProfileText=['family','identity','offense','offBallDefense','possession','fit','limits','physical','assignment','engine'];

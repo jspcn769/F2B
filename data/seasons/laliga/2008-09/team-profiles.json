@@ -1,0 +1,609 @@
+[
+  {
+    "teamSeasonId": "TS-ESP-PRI-2008-09-FCB",
+    "historySourceId": "SRC-FCB-GUARDIOLA-HISTORY",
+    "summary": "Xavi governa el ritme i Messi converteix l’avantatge en punts. Eto’o i Henry donen profunditat. Touré assegura el contacte interior, mentre Iniesta transforma la segona unitat i comparteix la direcció en el tancament.",
+    "lineups": [
+      {
+        "id": "titular",
+        "name": "Quintet titular",
+        "description": "Xavi marca l’ordre de la possessió. Messi rep amb avantatge, Eto’o talla i corre, Henry obre espai des del quatre i Touré sosté el rebot.",
+        "players": [
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-001",
+            "role": "Base director"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+            "role": "Escolta creador"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+            "role": "Aler de ruptura"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+            "role": "Ala pivot obert"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+            "role": "Pivot de contacte"
+          }
+        ]
+      },
+      {
+        "id": "continuacio",
+        "name": "Segona unitat",
+        "description": "Primer relleu amb Iniesta a la direcció, Hleb de connector i Busquets al colze. Keita protegeix el rebot i Messi manté una amenaça de tir i penetració.",
+        "players": [
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-002",
+            "role": "Base de ruptura"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+            "role": "Escolta anotador"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-004",
+            "role": "Aler connector"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+            "role": "Ala pivot de rebot"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-006",
+            "role": "Pivot distribuïdor"
+          }
+        ]
+      },
+      {
+        "id": "doble-base",
+        "name": "Tancament amb dos bases",
+        "description": "Xavi i Iniesta divideixen la creació contra pressió. Messi pot rebre després de la segona passada, amb Henry obert i Touré fent balanç interior.",
+        "players": [
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-001",
+            "role": "Base director"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-002",
+            "role": "Segon base"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+            "role": "Exterior finalitzador"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-011",
+            "role": "Ala pivot obert"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+            "role": "Pivot de contacte"
+          }
+        ]
+      },
+      {
+        "id": "pressio",
+        "name": "Pressió i transició",
+        "description": "Quintet per canviar el ritme quan cal forçar pèrdues. Eto’o pressiona la sortida, Iniesta accelera el primer pas i Keita reforça el rebot amb Touré.",
+        "players": [
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-002",
+            "role": "Base de ruptura"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+            "role": "Escolta creador"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+            "role": "Aler a primera línia"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+            "role": "Ala pivot de cobertura"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-005",
+            "role": "Pivot de contacte"
+          }
+        ]
+      },
+      {
+        "id": "contacte",
+        "name": "Rebot i joc interior",
+        "description": "Per possessions de mitja pista contra una defensa física. Keita protegeix la zona i Guðjohnsen serveix passades des del pal alt. Xavi decideix quan tornar a obrir la pista.",
+        "players": [
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-001",
+            "role": "Base director"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-009",
+            "role": "Escolta creador"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-008",
+            "role": "Aler de ruptura"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-003",
+            "role": "Ala pivot de rebot"
+          },
+          {
+            "membershipId": "PS-ESP-PRI-2008-09-FCB-007",
+            "role": "Pivot associatiu"
+          }
+        ]
+      }
+    ],
+    "stints": [
+      {
+        "start": 0,
+        "end": 6,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 8,
+        "end": 10,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-006",
+          "PS-ESP-PRI-2008-09-FCB-001"
+        ]
+      },
+      {
+        "start": 10,
+        "end": 12,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-004",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-006"
+        ]
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-004",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-006"
+        ]
+      },
+      {
+        "start": 14,
+        "end": 16,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-006",
+          "PS-ESP-PRI-2008-09-FCB-001"
+        ]
+      },
+      {
+        "start": 16,
+        "end": 18,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 18,
+        "end": 20,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-007",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-004",
+          "PS-ESP-PRI-2008-09-FCB-012"
+        ]
+      },
+      {
+        "start": 20,
+        "end": 22,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 24,
+        "end": 28,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 28,
+        "end": 30,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 30,
+        "end": 32,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-007",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001"
+        ]
+      },
+      {
+        "start": 32,
+        "end": 34,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-010",
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 34,
+        "end": 36,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-010",
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-006",
+          "PS-ESP-PRI-2008-09-FCB-001"
+        ]
+      },
+      {
+        "start": 36,
+        "end": 38,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-006",
+          "PS-ESP-PRI-2008-09-FCB-001"
+        ]
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-007",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-009"
+        ]
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-008",
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-003",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-004",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-006",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      },
+      {
+        "start": 44,
+        "end": 48,
+        "memberships": [
+          "PS-ESP-PRI-2008-09-FCB-011",
+          "PS-ESP-PRI-2008-09-FCB-002",
+          "PS-ESP-PRI-2008-09-FCB-009",
+          "PS-ESP-PRI-2008-09-FCB-001",
+          "PS-ESP-PRI-2008-09-FCB-005"
+        ]
+      }
+    ],
+    "rotationRoles": {
+      "PS-ESP-PRI-2008-09-FCB-001": "Direcció del titular i retorn per als tancaments.",
+      "PS-ESP-PRI-2008-09-FCB-002": "Primer relleu i segon director en els últims minuts.",
+      "PS-ESP-PRI-2008-09-FCB-003": "Rebot i cobertura quan Henry descansa o passa a l’ala.",
+      "PS-ESP-PRI-2008-09-FCB-004": "Connector de la segona unitat al costat d’Iniesta.",
+      "PS-ESP-PRI-2008-09-FCB-005": "Cinc titular i referència de rebot als trams decisius.",
+      "PS-ESP-PRI-2008-09-FCB-006": "Cinc de passada i suport a la sortida de pressió.",
+      "PS-ESP-PRI-2008-09-FCB-007": "Relleu de mida i joc associatiu al pal alt.",
+      "PS-ESP-PRI-2008-09-FCB-008": "Pressió, talls i cursa amb el quintet titular.",
+      "PS-ESP-PRI-2008-09-FCB-009": "Creació de volum. Alterna bot i recepció amb els dos bases.",
+      "PS-ESP-PRI-2008-09-FCB-010": "Minuts de desenvolupament amb creadors veterans a pista.",
+      "PS-ESP-PRI-2008-09-FCB-011": "Profunditat i espai al quatre, amb relleus de Keita.",
+      "PS-ESP-PRI-2008-09-FCB-012": "Finestra curta de recepció i pressió amb Iniesta."
+    },
+    "strategy": [
+      {
+        "title": "Atac posicional",
+        "items": [
+          [
+            "Entrada",
+            "Xavi juga el bloqueig de Touré a un costat. Si li neguen el primer passi, Henry canvia el costat amb una recepció alta i Iniesta, quan és a pista, torna a atacar la defensa en moviment."
+          ],
+          [
+            "Avantatge",
+            "Messi rep al segon costat. Si el pivot rival puja, Eto’o talla per darrere. Si la defensa es tanca, Henry obre la cantonada o ataca l’espai entre l’aler i el pivot."
+          ],
+          [
+            "Finalització",
+            "Prioritat a l’anella, el tir exterior de recepció i la suspensió curta de Messi o Iniesta quan el bloqueig deixa espai. Busquets i Guðjohnsen donen sortida al bloqueig curt i a la passada interior."
+          ]
+        ]
+      },
+      {
+        "title": "Transició",
+        "items": [
+          [
+            "Primera passada",
+            "Touré, Busquets o Keita asseguren el rebot. Xavi o Iniesta decideixen si hi ha cursa. Eto’o ocupa el carril central, Henry el lateral i Messi pot demanar la pilota a mitja distància."
+          ],
+          [
+            "Segona onada",
+            "Si l’avantatge desapareix, Henry entra al colze o obre el quatre i el base enllaça un segon bloqueig sense aturar la possessió."
+          ]
+        ]
+      },
+      {
+        "title": "Defensa i balanç",
+        "items": [
+          [
+            "Pressió",
+            "Eto’o o Pedro dificulten la sortida. Messi defensa la passada propera i conserva energia per a l’atac. Xavi orienta el portador cap a l’ajuda, sense haver de perseguir-lo a tota pista."
+          ],
+          [
+            "Bloqueig directe",
+            "Amb Touré, el cinc conté la penetració i protegeix el rebot. Busquets pot mostrar-se a l’altura del bloqueig quan cal tallar el primer pas. Keita cobreix el costat feble."
+          ],
+          [
+            "Balanç",
+            "Un exterior i el base protegeixen el retorn. Keita carrega el rebot ofensiu quan l’altre interior i els exteriors ja han cobert la sortida rival."
+          ]
+        ]
+      },
+      {
+        "title": "Ajustos segons el rival",
+        "items": [
+          [
+            "Contra pressió alta",
+            "Doble base amb Iniesta i Xavi. El segon receptor entra en moviment mentre Messi espera el canvi de costat."
+          ],
+          [
+            "Contra defensa tancada",
+            "Henry obre l’ala pivot, Busquets dona una recepció al colze i Eto’o talla per línia de fons quan la pilota es mou."
+          ],
+          [
+            "Contra superioritat interior",
+            "Keita redueix els minuts d’Henry al quatre i Guðjohnsen entra com a segon interior. Touré conserva la prioritat de rebot quan és a pista."
+          ],
+          [
+            "Final igualat",
+            "Xavi i Iniesta fixen les dues sortides. Messi té la primera lectura de tir o penetració, Henry obre la banda i Touré assegura rebot i balanç."
+          ]
+        ]
+      }
+    ],
+    "market": [
+      {
+        "name": "Seydou Keita",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Sevilla FC",
+        "impact": "Ala pivot de rotació. Rebot ofensiu, tall i cobertura quan Henry juga obert.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809",
+        "playerId": "PLY-FCB-2008-09-003"
+      },
+      {
+        "name": "Aliaksandr Hleb",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Arsenal",
+        "impact": "Connector exterior per a la segona unitat i per sostenir la creació quan seu un dels bases.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809",
+        "playerId": "PLY-FCB-2008-09-004"
+      },
+      {
+        "name": "Sergio Busquets",
+        "direction": "in",
+        "kind": "Promoció",
+        "club": "Barça B",
+        "impact": "Interior distribuïdor que permet alternar un cinc de passada amb el cinc de contacte de Touré.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809",
+        "playerId": "PLY-FCB-2008-09-006"
+      },
+      {
+        "name": "Pedro",
+        "direction": "in",
+        "kind": "Integració del filial",
+        "club": "Barça B",
+        "impact": "Escolta jove amb minuts de desenvolupament. Ja havia debutat el curs anterior i el primer contracte amb la primera plantilla va arribar l’agost de 2009.",
+        "sourceId": "SRC-FCB-PEDRO-0809",
+        "playerId": "PLY-FCB-2008-09-012"
+      },
+      {
+        "name": "Dani Alves",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Sevilla FC",
+        "impact": "Lateral al futbol d’origen, fora de l’elegibilitat F2B.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Gerard Piqué",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Manchester United",
+        "impact": "Central al futbol d’origen, fora de l’elegibilitat F2B.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Martín Cáceres",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Vila-real CF",
+        "impact": "Propietat del Vila-real després d’una cessió al Recreativo. Central al futbol d’origen.",
+        "sourceId": "SRC-FCB-MARKET-TM-0809"
+      },
+      {
+        "name": "Henrique",
+        "direction": "in",
+        "kind": "Traspàs",
+        "club": "Palmeiras",
+        "impact": "Operació d’un central amb cessió immediata al Leverkusen.",
+        "sourceId": "SRC-FCB-HENRIQUE-UEFA-0809"
+      },
+      {
+        "name": "José Manuel Pinto",
+        "direction": "in",
+        "kind": "Incorporació definitiva",
+        "club": "Celta de Vigo",
+        "impact": "Porter que ja havia arribat cedit al gener de 2008. Fora de l’elegibilitat F2B.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Ronaldinho",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "AC Milan",
+        "impact": "Baixa d’un creador exterior. En el Barça F2B del curs, la creació recau en Xavi, Iniesta i Messi.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Deco",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "Chelsea",
+        "impact": "Baixa d’un organitzador. Xavi i Iniesta es reparteixen la direcció al model F2B.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Giovani dos Santos",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "Tottenham Hotspur",
+        "impact": "Sortida d’un exterior jove. Bojan i Pedro ocupen els minuts de desenvolupament del model.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Marc Crosas",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "Celtic",
+        "impact": "Torna de la cessió al Lió i marxa al Celtic a l’estiu.",
+        "sourceId": "SRC-FCB-CROSAS-UEFA-0809"
+      },
+      {
+        "name": "Santiago Ezquerro",
+        "direction": "out",
+        "kind": "Fi de contracte",
+        "club": "Osasuna",
+        "impact": "Baixa exterior del Barça i alta elegible a l’Osasuna 2008/09.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809",
+        "playerId": "PLY-SANTIAGO-EZQUERRO-MARIN"
+      },
+      {
+        "name": "Edmílson",
+        "direction": "out",
+        "kind": "Fi de contracte",
+        "club": "Vila-real CF",
+        "impact": "Perfil mixt central/migcampista. Moviment històric sense alta al Barça F2B del curs.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Gianluca Zambrotta",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "AC Milan",
+        "impact": "Baixa d’un lateral al futbol d’origen.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Oleguer",
+        "direction": "out",
+        "kind": "Traspàs",
+        "club": "Ajax",
+        "impact": "Baixa d’un defensor al futbol d’origen.",
+        "sourceId": "SRC-FCB-HENRIQUE-UEFA-0809"
+      },
+      {
+        "name": "Lilian Thuram",
+        "direction": "out",
+        "kind": "Fi de contracte i retirada",
+        "club": null,
+        "impact": "Baixa d’un central al futbol d’origen.",
+        "sourceId": "SRC-FCB-MARKET-BDF-0809"
+      },
+      {
+        "name": "Henrique",
+        "direction": "out",
+        "kind": "Cessió",
+        "club": "Bayer Leverkusen",
+        "impact": "Sortida immediata després del fitxatge. Sense participació amb el Barça aquella temporada.",
+        "sourceId": "SRC-FCB-HENRIQUE-UEFA-0809"
+      }
+    ]
+  }
+]

@@ -22189,6 +22189,54 @@
       "scope": "Nom i data de naixement. El físic de la conversió correspon a FootballSquads 2008/09.",
       "dataStatus": "REVIEWED",
       "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-MARKET-BDF-0809",
+      "name": "BDFutbol · Altes i baixes del Barcelona 2008/09",
+      "url": "https://www.bdfutbol.com/es/t/t2008-091.html?t=altas",
+      "publisher": "BDFutbol",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-CROSAS-UEFA-0809",
+      "name": "UEFA · Marc Crosas al Celtic",
+      "url": "https://www.uefa.com/uefachampionsleague/news/01d0-0e6f9a009029-67249d6f415c-1000--barca-s-crosas-wends-his-way-to-celtic/",
+      "publisher": "UEFA",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-HENRIQUE-UEFA-0809",
+      "name": "UEFA · Henrique i Oleguer",
+      "url": "https://www.uefa.com/uefachampionsleague/news/01cf-0e6f8013c310-f9cdf50a11b7-1000--henrique-in-and-out-at-barca/",
+      "publisher": "UEFA",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-PEDRO-0809",
+      "name": "FC Barcelona · Debut i integració de Pedro",
+      "url": "https://www.fcbarcelona.com/en/news/1059678/five-years-since-pedros-debut-with-the-first-team/amp",
+      "publisher": "FC Barcelona",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-GUARDIOLA-HISTORY",
+      "name": "FC Barcelona · El Barça de Pep Guardiola",
+      "url": "https://www.fcbarcelona.com/en/guardiolas-barcelona",
+      "publisher": "FC Barcelona",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
+    },
+    {
+      "id": "SRC-FCB-MARKET-TM-0809",
+      "name": "Transfermarkt · Mercat del Barcelona 2008/09",
+      "url": "https://www.transfermarkt.es/fc-barcelona/transfers/verein/131/saison_id/2008",
+      "publisher": "Transfermarkt",
+      "dataStatus": "REVIEWED",
+      "licenseStatus": "REFERENCE_ONLY_REUSE_NOT_ASSESSED"
     }
   ],
   "teams": [
@@ -23429,6 +23477,17 @@
         {
           "name": "Lucas Alcaraz",
           "firstRound": 7,
+          "lastRound": 38
+        }
+      ]
+    },
+    {
+      "teamSeasonId": "TS-ESP-PRI-2008-09-FCB",
+      "sourceId": "SRC-BDFUTBOL-FCB",
+      "stints": [
+        {
+          "name": "Pep Guardiola",
+          "firstRound": 1,
           "lastRound": 38
         }
       ]
