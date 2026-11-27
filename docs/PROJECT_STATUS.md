@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.19
+# F2B · Informe de situació v0.20
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,14 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Betis, Numància i Recreativo de Huelva v0.20
+
+El bloc completa la cobertura de plantilles dels 20 clubs de Primera Divisió 2008/09. Afegeix 60 participacions convertides, repartides entre Betis (21), Numància (21) i Recreativo (18). Ara hi ha 323 identitats i 324 participacions. Els tres equips tenen sistema de joc, quintet i rotació de referència de 240 minuts. Les posicions, valoracions, atributs i rotacions són propostes F2B.
+
+Els entrenadors cobreixen les 38 jornades de cada club. Al Betis, Paco Chaparro dirigeix les jornades 1–29 i José María Nogués les 30–38. Al Numància, Sergije Krešić dirigeix les 1–23 i Pacheta les 24–38. Al Recreativo, Manolo Zambrano dirigeix les 1–6 i Lucas Alcaraz les 7–38.
+
+Damià, Marko Babić i César Arzo queden en revisió d’elegibilitat pel seu perfil mixt de defensa i migcamp. Rafael Sóbis queda documentat al Betis fins al traspàs del 2 de setembre, sense partits de lliga amb el club aquell curs. Álvaro Antón queda al Numància amb la disponibilitat de referència limitada per la lesió de novembre.
 
 ## Osasuna, Valladolid, Sporting i Getafe v0.19
 
@@ -74,7 +82,7 @@ Les fitxes parteixen de `data/catalog/archetype-profiles.json`. BA-01 i ES-01 mo
 | Material | Volum | Detall |
 |---|---:|---|
 | Primera Divisió 2008/09 | 20 clubs, 38 jornades, 380 enfrontaments | Calendari pilot heretat, amb procedència de cada emparellament. |
-| Directori pilot | 263 jugadors i 264 participacions en disset clubs | Incorporats Osasuna, Valladolid, Sporting i Getafe. Betis, Numància i Recreativo tenen el calendari i la fitxa d’equip i encara esperen la conversió de la plantilla. |
+| Directori pilot | 323 jugadors i 324 participacions en 20 clubs | Betis, Numància i Recreativo completen la cobertura de plantilles de la lliga 2008/09. |
 | Barça i Madrid 2008/09 | 28 conversions, 36 atributs cadascuna | Barça 12, Madrid 16. Es van incorporar les 3 correccions de posició i les 13 d’OVR. Els ajustos derivats de POT/arquetip i els atributs estimats conserven estat provisional. |
 | València 2008/09 | 16 conversions | 9 posicions principals acordades; la resta de posicions noves i el calibratge són propostes. |
 | Sevilla, Vila-real i Atlètic | 14, 13 i 12 conversions | Biografia i físic amb fonts. Posicions, arquetips, valoracions i atributs proposats. |
