@@ -2,7 +2,7 @@
 
 F2B és una enciclopèdia d’història alternativa del bàsquet. Conserva els clubs i el marc històric del futbol i hi construeix un joc de cinc contra cinc amb regles, plantilles i estadístiques pròpies.
 
-## Enciclopèdia v0.16
+## Enciclopèdia v0.16.1
 
 Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera autònoma.
 
@@ -32,7 +32,7 @@ Consulta l’[informe de situació](docs/PROJECT_STATUS.md), el [registre de dec
 
 ## Correccions de jugador
 
-A la fitxa d’una participació, obre **Edita la fitxa**. Pots ajustar OVR, POT, posició principal i alternatives, arquetip, atributs F2B LAB i totals manuals de temporada. Escriu el motiu i prem **Desa la correcció**. La fitxa i la plantilla reflecteixen el canvi immediatament. Els totals manuals apareixen a Rendiment al costat de les estadístiques d’acta.
+A la fitxa d’una participació, obre **Edita la fitxa**. Pots ajustar OVR, POT, posició principal i alternatives, arquetip, alçada real, pes real, atributs F2B LAB i totals manuals de temporada. Escriu el motiu i prem **Desa la correcció**. La fitxa i la plantilla reflecteixen el canvi immediatament. L’alçada i el pes F2B es recalculen en desar amb +15 cm i +7 kg. Els totals manuals apareixen a Rendiment al costat de les estadístiques d’acta.
 
 La pestanya d’edició mostra l’historial de la participació. **Cobertura** mostra el registre general amb la data, el motiu i els valors abans i després. Els canvis es desen al navegador. **Exporta correccions** crea un JSON amb els canvis locals. Porta’l a un altre navegador amb **Importa JSON** o comparteix-lo per incorporar-lo al repositori. Si el navegador restringeix l’emmagatzematge de l’HTML local, exporta el JSON abans de tancar la pàgina.
 

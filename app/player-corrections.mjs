@@ -1,10 +1,15 @@
 export function createPlayerCorrections(db) {
   const format = 'F2B-player-corrections';
   const positions = ['BA', 'ES', 'AL', 'AP', 'P'];
+  const measurements = {
+    realHeightCm: {label:'Alçada real (cm)', converted:'f2bHeightCm', adjustment:'heightAdjustmentCm', offset:15},
+    realWeightKg: {label:'Pes real (kg)', converted:'f2bWeightKg', adjustment:'weightAdjustmentKg', offset:7},
+  };
   const fields = {
     primaryPosition: 'Posició principal', secondaryPosition: 'Posició secundària',
     tertiaryPosition: 'Tercera posició', archetypeId: 'Arquetip', ovr: 'OVR', potential: 'POT',
   };
+  for (const [field, measurement] of Object.entries(measurements)) fields[field] = measurement.label;
   const positionFields = ['primaryPosition', 'secondaryPosition', 'tertiaryPosition'];
   const statistics = {
     games: 'Partits', starts: 'Titularitats', minutes: 'Minuts', points: 'Punts',
@@ -25,6 +30,9 @@ export function createPlayerCorrections(db) {
     if (value === null) return true;
     if (positionFields.includes(field)) return positions.includes(value);
     if (field === 'archetypeId') return archetypes.has(value);
+    if (Object.hasOwn(measurements, field)) {
+      return Number.isSafeInteger(value) && value > 0 && Number.isSafeInteger(value + measurements[field].offset);
+    }
     return Number.isSafeInteger(value) && value >= 0 && (field.startsWith('stats.') || value <= 99);
   }
   function validate(member) {
@@ -85,6 +93,11 @@ export function createPlayerCorrections(db) {
           cv.attributes.lab ??= {};
           cv.attributes.lab[field.slice(4)] = after;
           cv.attributeStatus = status;
+        } else if (Object.hasOwn(measurements, field)) {
+          const {converted, adjustment, offset} = measurements[field];
+          cv[field] = after;
+          cv[converted] = after === null ? null : after + (cv[adjustment] ?? offset);
+          cv[field + 'Status'] = after === null ? 'PENDING' : status;
         } else if (field.startsWith('stats.')) {
           member.manualStatistics ??= {};
           member.manualStatistics[field.slice(6)] = after;
@@ -102,5 +115,5 @@ export function createPlayerCorrections(db) {
     return [...members.values()];
   }
   const pack = changes => ({format, schemaVersion:1, changes});
-  return {read, fields, positionFields, positions, ratingFields, attributeFields, statistics, parse, merge, replay, pack};
+  return {read, fields, positionFields, positions, ratingFields, measurements, attributeFields, statistics, parse, merge, replay, pack};
 }

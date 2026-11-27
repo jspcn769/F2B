@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.16</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.16.1</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -157,6 +157,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
 @media(max-width:760px){.banner-left .crest.has-crest{width:48px;height:48px;padding:5px}}
     .roster-section{margin-block:24px}.roster-section h2{margin:0 0 8px}.roster-section h2 small{font-size:.7em;color:var(--muted)}
     .correction-form .edit-label{display:block;margin-bottom:4px}.correction-form .inline-editor{width:100%}
+    .correction-form fieldset{min-width:0;margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:8px}
+    .correction-form legend{font-weight:700}
     .correction-form details{margin:16px 0}.correction-form details summary{cursor:pointer;font-weight:700}
     .correction-form details .edit-grid{margin-top:12px}.correction-form .actions{align-items:center;flex-wrap:wrap}
     .correction-history{padding-left:20px}.correction-history li+li{margin-top:14px}.correction-history ul{padding-left:18px}
@@ -169,10 +171,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
   function createPlayerCorrections(db) {
   const format = 'F2B-player-corrections';
   const positions = ['BA', 'ES', 'AL', 'AP', 'P'];
+  const measurements = {
+    realHeightCm: {label:'Alçada real (cm)', converted:'f2bHeightCm', adjustment:'heightAdjustmentCm', offset:15},
+    realWeightKg: {label:'Pes real (kg)', converted:'f2bWeightKg', adjustment:'weightAdjustmentKg', offset:7},
+  };
   const fields = {
     primaryPosition: 'Posició principal', secondaryPosition: 'Posició secundària',
     tertiaryPosition: 'Tercera posició', archetypeId: 'Arquetip', ovr: 'OVR', potential: 'POT',
   };
+  for (const [field, measurement] of Object.entries(measurements)) fields[field] = measurement.label;
   const positionFields = ['primaryPosition', 'secondaryPosition', 'tertiaryPosition'];
   const statistics = {
     games: 'Partits', starts: 'Titularitats', minutes: 'Minuts', points: 'Punts',
@@ -193,6 +200,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     if (value === null) return true;
     if (positionFields.includes(field)) return positions.includes(value);
     if (field === 'archetypeId') return archetypes.has(value);
+    if (Object.hasOwn(measurements, field)) {
+      return Number.isSafeInteger(value) && value > 0 && Number.isSafeInteger(value + measurements[field].offset);
+    }
     return Number.isSafeInteger(value) && value >= 0 && (field.startsWith('stats.') || value <= 99);
   }
   function validate(member) {
@@ -253,6 +263,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
           cv.attributes.lab ??= {};
           cv.attributes.lab[field.slice(4)] = after;
           cv.attributeStatus = status;
+        } else if (Object.hasOwn(measurements, field)) {
+          const {converted, adjustment, offset} = measurements[field];
+          cv[field] = after;
+          cv[converted] = after === null ? null : after + (cv[adjustment] ?? offset);
+          cv[field + 'Status'] = after === null ? 'PENDING' : status;
         } else if (field.startsWith('stats.')) {
           member.manualStatistics ??= {};
           member.manualStatistics[field.slice(6)] = after;
@@ -270,7 +285,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     return [...members.values()];
   }
   const pack = changes => ({format, schemaVersion:1, changes});
-  return {read, fields, positionFields, positions, ratingFields, attributeFields, statistics, parse, merge, replay, pack};
+  return {read, fields, positionFields, positions, ratingFields, measurements, attributeFields, statistics, parse, merge, replay, pack};
 }
 
   const $ = (s, root=document) => root.querySelector(s);
@@ -862,12 +877,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const read=field=>corrections.read(m,field);
     const input=(field,control)=>`<label class="edit-field"><span class="edit-label">${esc(corrections.fields[field])}</span>${control}</label>`;
     const select=(field,options)=>input(field,`<select class="inline-editor" name="${field}" data-before="${esc(JSON.stringify(read(field)))}">${options}</select>`);
-    const number=field=>input(field,`<input class="inline-editor" type="number" name="${field}" data-before="${esc(JSON.stringify(read(field)))}" min="0" ${field.startsWith('stats.')?'':'max="99"'} step="1" value="${esc(read(field)??'')}">`);
+    const number=field=>{
+      const isMeasurement=Object.hasOwn(corrections.measurements,field);
+      const max=isMeasurement||field.startsWith('stats.')?'':'max="99"';
+      return input(field,`<input class="inline-editor" type="number" name="${field}" data-before="${esc(JSON.stringify(read(field)))}" min="${isMeasurement?1:0}" ${max} step="1" value="${esc(read(field)??'')}">`);
+    };
     const grid=controls=>`<div class="edit-grid">${controls.join('')}</div>`;
     const pos=corrections.positionFields.map(field=>select(field,selectOptions(Object.entries(playerPositions),read(field))));
     const history=[...canonical,...pending].filter(entry=>entry.membershipId===m.id);
     return playerPanel('Edita la fitxa',`<form class="correction-form" data-correction-member="${esc(m.id)}">
       ${grid([...corrections.ratingFields.map(number),...pos,select('archetypeId',archetypeOptions(read('primaryPosition'),read('archetypeId')))])}
+      <fieldset><legend>Mesures físiques</legend><p>L’alçada i el pes F2B es recalculen en desar amb els ajustos del projecte.</p>
+        ${grid(Object.keys(corrections.measurements).map(number))}</fieldset>
       <details><summary>Atributs F2B LAB</summary><p>El potencial de F2B LAB segueix el POT.</p>
         ${grid(corrections.attributeFields.map(([id])=>number('lab.'+id)))}</details>
       <details><summary>Estadístiques manuals de temporada</summary><p>Totals introduïts manualment per a aquesta participació. Es mostren al costat de les estadístiques d’acta.</p>
@@ -932,8 +953,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const bioFacts=[['Data de naixement',hasData(p.dateOfBirth)?displayDate(p.dateOfBirth):null],['Nacionalitat',nationalityLabel],['Lloc de naixement',p.birthplace],['Edat al curs',cv.seasonAge]];
     const metrics=[
       ['OVR',cv.ovr,cv.ovrStatus],['POT',cv.potential,cv.potentialStatus],
-      ['Alçada F2B',hasData(cv.f2bHeightCm)?cv.f2bHeightCm+' cm':null,cv.physicalDataStatus],
-      ['Pes F2B',hasData(cv.f2bWeightKg)?cv.f2bWeightKg+' kg':null,cv.physicalDataStatus],
+      ['Alçada F2B',hasData(cv.f2bHeightCm)?cv.f2bHeightCm+' cm':null,cv.realHeightCmStatus??cv.physicalDataStatus],
+      ['Pes F2B',hasData(cv.f2bWeightKg)?cv.f2bWeightKg+' kg':null,cv.realWeightKgStatus??cv.physicalDataStatus],
     ];
     const sameName=shortName===p.fullName;
     const statusLabel=playerStatus[cv.status]??playerStatus.PENDING;
@@ -970,8 +991,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const sources=()=>{
       const ids=[...new Set([m.sourceId,...(Array.isArray(p.identitySourceIds)?p.identitySourceIds:[])].filter(Boolean))];
       const resolved=DB.sources.filter(src=>ids.includes(src.id));
-      const measurementLinks=[...new Set([cv.realHeightSource,cv.realWeightSource].filter(Boolean))];
-      const links=[...resolved.map(src=>[src.name,src.url]),...measurementLinks.map(url=>['Font de les mesures',url])];
+      const measurementSources=[
+        [cv.realHeightCmStatus?'Referència anterior de l’alçada':'Font de l’alçada',cv.realHeightSource],
+        [cv.realWeightKgStatus?'Referència anterior del pes':'Font del pes',cv.realWeightSource],
+      ].filter(([,url])=>url);
+      const links=[...resolved.map(src=>[src.name,src.url]),...measurementSources];
       const linkList=links.length?`<ul class="profile-source-list">${links.map(([label,url])=>`<li>${/^https?:\/\//i.test(url??'')?`<a class="archive-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`:`${esc(label)} · ${esc(url??'')}`}</li>`).join('')}</ul>`:playerNote('Encara no hi ha fonts associades.');
       const original=[['Rol de futbol',p.detailedFootballRole],['Cama dominant',p.dominantFoot],['Alçada real',hasData(cv.realHeightCm)?cv.realHeightCm+' cm':null],['Pes real',hasData(cv.realWeightKg)?cv.realWeightKg+' kg':null]].filter(([,v])=>hasData(v));
       const notes=[p.notes,m.eligibilityNotes,m.scopeEvidence,m.verificationNotes].filter(hasData);
