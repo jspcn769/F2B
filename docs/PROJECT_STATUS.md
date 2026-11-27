@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.14
+# F2B · Informe de situació v0.15
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,14 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Conversió de quatre plantilles v0.15
+
+Les **55 conversions noves** corresponen al València (16), Sevilla (14), Atlètic de Madrid (12) i Vila-real (13). Porten el pilot a **83 conversions**. Cada fitxa inclou la biografia documentada, el físic convertit, les posicions, l’arquetip, OVR/POT, els 36 atributs i el paper tàctic. Es preserven les nou posicions principals acordades del València. Els 55 OVR/POT i atributs són propostes; mantenen l’estat editorial d’esborrany. Forlán queda a 89 i Agüero a 87, d’acord amb les referències de calibratge del projecte.
+
+Els atributs nous parteixen de bandes per posició i del rol de l’arquetip, amb ajustos físics i trets individuals. L’edat de referència es calcula a 30 d’agost de 2008. El cas de Guillermo Franco a pivot, amb 197 cm convertits, queda documentat com a excepció de rotació. Les fonts de les mesures i de les baixes es registren amb la participació. Žigić i Altidore es mantenen al directori dels clubs d’origen fins a les seves cessions.
+
+Les quatre fitxes d’equip incorporen la identitat tàctica, atac, defensa, quintet, tancament i una rotació de **240 minuts**. Els llocs del quintet descriuen el rol a pista. Les rotacions i valoracions queden disponibles per a calibratge de partits.
 
 ## Navegació i integritat v0.14
 
@@ -44,11 +52,11 @@ Les fitxes parteixen de `data/catalog/archetype-profiles.json`. BA-01 i ES-01 mo
 | Primera Divisió 2008/09 | 20 clubs, 38 jornades, 380 enfrontaments | Calendari pilot heretat, amb procedència de cada emparellament. |
 | Directori pilot | 83 fitxes, sis clubs | Barça, Madrid, València, Sevilla, Vila-real i Atlètic de Madrid. Es conserven els seus IDs. |
 | Barça i Madrid 2008/09 | 28 conversions, 36 atributs cadascuna | Barça 12, Madrid 16. Es van incorporar les 3 correccions de posició i les 13 d’OVR. Els ajustos derivats de POT/arquetip i els atributs estimats conserven estat provisional. |
-| València 2008/09 | 16 fitxes, 9 posicions acordades | Les altres set posicions i les valoracions continuen pendents a la versió integrada. |
-| Sevilla, Vila-real i Atlètic | 14, 13 i 12 fitxes | Inventari del pilot. Les conversions completes requereixen una font recuperable o una nova validació. |
+| València 2008/09 | 16 conversions | 9 posicions principals acordades; la resta de posicions noves i el calibratge són propostes. |
+| Sevilla, Vila-real i Atlètic | 14, 13 i 12 conversions | Biografia i físic amb fonts. Posicions, arquetips, valoracions i atributs proposats. |
 | Inter 2009/10 | 17 fitxes | Dades conservades al repositori amb etapa, arquetip, físic, OVR/POT i funció. Eto’o i Sneijder reutilitzen la identitat del pilot espanyol. Es mantenen les valoracions aprovades Sneijder 89, Milito 88 i Cambiasso 86. L’Inter queda fora del visor fins que s’incorpori a una edició de la seva competició. |
 | Catàleg | 75 arquetips, 15 per posició | Codis i noms aprovats. La matriu comparativa té cinc dimensions. Hi ha dues files originals recuperades de la comparativa i dues de l’encaix; la resta continuen pendents de recuperació. |
-| Laboratori F2B | 36 camps d’atributs | Codis i noms registrats. Els valors individuals de Barça i Madrid són una proposta de calibratge. L’Inter conserva les dades disponibles al seu Excel. |
+| Laboratori F2B | 36 camps d’atributs | Codis i noms registrats. Els atributs individuals de les sis plantilles són una proposta de calibratge. L’Inter conserva les dades disponibles al seu Excel. |
 
 ## Decisions incorporades
 
@@ -89,4 +97,4 @@ El primer bloc adient és un **motor de partit reproduïble de 48 minuts** per a
 
 ## Verificació d’aquesta entrega
 
-La compilació comprova les relacions i els recomptes de calendari i plantilles, els codis d’arquetip, els 36 atributs, la coherència OVR/POT i les conversions físiques. El redisseny s’ha comprovat amb un DOM de prova i amb la regeneració de l’HTML.
+La compilació comprova les relacions i els recomptes de calendari i plantilles, els codis d’arquetip, els 36 atributs, la coherència OVR/POT i les conversions físiques. La v0.15 també valida les posicions acordades, els enllaços de quintet i rotació i els 240 minuts de cadascun dels quatre equips.

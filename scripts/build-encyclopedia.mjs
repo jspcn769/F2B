@@ -35,8 +35,10 @@ check(attributeCodes.size === 36 && dictionary.length === 36, 'Calen 36 atributs
 check(rules.periods * rules.minutesPerPeriod === 48 && rules.regulationMinutes === 48 && rules.playersOnCourtPerTeam * rules.regulationMinutes === 240 && rules.teamPlayerMinutes === 240, 'Reglament invàlid');
 check(db.clubs.length === 20 && db.rounds.length === 38 && db.fixtures.length === 380, 'Calendari incomplet');
 check(db.players.length === 83 && unique(db.players,'id') && unique(db.playerSeasons,'id'), 'Identitats pilot invàlides');
-check(conversion.profiles.length === 28 && unique(conversion.profiles,'membershipId') && conversion.partialPositions.length === 9 && unique(conversion.partialPositions,'membershipId'), 'Conversions pilot incompletes');
+check(conversion.profiles.length === db.playerSeasons.length && unique(conversion.profiles,'membershipId') && conversion.partialPositions.length === 9 && unique(conversion.partialPositions,'membershipId'), 'Conversions pilot incompletes');
 check(inter.players.length === 17 && unique(inter.players,'playerId'), 'Plantilla Inter incompleta');
+db.sources.push(...conversion.sources);
+const conversionSources = new Map(conversion.sources.map(source => [source.id, source]));
 const members = new Map(db.playerSeasons.map(row => [row.id,row]));
 const players = new Map(db.players.map(row => [row.id,row]));
 const teams = new Map(db.participants.map(row => [row.id,row]));
@@ -53,9 +55,29 @@ for (const profile of conversion.profiles) {
   const m = members.get(profile.membershipId);
   check(m?.playerId === profile.playerId && m.clubId === 'CLU-' + profile.team, profile.name + ' pertinença');
   check(Object.keys(profile.attributes).length === 36 && Object.entries(profile.attributes).every(([id,value])=>attributeCodes.has(id)&&Number.isInteger(value)&&value>=0&&value<=99) && profile.attributes.M2 === profile.pot, profile.name + ' atributs');
-  const physicalSource = profile.team === 'FCB'
-    ? 'https://www.footballsquads.co.uk/spain/2008-2009/laliga/barce.htm'
-    : 'https://footballsquads.co.uk/spain/2008-2009/laliga/rmadrid.htm';
+  const physicalSource = profile.physicalSourceId
+    ? conversionSources.get(profile.physicalSourceId)?.url
+    : ({
+      FCB:'https://www.footballsquads.co.uk/spain/2008-2009/laliga/barce.htm',
+      RMA:'https://footballsquads.co.uk/spain/2008-2009/laliga/rmadrid.htm'
+    })[profile.team];
+  check(physicalSource, profile.name + ' sense font física');
+  if (profile.bioSourceId) {
+    const identity = players.get(profile.playerId);
+    check(conversionSources.has(profile.bioSourceId) && /^\d{4}-\d{2}-\d{2}$/.test(profile.dateOfBirth) && /^[A-Z]{3}$/.test(profile.country), profile.name + ' amb biografia invàlida');
+    Object.assign(identity, {
+      dateOfBirth:profile.dateOfBirth, nationality:profile.country, identityStatus:'REVIEWED',
+      identitySourceIds:[...new Set([...identity.identitySourceIds, profile.bioSourceId])]
+    });
+  }
+  if (profile.departure) {
+    const {date, destination, sourceId} = profile.departure;
+    check(conversionSources.has(sourceId) && /^\d{4}-\d{2}-\d{2}$/.test(date) && destination, profile.name + ' amb baixa invàlida');
+    Object.assign(m, {
+      membershipType:'MID_SEASON_DEPARTURE', membershipEnd:date, membershipStatus:'REVIEWED',
+      scopeEvidence:'Cessió al ' + destination + ' durant el curs.', sourceId
+    });
+  }
   const status = value => value ? 'APPROVED' : 'DRAFT';
   const [primary, secondary, tertiary] = profile.positions;
   Object.assign(m.conversion,{
@@ -63,12 +85,13 @@ for (const profile of conversion.profiles) {
     realHeightSource:physicalSource,realWeightSource:physicalSource,physicalDataStatus:'REVIEWED',
     f2bHeightCm:profile.heightF2bCm,f2bWeightKg:profile.weightF2bKg,
     primaryPosition:primary,secondaryPosition:secondary??null,tertiaryPosition:tertiary??null,
-    primaryPositionStatus:status(profile.confirmed.position),secondaryPositionStatus:secondary?status(profile.confirmed.position):'PENDING',
+    primaryPositionStatus:status(profile.confirmed.position),secondaryPositionStatus:secondary?status(!profile.bioSourceId && profile.confirmed.position):'PENDING',
     archetypeId:profile.archetypeId,archetype:profile.archetypeId+' · '+entries.get(profile.archetypeId).name,
     archetypeStatus:'DRAFT',ovr:profile.ovr,ovrStatus:status(profile.confirmed.ovr),potential:profile.pot,potentialStatus:status(profile.confirmed.pot),
     attributes:{lab:profile.attributes},attributeStatus:'DRAFT',
     attributeNotes:'Valors estimats per al pilot. M2 reflecteix el POT.',
-    conversionNotes:profile.role+' Disponibilitat: '+profile.availability+'.'
+    conversionNotes:profile.role+' Disponibilitat: '+profile.availability+'.',
+    positionNotes:profile.positionNotes??m.conversion.positionNotes
   });
   if(profile.name === 'Julien Faubert'){
     m.eligibilityStatus='REVIEW';
@@ -79,8 +102,33 @@ for (const profile of conversion.profiles) {
 for(const row of conversion.partialPositions){
   const m=members.get(row.membershipId);
   check(m?.playerId===row.playerId && m.clubId==='CLU-VAL' && positions.includes(row.position), 'Posició parcial invàlida');
-  Object.assign(m.conversion,{status:'IN_REVIEW',primaryPosition:row.position,primaryPositionStatus:row.status});
+  check(m.conversion.primaryPosition === row.position && m.conversion.primaryPositionStatus === row.status, 'La conversió ha de conservar la posició acordada: ' + m.id);
 }
+check(unique(conversion.teams, 'teamSeasonId'), 'Fitxes tàctiques duplicades');
+for (const profile of conversion.teams) {
+  const team = teams.get(profile.teamSeasonId);
+  check(team && profile.starters.length === rules.playersOnCourtPerTeam && new Set(profile.starters).size === profile.starters.length, 'Quintet invàlid');
+  check(unique(profile.rotation, 'membershipId') && profile.rotation.every(({membershipId, minutes}) =>
+    members.get(membershipId)?.teamSeasonId === team.id &&
+    members.get(membershipId).conversion.status === 'IN_REVIEW' &&
+    Number.isInteger(minutes) && minutes > 0 && minutes <= rules.regulationMinutes), team.id + ' amb rotació invàlida');
+  const rotationIds = new Set(profile.rotation.map(row => row.membershipId));
+  check(profile.starters.every(id => rotationIds.has(id)), team.id + ' amb un titular fora de la rotació');
+  check(profile.rotation.reduce((sum, row) => sum + row.minutes, 0) === rules.teamPlayerMinutes, team.id + ' ha de sumar 240 minuts');
+  check(['identity','offense','defense','closing','availability'].every(key => typeof profile[key] === 'string' && profile[key].trim()), team.id + ' amb plantejament incomplet');
+  team.tacticalProfile = profile;
+}
+for (const team of db.participants) {
+  const roster = db.playerSeasons.filter(row => row.teamSeasonId === team.id);
+  if (roster.length && roster.every(row => row.conversion.status === 'IN_REVIEW')) {
+    team.f2bTeamStatus = 'ROSTER_CONVERSION_IN_REVIEW';
+    team.rosterNote = roster.length + ' fitxes de jugador amb conversió F2B. Consulta les aprovacions a cada fitxa.';
+  }
+}
+db.season.coverage.conversion = '83_PROFILES_IN_REVIEW';
+db.season.dataPolicy.loaded.push('f2b_player_positions','f2b_archetypes','f2b_ovr','f2b_potential','f2b_player_attributes');
+db.season.dataPolicy.notLoaded = db.season.dataPolicy.notLoaded.filter(field => !db.season.dataPolicy.loaded.includes(field) && field !== 'f2b_player_positions_except_preserved_pilot_decisions');
+db.season.dataPolicy.note = 'El pilot conté 83 conversions F2B de sis clubs. L’estat editorial de les posicions, valoracions i atributs es registra per jugador.';
 for(const profile of inter.players) normalizeConversion(profile);
 const {groups, competitions}=competitionCatalog;
 check(unique(groups,'id') && unique(competitions,'id'), 'IDs de competició o grup duplicats');

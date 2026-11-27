@@ -48,6 +48,7 @@ Proceed in small reviewable batches. Do not mark a phase complete merely because
 - [x] Register the 75 archetype identifiers and names, the 36 attributes, the available matrix rows and the 48-minute ruleset.
 - [x] Register and display Barcelona, Madrid and Inter conversions and nine Valencia position decisions.
 - [ ] Recover the remaining archetype fit and comparison cells from their original sources.
-- [ ] Convert the other pilot squads, resolving eligibility and availability case by case.
+- [x] Convert the four remaining pilot squads (València, Sevilla, Atlético and Villarreal), preserving approved positions and documenting draft ratings and availability.
+- [ ] Review the new draft ratings, field sources and tactical rotations across several matchups.
 - [ ] Implement a reproducible 48-minute match engine with possession timing and calibrate scoring across several matchups.
 - [ ] Build standings and season progression from reproducible match results.

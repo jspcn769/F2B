@@ -58,7 +58,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.14</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.15</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -167,7 +167,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
   const compId = 'CMP-ESP-PRIMERA';
   let DB = null;
   let indexes = {};
-  const LOCAL_KEY = 'F2B_LOCAL_PLAYER_DATA_V06';
+  const LOCAL_KEY = 'F2B_LOCAL_PLAYER_DATA_V015';
   let editMode = false;
   let saveAvailable = true;
 
@@ -549,7 +549,24 @@ function groupBy(rows, key){
     return `<div class="stats-grid">${stat(fs.length,'Enfrontaments')}${stat(homeFixtures(t.id).length,'Com a local')}${stat(awayFixtures(t.id).length,'Com a visitant')}${stat(roster.length,'Fitxes de jugador')}</div>
       <div class="actions">${routeLink(clubPath(c.id),'Fitxa de club','btn')}${routeLink(editionPath(e),'Fitxa de l’edició','btn')}${routeLink(competitionPath(e.competitionId),'Fitxa de competició','btn')}</div>
       ${sameYear.length?`<section class="archive-section"><h2>Altres competicions del curs</h2><div class="actions">${sameYear.map(other=>routeLink(teamPath(other),esc(editionTitle(edition(other.seasonId))),'btn')).join('')}</div></section>`:''}
+      ${t.tacticalProfile?renderTeamTactics(t.tacticalProfile):''}
       ${fs.length?`<section class="archive-section"><h2>Primer enfrontament</h2>${fixtureRow(fs[0])}</section>`:''}`;
+  }
+  function renderTeamTactics(tactics){
+    const labels=['BA','ES','AL','AP','P'];
+    const playerLinkFor=id=>{
+      const membership=indexes.playerSeasons.get(id);
+      const identity=player(membership.playerId);
+      return routeLink(playerTabPath(identity.id,'resum',membership.id),esc(identity.displayName||identity.fullName));
+    };
+    const starters=tactics.starters.map((id,index)=>`<div class="kv"><span>${labels[index]}</span><b>${playerLinkFor(id)}</b></div>`).join('');
+    const rows=tactics.rotation.map(({membershipId,minutes})=>`<tr><td>${playerLinkFor(membershipId)}</td><td>${minutes}</td></tr>`).join('');
+    return `<section class="archive-section"><h2>Sistema de joc F2B</h2><p>${esc(tactics.identity)}</p>
+      <div class="two-col">${playerPanel('Atac',playerNote(tactics.offense))}${playerPanel('Defensa',playerNote(tactics.defense))}</div>
+      <div class="two-col">${playerPanel('Quintet base · rols a pista',starters)}
+        ${playerPanel('Rotació de referència · '+DB.rules.teamPlayerMinutes+' min',`<div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">Jugador</th><th scope="col">Minuts</th></tr></thead><tbody>${rows}</tbody></table></div>`)}</div>
+      ${playerPanel('Tancament de partit',playerNote(tactics.closing))}
+      <div class="note"><strong>Proposta tàctica.</strong> ${esc(tactics.availability)}</div></section>`;
   }
   function renderTeamCalendar(t){
     const fs=teamFixtures(t.id);
@@ -660,7 +677,7 @@ function groupBy(rows, key){
     ['S','Tir'],['F','Finalització'],['C','Creació i maneig'],['D','Defensa'],
     ['R','Rebot'],['A','Físic i atletisme'],['M','Intangibles i potencial']
   ];
-  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos'};
+  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos',BRA:'Brasil',POR:'Portugal',ITA:'Itàlia',URU:'Uruguai',SRB:'Sèrbia',BEL:'Bèlgica',CHI:'Xile',MEX:'Mèxic',TUR:'Turquia',USA:'Estats Units'};
   const playerTabPath=(id,tab,membershipId)=>playerPath(id)+'/'+tab+(membershipId?'/'+membershipId:'');
   const displayDate=value=>{
     if(!value)return '—';
@@ -831,9 +848,9 @@ function groupBy(rows, key){
       <div class="two-col"><section class="panel"><div class="panel-head"><div><h3>Dades incorporades</h3><p>Identitat i estructura per a la simulació.</p></div><span class="tag green">CARREGADES</span></div><div class="panel-body"><div class="kv"><span>Competició i temporada</span><b>${new Set(DB.seasons.map(s=>s.competitionId)).size} / ${DB.seasons.length}</b></div><div class="kv"><span>Identitats de club</span><b>${DB.clubs.length}</b></div><div class="kv"><span>Participacions d'equip</span><b>${DB.participants.length}</b></div><div class="kv"><span>Jornades</span><b>${byRound}</b></div><div class="kv"><span>Enfrontaments</span><b>${fixtures}</b></div><div class="kv"><span>Fitxes de jugador</span><b>${DB.players.length}</b></div><div class="kv"><span>Participacions de jugador</span><b>${DB.playerSeasons.length}</b></div><div class="kv"><span>Clubs amb plantilla carregada</span><b>${coveredClubs}</b></div><div class="kv"><span>Elegibilitat sense incidències</span><b>${eligibleCount}</b></div><div class="kv"><span>Casos pendents de revisar</span><b>${eligibilityReview}</b></div></div></section>
       <section class="panel"><div class="panel-head"><div><h3>Dades que no s'han replicat</h3><p>Història original del futbol consultable en fonts externes.</p></div><span class="tag grey">EXCLOSES</span></div><div class="panel-body"><div class="kv"><span>Resultats del futbol</span><b>No</b></div><div class="kv"><span>Classificacions del futbol</span><b>No</b></div><div class="kv"><span>Estadístiques del futbol</span><b>No</b></div><div class="kv"><span>Dates, estadis i àrbitres</span><b>No</b></div></div></section></div>
       <div class="section-head"><div><h3>Estat de conversió F2B</h3><p>Consulta l’estat de cada conversió, des de la posició inicial fins als atributs F2B LAB.</p></div></div>
-      <div class="grid cards-3"><div class="card"><h3>Mesures i perfil físic</h3><p>El Barça i el Madrid tenen el físic convertit amb font a la fitxa.</p></div><div class="card"><h3>Posicions i arquetips</h3><p>75 arquetips al catàleg i posicions revisades al Barça, Madrid i València.</p></div><div class="card"><h3>OVR, potencial i atributs</h3><p>28 conversions amb els 36 atributs F2B LAB. </p></div></div>
+      <div class="grid cards-3"><div class="card"><h3>Mesures i perfil físic</h3><p>Les fitxes convertides inclouen la font de les mesures de referència.</p></div><div class="card"><h3>Posicions i arquetips</h3><p>75 arquetips al catàleg. Consulta les posicions i validacions de cada jugador.</p></div><div class="card"><h3>OVR, potencial i atributs</h3><p>${DB.playerSeasons.filter(m=>m.conversion.attributes?.lab).length} conversions amb atributs F2B LAB.</p></div></div>
       <div class="section-head"><div><h3>Desament i còpies de seguretat</h3><p>Els canvis s'emmagatzemen al navegador actual.</p></div></div>
-      <div class="note"><strong>Persistència local:</strong> l'edició directa desa automàticament les modificacions a l'emmagatzematge local del navegador. El botó JSON exporta una còpia que pots conservar o importar en un altre navegador. Els canvis no s'envien automàticament al repositori GitHub.</div>
+      <div class="note"><strong>Persistència local:</strong> l'edició directa desa automàticament les modificacions a l'emmagatzematge local del navegador. El botó JSON exporta una còpia que pots conservar o importar en un altre navegador. Els canvis no s'envien automàticament al repositori GitHub. Els esborranys anteriors a v0.15 es conserven a la versió amb què es van editar.</div>
       <div class="section-head"><div><h3>Fonts de plantilles</h3><p>Fonts de referència registrades per als sis clubs incorporats.</p></div></div>
       <div class="grid cards-3">${DB.sources.filter(x=>x.id.startsWith('SRC-BDFUTBOL-')&&x.id!=='SRC-BDFUTBOL-LALIGA-0809').map(x=>`<a class="card" href="${esc(x.url)}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.scope||x.use||'Referència de plantilla')}</p><div class="meta">Obrir font ↗</div></a>`).join('')}</div>`;
   }
