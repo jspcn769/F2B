@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.17
+# F2B · Informe de situació v0.18
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,12 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Espanyol, Almeria, Racing i Athletic v0.18
+
+La incorporació amplia el pilot a tretze clubs, 198 identitats i 199 participacions convertides. El bloc aporta 68 fitxes de plantilla, repartides entre Espanyol (17), Almeria (14), Racing (20) i Athletic (17). Žigić té una sola identitat i les participacions del València i el Racing. Valera queda en revisió d’elegibilitat pel seu perfil mixt de lateral i migcampista de banda. Les posicions, valoracions i rotacions són propostes F2B.
+
+El resum d’equip mostra les set etapes de banqueta documentades de Primera Divisió. L’Espanyol passa per Márquez, Mané i Pochettino. L’Almeria passa d’Arconada a Hugo Sánchez. Al Racing i a l’Athletic, Muñiz i Caparrós cobreixen les 38 jornades respectives.
 
 ## Deportivo, Málaga i Mallorca v0.17
 
@@ -62,7 +68,7 @@ Les fitxes parteixen de `data/catalog/archetype-profiles.json`. BA-01 i ES-01 mo
 | Material | Volum | Detall |
 |---|---:|---|
 | Primera Divisió 2008/09 | 20 clubs, 38 jornades, 380 enfrontaments | Calendari pilot heretat, amb procedència de cada emparellament. |
-| Directori pilot | 131 fitxes, nou clubs | Barça, Madrid, València, Sevilla, Vila-real, Atlètic de Madrid, Deportivo, Málaga i Mallorca. |
+| Directori pilot | 198 jugadors i 199 participacions en tretze clubs | Barça, Madrid, València, Sevilla, Vila-real, Atlètic de Madrid, Deportivo, Málaga, Mallorca, Espanyol, Almeria, Racing i Athletic. |
 | Barça i Madrid 2008/09 | 28 conversions, 36 atributs cadascuna | Barça 12, Madrid 16. Es van incorporar les 3 correccions de posició i les 13 d’OVR. Els ajustos derivats de POT/arquetip i els atributs estimats conserven estat provisional. |
 | València 2008/09 | 16 conversions | 9 posicions principals acordades; la resta de posicions noves i el calibratge són propostes. |
 | Sevilla, Vila-real i Atlètic | 14, 13 i 12 conversions | Biografia i físic amb fonts. Posicions, arquetips, valoracions i atributs proposats. |

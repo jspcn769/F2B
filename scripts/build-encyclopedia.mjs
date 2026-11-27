@@ -122,6 +122,20 @@ for (const profile of conversion.teams) {
   check(['identity','offense','defense','closing','availability'].every(key => typeof profile[key] === 'string' && profile[key].trim()), team.id + ' amb plantejament incomplet');
   team.tacticalProfile = profile;
 }
+const coachingSources = new Set(db.sources.map(source => source.id));
+check(unique(conversion.coaching, 'teamSeasonId'), 'Registres de banqueta duplicats');
+for (const {teamSeasonId, sourceId, stints} of conversion.coaching) {
+  const team = teams.get(teamSeasonId);
+  check(team?.seasonId === db.season.id && coachingSources.has(sourceId), teamSeasonId + ' amb banqueta sense equip o font vàlids');
+  let nextRound = 1;
+  for (const {name, firstRound, lastRound} of stints) {
+    check(typeof name === 'string' && name.trim() && firstRound === nextRound &&
+      Number.isInteger(lastRound) && lastRound >= firstRound, teamSeasonId + ' amb etapes de banqueta discontínues');
+    nextRound = lastRound + 1;
+  }
+  check(nextRound === db.rounds.length + 1, teamSeasonId + ' amb cobertura de banqueta incompleta');
+  team.coachingStaff = {sourceId, stints};
+}
 for (const team of db.participants) {
   const roster = db.playerSeasons.filter(row => row.teamSeasonId === team.id);
   if (roster.length && roster.every(row => row.conversion.status === 'IN_REVIEW')) {

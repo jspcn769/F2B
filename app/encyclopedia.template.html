@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.17.1</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.18</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -566,8 +566,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     return `<div class="stats-grid">${stat(fs.length,'Enfrontaments')}${stat(homeFixtures(t.id).length,'Com a local')}${stat(awayFixtures(t.id).length,'Com a visitant')}${stat(roster.length,'Fitxes de jugador')}</div>
       <div class="actions">${routeLink(clubPath(c.id),'Fitxa de club','btn')}${routeLink(editionPath(e),'Fitxa de l’edició','btn')}${routeLink(competitionPath(e.competitionId),'Fitxa de competició','btn')}</div>
       ${sameYear.length?`<section class="archive-section"><h2>Altres competicions del curs</h2><div class="actions">${sameYear.map(other=>routeLink(teamPath(other),esc(editionTitle(edition(other.seasonId))),'btn')).join('')}</div></section>`:''}
+      ${t.coachingStaff?renderTeamCoaches(t.coachingStaff):''}
       ${t.tacticalProfile?renderTeamTactics(t.tacticalProfile):''}
       ${fs.length?`<section class="archive-section"><h2>Primer enfrontament</h2>${fixtureRow(fs[0])}</section>`:''}`;
+  }
+  function renderTeamCoaches({sourceId,stints}){
+    const rows=stints.map(({name,firstRound,lastRound})=>
+      `<div class="kv"><span>${esc(name)}</span><b>Jornades ${firstRound}–${lastRound}</b></div>`).join('');
+    return `<section class="archive-section"><h2>Entrenadors</h2><div class="panel"><div class="panel-body">${rows}
+      <div class="meta">${sourceLinks([sourceId])}</div></div></div></section>`;
   }
   function renderTeamTactics(tactics){
     const labels=['BA','ES','AL','AP','P'];
@@ -708,7 +715,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     ['S','Tir'],['F','Finalització'],['C','Creació i maneig'],['D','Defensa'],
     ['R','Rebot'],['A','Físic i atletisme'],['M','Intangibles i potencial']
   ];
-  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos',BRA:'Brasil',POR:'Portugal',ITA:'Itàlia',URU:'Uruguai',SRB:'Sèrbia',BEL:'Bèlgica',CHI:'Xile',MEX:'Mèxic',TUR:'Turquia',USA:'Estats Units',CAN:'Canadà',EQG:'Guinea Equatorial',TUN:'Tunísia',MAR:'Marroc',GUI:'Guinea',VEN:'Veneçuela'};
+  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos',BRA:'Brasil',POR:'Portugal',ITA:'Itàlia',URU:'Uruguai',SRB:'Sèrbia',BEL:'Bèlgica',CHI:'Xile',MEX:'Mèxic',TUR:'Turquia',USA:'Estats Units',CAN:'Canadà',EQG:'Guinea Equatorial',TUN:'Tunísia',MAR:'Marroc',GUI:'Guinea',VEN:'Veneçuela',ALG:'Algèria',NGA:'Nigèria',PER:'Perú'};
   const playerTabPath=(id,tab,membershipId)=>playerPath(id)+'/'+tab+(membershipId?'/'+membershipId:'');
   const displayDate=value=>{
     if(!value)return '—';
