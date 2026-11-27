@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -13,6 +13,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   json('data/catalog/competitions.json'),
   json('data/catalog/archetype-profiles.json'),
   json('data/catalog/player-history.json'),
+  json('data/catalog/club-crests.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -129,7 +130,23 @@ for(const [id,record] of Object.entries(playerHistory)){
     check(archiveSections.includes(key) && Array.isArray(rows) && rows.every(row=>row && typeof row==='object' && !Array.isArray(row)), id+' apartat històric invàlid');
   }
 }
-Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,playerHistory,rules});
+const pilotCrests = crestCatalog.bySeason[db.season.id];
+const clubIds = new Set(db.participants.map(row => row.clubId));
+check(pilotCrests && Object.keys(pilotCrests).length === clubIds.size && [...clubIds].every(id => pilotCrests[id]), 'Escuts pilot incomplets');
+const crestImages = await Promise.all(Object.entries(crestCatalog.assets).map(async ([id, asset]) => {
+  const source = crestCatalog.sources[asset.sourceId];
+  check(/^assets\/crests\/[a-z0-9-]+\.webp$/.test(asset.file), id + ' ruta de l’escut invàlida');
+  check(source?.title && source.rights && /^https:\/\//.test(source.url) && Number.isInteger(asset.sourcePage) && asset.sourcePage > 0, id + ' font de l’escut invàlida');
+  const image = await fs.readFile(new URL(asset.file, root));
+  check(image.toString('ascii', 0, 4) === 'RIFF' && image.toString('ascii', 8, 12) === 'WEBP', id + ' imatge WebP invàlida');
+  return [id, {clubId:asset.clubId, src:'data:image/webp;base64,' + image.toString('base64'), sourceTitle:source.title, sourceUrl:source.url + '#page=' + asset.sourcePage}];
+}));
+const crestAssets = Object.fromEntries(crestImages);
+for (const assignments of Object.values(crestCatalog.bySeason)) {
+  for (const [clubId, id] of Object.entries(assignments)) check(crestAssets[id]?.clubId === clubId, clubId + ' escut assignat a un altre club');
+}
+const clubCrests = {assets:crestAssets, bySeason:crestCatalog.bySeason};
+Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,playerHistory,clubCrests,rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');
 const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));

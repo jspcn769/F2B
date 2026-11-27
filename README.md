@@ -2,11 +2,12 @@
 
 F2B és una enciclopèdia d’història alternativa del bàsquet. Conserva els clubs i el marc històric del futbol i hi construeix un joc de cinc contra cinc amb regles, plantilles i estadístiques pròpies.
 
-## Enciclopèdia v0.12
+## Enciclopèdia v0.13
 
 Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera autònoma.
 
 - **29 competicions catalogades** en set països i dos àmbits internacionals. Catàleg, filtres, cerca i fitxa per competició.
+- **20 escuts històrics** de la Primera Divisió 2008/09, extrets de la memòria oficial LFP i incorporats a l’HTML.
 - **Una edició amb dades**, la Primera Divisió 2008/09, amb 20 clubs, 38 jornades i 380 enfrontaments.
 - 83 fitxes de sis clubs del pilot, amb 28 conversions del Barça i Madrid i 9 assignacions posicionals del València.
 - Fitxes de jugador amb resum F2B, atributs, trajectòria, rendiment, contractes i fonts.

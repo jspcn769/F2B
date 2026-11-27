@@ -1,0 +1,155 @@
+{
+  "sources": {
+    "LFP-2008-09": {
+      "title": "Memòria oficial LFP 2008/09",
+      "url": "https://assets.laliga.com/assets/2019/12/17/originals/67259e2bc07e72ac1fa4b6706710ef71.pdf",
+      "rights": "Escuts oficials dels clubs. La font no indica cap llicència oberta per als escuts."
+    }
+  },
+  "assets": {
+    "fcb-lfp-2008-09": {
+      "clubId": "CLU-FCB",
+      "file": "assets/crests/fcb-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 35
+    },
+    "rma-lfp-2008-09": {
+      "clubId": "CLU-RMA",
+      "file": "assets/crests/rma-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 37
+    },
+    "sev-lfp-2008-09": {
+      "clubId": "CLU-SEV",
+      "file": "assets/crests/sev-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 39
+    },
+    "atm-lfp-2008-09": {
+      "clubId": "CLU-ATM",
+      "file": "assets/crests/atm-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 41
+    },
+    "vil-lfp-2008-09": {
+      "clubId": "CLU-VIL",
+      "file": "assets/crests/vil-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 43
+    },
+    "val-lfp-2008-09": {
+      "clubId": "CLU-VAL",
+      "file": "assets/crests/val-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 45
+    },
+    "dep-lfp-2008-09": {
+      "clubId": "CLU-DEP",
+      "file": "assets/crests/dep-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 47
+    },
+    "mal-lfp-2008-09": {
+      "clubId": "CLU-MAL",
+      "file": "assets/crests/mal-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 49
+    },
+    "mll-lfp-2008-09": {
+      "clubId": "CLU-MLL",
+      "file": "assets/crests/mll-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 51
+    },
+    "esp-lfp-2008-09": {
+      "clubId": "CLU-ESP",
+      "file": "assets/crests/esp-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 53
+    },
+    "alm-lfp-2008-09": {
+      "clubId": "CLU-ALM",
+      "file": "assets/crests/alm-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 55
+    },
+    "rac-lfp-2008-09": {
+      "clubId": "CLU-RAC",
+      "file": "assets/crests/rac-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 57
+    },
+    "ath-lfp-2008-09": {
+      "clubId": "CLU-ATH",
+      "file": "assets/crests/ath-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 59
+    },
+    "spo-lfp-2008-09": {
+      "clubId": "CLU-SPO",
+      "file": "assets/crests/spo-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 61
+    },
+    "osa-lfp-2008-09": {
+      "clubId": "CLU-OSA",
+      "file": "assets/crests/osa-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 63
+    },
+    "vad-lfp-2008-09": {
+      "clubId": "CLU-VAD",
+      "file": "assets/crests/vad-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 65
+    },
+    "get-lfp-2008-09": {
+      "clubId": "CLU-GET",
+      "file": "assets/crests/get-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 67
+    },
+    "bet-lfp-2008-09": {
+      "clubId": "CLU-BET",
+      "file": "assets/crests/bet-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 69
+    },
+    "num-lfp-2008-09": {
+      "clubId": "CLU-NUM",
+      "file": "assets/crests/num-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 71
+    },
+    "rec-lfp-2008-09": {
+      "clubId": "CLU-REC",
+      "file": "assets/crests/rec-lfp-2008-09.webp",
+      "sourceId": "LFP-2008-09",
+      "sourcePage": 3
+    }
+  },
+  "bySeason": {
+    "SEA-ESP-PRI-2008-09": {
+      "CLU-FCB": "fcb-lfp-2008-09",
+      "CLU-RMA": "rma-lfp-2008-09",
+      "CLU-SEV": "sev-lfp-2008-09",
+      "CLU-ATM": "atm-lfp-2008-09",
+      "CLU-VIL": "vil-lfp-2008-09",
+      "CLU-VAL": "val-lfp-2008-09",
+      "CLU-DEP": "dep-lfp-2008-09",
+      "CLU-MAL": "mal-lfp-2008-09",
+      "CLU-MLL": "mll-lfp-2008-09",
+      "CLU-ESP": "esp-lfp-2008-09",
+      "CLU-ALM": "alm-lfp-2008-09",
+      "CLU-RAC": "rac-lfp-2008-09",
+      "CLU-ATH": "ath-lfp-2008-09",
+      "CLU-SPO": "spo-lfp-2008-09",
+      "CLU-OSA": "osa-lfp-2008-09",
+      "CLU-VAD": "vad-lfp-2008-09",
+      "CLU-GET": "get-lfp-2008-09",
+      "CLU-BET": "bet-lfp-2008-09",
+      "CLU-NUM": "num-lfp-2008-09",
+      "CLU-REC": "rec-lfp-2008-09"
+    }
+  }
+}

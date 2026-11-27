@@ -51,3 +51,9 @@ Els continguts històrics addicionals es guarden a `data/catalog/player-history.
 | `salaries` | season, club, annual, currency, note |
 
 Les files d’aquests apartats són contingut del repositori. L’editor local i les còpies JSON del pilot continuen actuant sobre identitats, participacions i conversions.
+
+## Escuts de club
+
+`data/catalog/club-crests.json` assigna un escut per identificador d’edició i de club. Cada recurs apunta a un WebP a `assets/crests/`, una font i una pàgina. Diverses edicions poden compartir el mateix recurs. Les fitxes mostren les inicials quan l’edició no té cap escut assignat. La compilació incorpora cada imatge una sola vegada a l’HTML autònom.
+
+El pilot pren els escuts de les fitxes d’equip de la memòria oficial LFP 2008/09. El Recreativo s’ha extret de la pàgina 3 del PDF, perquè la seva fitxa individual (pàgina 73) repeteix l’escut del Numancia. Les referències de pàgina segueixen l’ordre del PDF.
