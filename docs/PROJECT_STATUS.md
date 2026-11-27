@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.11
+# F2B · Informe de situació v0.12
 
 **Tall de treball: 26 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,12 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Fitxes de jugador v0.12
+
+Les 83 fitxes visibles comparteixen una estructura amb sis apartats. Al resum destaquen la posició F2B, l’arquetip amb enllaç, l’OVR, el POT, el físic convertit i la biografia documentada. Les 28 conversions del Barça i el Madrid mostren data de naixement i nacionalitat de referència. La data de les 16 fitxes del Madrid s’ha incorporat amb font explícita. Els atributs F2B LAB tenen un apartat propi i l’origen futbolístic es consulta a Fonts i notes.
+
+Trajectòria mostra les participacions conegudes. Els registres addicionals de carrera, traspassos, estadístiques, palmarès, premis, contractes i salaris es poden incorporar per identificador de jugador al fitxer `data/catalog/player-history.json`. Les fitxes reconeixen els apartats encara buits sense publicar resultats o xifres provisionals com a registres vàlids.
 
 ## Arquetips v0.11
 

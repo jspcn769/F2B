@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -12,6 +12,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   json('data/rules/regulation.json'),
   json('data/catalog/competitions.json'),
   json('data/catalog/archetype-profiles.json'),
+  json('data/catalog/player-history.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -56,7 +57,7 @@ for (const profile of conversion.profiles) {
   const status = value => value ? 'APPROVED' : 'DRAFT';
   const [primary, secondary, tertiary] = profile.positions;
   Object.assign(m.conversion,{
-    status:'IN_REVIEW',realHeightCm:profile.heightCm,realWeightKg:profile.weightKg,
+    status:'IN_REVIEW',seasonAge:profile.age,nationalityReference:profile.country,realHeightCm:profile.heightCm,realWeightKg:profile.weightKg,
     realHeightSource:physicalSource,realWeightSource:physicalSource,physicalDataStatus:'REVIEWED',
     f2bHeightCm:profile.heightF2bCm,f2bWeightKg:profile.weightF2bKg,
     primaryPosition:primary,secondaryPosition:secondary??null,tertiaryPosition:tertiary??null,
@@ -120,7 +121,15 @@ for(const [id,profile] of Object.entries(archetypeProfiles)){
     return m?.playerId===ref.playerId && (ref.kind==='contrast'||(ref.kind==='pilot'&&m.conversion.archetypeId===id));
   }), id+' referències invàlides');
 }
-Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,rules});
+const archiveSections=['career','transfers','statistics','honours','awards','contracts','salaries'];
+check(playerHistory && typeof playerHistory==='object' && !Array.isArray(playerHistory), 'Registre històric invàlid');
+for(const [id,record] of Object.entries(playerHistory)){
+  check(players.has(id) && record && typeof record==='object' && !Array.isArray(record), id+' fitxa històrica invàlida');
+  for(const [key,rows] of Object.entries(record)){
+    check(archiveSections.includes(key) && Array.isArray(rows) && rows.every(row=>row && typeof row==='object' && !Array.isArray(row)), id+' apartat històric invàlid');
+  }
+}
+Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,playerHistory,rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');
 const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));
