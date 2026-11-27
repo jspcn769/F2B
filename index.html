@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.20</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.20.1</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -156,7 +156,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
 .roster-table .crest{width:22px;height:22px;padding:2px}
 @media(max-width:760px){.banner-left .crest.has-crest{width:48px;height:48px;padding:5px}}
     .roster-table .roster-nationality,.roster-table .roster-measure{text-align:center;white-space:nowrap}
-    .roster-measure{font-variant-numeric:tabular-nums}
+    .roster-measure,.roster-rating{font-variant-numeric:tabular-nums}
+    .roster-table .roster-rating{white-space:nowrap}
+    .roster-rating strong{font-weight:700;color:#20374a}
+    .profile-metrics .profile-rating dd{font-weight:850;color:#fff}
+    .profile-metrics .profile-measure dd{font-size:clamp(17px,2.6vw,25px);font-weight:650}
     .roster-flag{display:inline-block;width:21px;height:14px;vertical-align:middle;border-radius:2px;box-shadow:0 0 0 1px rgba(26,39,52,.18)}
     .roster-section{margin-block:24px}.roster-section h2{margin:0 0 8px}.roster-section h2 small{font-size:.7em;color:var(--muted)}
     .correction-form .edit-label{display:block;margin-bottom:4px}.correction-form .inline-editor{width:100%}
@@ -795,20 +799,41 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     return svg?`<img class="roster-flag" src="data:image/svg+xml,${esc(encodeURIComponent(svg))}" width="21" height="14" alt="${esc(label)}" title="${esc(label)}">`:
       `<span aria-label="${esc(label||'Nacionalitat pendent')}">—</span>`;
   }
+  const heightFormatter = new Intl.NumberFormat('ca-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function formatHeightF2B(heightCm){
+    return Number.isFinite(heightCm)?heightFormatter.format(heightCm/100)+' m':null;
+  }
+  function formatWeightF2B(weightKg){
+    return Number.isFinite(weightKg)?weightKg+' kg':null;
+  }
+  function playerRosterStatus(m){
+    if(m.eligibilityStatus==='REVIEW') return 'Elegibilitat en revisió';
+    if(m.eligibilityStatus==='EXCLUDED') return 'Exclòs';
+    return playerStatus[m.conversion.status]??playerStatus.PENDING;
+  }
   function renderPlayerList(rows,showClub=false){
-    const rosterColumns='<th scope="col" class="roster-nationality" aria-label="Nacionalitat">Nac.</th><th scope="col" class="roster-measure">Alçada F2B (cm)</th><th scope="col" class="roster-measure">Pes F2B (kg)</th>';
+    const headings=showClub
+      ? ['Jugador','Club','Dorsal','Posició F2B','Arquetip','OVR/POT','Estat']
+      : ['Jugador','OVR/POT','Nac.','Alçada F2B (m) / Pes F2B (kg)','Posició F2B','Arquetip','Salari/Contracte','Dorsal'];
     return `<div class="panel"><div class="table-wrap"><table class="data-table roster-table">
-      <thead><tr><th scope="col">Jugador</th>${showClub?'<th scope="col">Club</th>':''}<th scope="col">Dorsal</th>${showClub?'':rosterColumns}<th scope="col">Posició F2B</th><th scope="col">Arquetip</th><th scope="col">OVR / POT</th><th scope="col">Estat</th></tr></thead>
+      <thead><tr>${headings.map(label=>label==='Nac.'?`<th scope="col" class="roster-nationality" aria-label="Nacionalitat">${label}</th>`:`<th scope="col">${label}</th>`).join('')}</tr></thead>
       <tbody>${rows.map(({m,p,c})=>{
         const cv=m.conversion;
         const name=routeLink(playerTabPath(p.id,'resum',m.id),esc(showClub?p.fullName:p.displayName||p.fullName),'archive-link');
-        const rosterCells=showClub?'':`<td class="roster-nationality">${rosterFlag(p.nationality||cv.nationalityReference)}</td>
-          <td class="roster-measure">${esc(cv.f2bHeightCm??'—')}</td><td class="roster-measure">${esc(cv.f2bWeightKg??'—')}</td>`;
-        const archetype=archetypeEntry(cv.archetypeId);
-        const positions=[cv.primaryPosition,cv.secondaryPosition,cv.tertiaryPosition].filter(Boolean);
-        const state=m.eligibilityStatus==='REVIEW'?'Elegibilitat en revisió':m.eligibilityStatus==='EXCLUDED'?'Exclòs':playerStatus[cv.status]??playerStatus.PENDING;
-        return `<tr><td>${name}</td>${showClub?`<td>${routeLink(teamPath(team(m.teamSeasonId),'roster'),crest(c,m.seasonId)+esc(c.name),'club-with-crest')}<div>${routeLink(pathSeason('overview',m.seasonId),esc(editionTitle(edition(m.seasonId))),'archive-link')}</div></td>`:''}<td>${esc(m.squadNumber??'—')}</td>${rosterCells}<td>${esc(positions.join(' / ')||'—')}</td>
-          <td>${archetype?archetypeLink(archetype.id,archetype.name):esc(cv.archetype??'—')}</td><td>${esc(cv.ovr??'—')} / ${esc(cv.potential??'—')}</td><td>${esc(state)}</td></tr>`;
+        const entry=archetypeEntry(cv.archetypeId);
+        const archetype=entry?archetypeLink(entry.id,entry.name):esc(cv.archetype??'—');
+        const positions=esc([cv.primaryPosition,cv.secondaryPosition,cv.tertiaryPosition].filter(Boolean).join(' / ')||'—');
+        const rating=`${esc(cv.ovr??'—')} / ${esc(cv.potential??'—')}`;
+        const dorsal=esc(m.squadNumber??'—');
+        if(showClub){
+          return `<tr><td>${name}</td><td>${routeLink(teamPath(team(m.teamSeasonId),'roster'),crest(c,m.seasonId)+esc(c.name),'club-with-crest')}
+            <div>${routeLink(pathSeason('overview',m.seasonId),esc(editionTitle(edition(m.seasonId))),'archive-link')}</div></td>
+            <td>${dorsal}</td><td>${positions}</td><td>${archetype}</td><td>${rating}</td><td>${esc(playerRosterStatus(m))}</td></tr>`;
+        }
+        const height=formatHeightF2B(cv.f2bHeightCm)??'—',weight=formatWeightF2B(cv.f2bWeightKg)??'—';
+        return `<tr><td>${name}</td><td class="roster-rating"><strong>${rating}</strong></td>
+          <td class="roster-nationality">${rosterFlag(p.nationality||cv.nationalityReference)}</td>
+          <td class="roster-measure">${esc(height)} / ${esc(weight)}</td><td>${positions}</td><td>${archetype}</td><td></td><td>${dorsal}</td></tr>`;
       }).join('')}</tbody></table></div></div>`;
   }
 
@@ -971,12 +996,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     const teamLink=teamPath(t,'roster');
     const bioFacts=[['Data de naixement',hasData(p.dateOfBirth)?displayDate(p.dateOfBirth):null],['Nacionalitat',nationalityLabel],['Lloc de naixement',p.birthplace],['Edat al curs',cv.seasonAge]];
     const metrics=[
-      ['OVR',cv.ovr,cv.ovrStatus],['POT',cv.potential,cv.potentialStatus],
-      ['Alçada F2B',hasData(cv.f2bHeightCm)?cv.f2bHeightCm+' cm':null,cv.realHeightCmStatus??cv.physicalDataStatus],
-      ['Pes F2B',hasData(cv.f2bWeightKg)?cv.f2bWeightKg+' kg':null,cv.realWeightKgStatus??cv.physicalDataStatus],
+      ['OVR',cv.ovr,cv.ovrStatus,'profile-rating'],['POT',cv.potential,cv.potentialStatus,'profile-rating'],
+      ['Alçada F2B',formatHeightF2B(cv.f2bHeightCm),cv.realHeightCmStatus??cv.physicalDataStatus,'profile-measure'],
+      ['Pes F2B',formatWeightF2B(cv.f2bWeightKg),cv.realWeightKgStatus??cv.physicalDataStatus,'profile-measure'],
     ];
     const sameName=shortName===p.fullName;
-    const statusLabel=playerStatus[cv.status]??playerStatus.PENDING;
+    const statusLabel=playerRosterStatus(m);
     const heading=`<header class="profile-hero">
       <div class="profile-mast"><div class="profile-mark" aria-hidden="true">${esc(initials(shortName))}</div><div class="profile-identity">
         <div class="profile-context">${routeLink(teamLink,crest(c,m.seasonId)+esc(c.name),'club-with-crest')}${routeLink(pathSeason('overview',m.seasonId),esc(year))}${routeLink(clubPath(c.id),'Fitxa de club')}${hasData(m.squadNumber)?`<span>#${esc(m.squadNumber)}</span>`:''}</div>
@@ -984,7 +1009,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
         <div class="profile-role">${positionCodes.length?`<b>${esc(playerPositions[positionCodes[0]]??positionCodes[0])}</b>${positionCodes.slice(1).length?`<span>${esc(positionCodes.slice(1).map(v=>playerPositions[v]??v).join(' · '))}</span>`:''}`:'<span>Posició F2B pendent</span>'}
         ${arch?archetypeLink(arch.id,arch.id+' · '+arch.name,'profile-archetype'):(cv.archetype?`<span class="profile-archetype">${esc(cv.archetype)}</span>`:'')}</div>
       </div><span class="profile-state">${esc(statusLabel)}</span></div>
-      <dl class="profile-metrics">${metrics.map(([label,value,status])=>`<div><dt>${esc(label)}</dt><dd>${esc(value??'—')}</dd>${hasData(value)&&playerStatus[status]?`<small>${esc(playerStatus[status])}</small>`:''}</div>`).join('')}</dl>
+      <dl class="profile-metrics">${metrics.map(([label,value,status,style])=>`<div class="${style}"><dt>${esc(label)}</dt><dd>${esc(value??'—')}</dd>${hasData(value)&&playerStatus[status]?`<small>${esc(playerStatus[status])}</small>`:''}</div>`).join('')}</dl>
     </header>`;
     const overview=()=>{
       const available=bioFacts.filter(([,v])=>hasData(v));
