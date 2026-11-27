@@ -57,7 +57,7 @@
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.16.1</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.17</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -696,7 +696,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
     ['S','Tir'],['F','Finalització'],['C','Creació i maneig'],['D','Defensa'],
     ['R','Rebot'],['A','Físic i atletisme'],['M','Intangibles i potencial']
   ];
-  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos',BRA:'Brasil',POR:'Portugal',ITA:'Itàlia',URU:'Uruguai',SRB:'Sèrbia',BEL:'Bèlgica',CHI:'Xile',MEX:'Mèxic',TUR:'Turquia',USA:'Estats Units'};
+  const playerCountryNames={ARG:'Argentina',ESP:'Espanya',CMR:'Camerun',FRA:'França',CIV:'Costa d’Ivori',MLI:'Mali',ISL:'Islàndia',BLR:'Belarús',NED:'Països Baixos',BRA:'Brasil',POR:'Portugal',ITA:'Itàlia',URU:'Uruguai',SRB:'Sèrbia',BEL:'Bèlgica',CHI:'Xile',MEX:'Mèxic',TUR:'Turquia',USA:'Estats Units',CAN:'Canadà',EQG:'Guinea Equatorial',TUN:'Tunísia',MAR:'Marroc',GUI:'Guinea',VEN:'Veneçuela'};
   const playerTabPath=(id,tab,membershipId)=>playerPath(id)+'/'+tab+(membershipId?'/'+membershipId:'');
   const displayDate=value=>{
     if(!value)return '—';
@@ -910,7 +910,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
       <div class="note">Les correccions es desen en aquest navegador. Exporta el JSON per portar-les a un altre dispositiu o adjuntar-les al xat i incorporar-les a la base compartida.</div>
       ${legacyBackups().map((key,index)=>`<button class="btn" type="button" data-legacy-backup="${esc(key)}">Descarrega l’esborrany anterior ${index+1}</button>`).join('')}
       ${playerPanel('Registre de correccions',renderCorrectionHistory([...canonical,...pending]))}
-      <div class="section-head"><div><h3>Fonts de plantilles</h3><p>Fonts de referència registrades per als sis clubs incorporats.</p></div></div>
+      <div class="section-head"><div><h3>Fonts de plantilles</h3><p>Fonts de referència dels clubs amb plantilla incorporada.</p></div></div>
       <div class="grid cards-3">${DB.sources.filter(x=>x.id.startsWith('SRC-BDFUTBOL-')&&x.id!=='SRC-BDFUTBOL-LALIGA-0809').map(x=>`<a class="card" href="${esc(x.url)}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.scope||x.use||'Referència de plantilla')}</p><div class="meta">Obrir font ↗</div></a>`).join('')}</div>`;
   }
 

@@ -37,7 +37,7 @@ for (const position of positions) {
 check(attributeCodes.size === 36 && dictionary.length === 36, 'Calen 36 atributs únics');
 check(rules.periods * rules.minutesPerPeriod === 48 && rules.regulationMinutes === 48 && rules.playersOnCourtPerTeam * rules.regulationMinutes === 240 && rules.teamPlayerMinutes === 240, 'Reglament invàlid');
 check(db.clubs.length === 20 && db.rounds.length === 38 && db.fixtures.length === 380, 'Calendari incomplet');
-check(db.players.length === 83 && unique(db.players,'id') && unique(db.playerSeasons,'id'), 'Identitats pilot invàlides');
+check(unique(db.players,'id') && unique(db.playerSeasons,'id'), 'Identitats pilot invàlides');
 check(conversion.profiles.length === db.playerSeasons.length && unique(conversion.profiles,'membershipId') && conversion.partialPositions.length === 9 && unique(conversion.partialPositions,'membershipId'), 'Conversions pilot incompletes');
 check(inter.players.length === 17 && unique(inter.players,'playerId'), 'Plantilla Inter incompleta');
 db.sources.push(...conversion.sources);
@@ -128,10 +128,11 @@ for (const team of db.participants) {
     team.rosterNote = roster.length + ' fitxes de jugador amb conversió F2B. Consulta les aprovacions a cada fitxa.';
   }
 }
-db.season.coverage.conversion = '83_PROFILES_IN_REVIEW';
+db.season.coverage.conversion = conversion.profiles.length + '_PROFILES_IN_REVIEW';
 db.season.dataPolicy.loaded.push('f2b_player_positions','f2b_archetypes','f2b_ovr','f2b_potential','f2b_player_attributes');
 db.season.dataPolicy.notLoaded = db.season.dataPolicy.notLoaded.filter(field => !db.season.dataPolicy.loaded.includes(field) && field !== 'f2b_player_positions_except_preserved_pilot_decisions');
-db.season.dataPolicy.note = 'El pilot conté 83 conversions F2B de sis clubs. L’estat editorial de les posicions, valoracions i atributs es registra per jugador.';
+const rosterClubCount = new Set(db.playerSeasons.map(row => row.clubId)).size;
+db.season.dataPolicy.note = `El pilot conté ${conversion.profiles.length} conversions F2B de ${rosterClubCount} clubs. L’estat editorial de les posicions, valoracions i atributs es registra per jugador.`;
 for(const profile of inter.players) normalizeConversion(profile);
 const {groups, competitions}=competitionCatalog;
 check(unique(groups,'id') && unique(competitions,'id'), 'IDs de competició o grup duplicats');
