@@ -1,9 +1,10 @@
 import fs from 'node:fs/promises';
+import {createPlayerCorrections} from '../app/player-corrections.mjs';
 
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -16,6 +17,8 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   json('data/catalog/club-crests.json'),
   json('data/catalog/edition-files.json'),
   read('app/encyclopedia.template.html'),
+  read('app/player-corrections.mjs'),
+  json('data/catalog/player-corrections.json'),
 ]);
 const check = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -278,13 +281,54 @@ for (const [editionId, assignments] of Object.entries(crestCatalog.bySeason)) {
 }
 const clubCrests = {assets:crestAssets, bySeason:crestCatalog.bySeason};
 Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,seasons,playerHistory,clubCrests,rules});
-const token='__F2B_EMBEDDED_DATA__';
-check(template.split(token).length===2, 'Punt d’injecció únic');
-const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));
-const destination = new URL('index.html', root);
-if(process.argv.includes('--check')){
-  check((await fs.readFile(destination,'utf8'))===output,'index.html requereix regeneració');
-}else{
-  await fs.writeFile(destination,output);
+const corrections = createPlayerCorrections(db);
+const canonical = corrections.parse(ledger);
+const args = process.argv.slice(2);
+const importing = args[0] === '--import-corrections';
+const checking = args[0] === '--check';
+check(
+  args.length === 0 || (checking && args.length === 1) ||
+  (importing && (args.length === 2 || (args.length === 3 && args[2] === '--dry-run'))),
+  'Ús: node scripts/build-encyclopedia.mjs [--check | --import-corrections FITXER [--dry-run]]'
+);
+const changes = importing
+  ? corrections.merge(canonical, corrections.parse(JSON.parse(await fs.readFile(args[1], 'utf8'))))
+  : canonical;
+db.playerSeasons = corrections.replay(db.playerSeasons, changes, 'APPROVED');
+db.playerCorrections = changes;
+const tokens = {
+  __F2B_EMBEDDED_DATA__: JSON.stringify(db).replaceAll('<','\\u003c'),
+  __F2B_CORRECTION_MODULE__: correctionSource.replace(/^export /, ''),
+};
+let output = template;
+for (const [token, content] of Object.entries(tokens)) {
+  check(output.split(token).length === 2, 'Punt d’injecció únic: ' + token);
+  output = output.replace(token, () => content);
 }
+const destination = new URL('index.html', root);
+if (checking) {
+  check((await fs.readFile(destination,'utf8')) === output, 'index.html requereix regeneració');
+} else if (!args.includes('--dry-run')) {
+  const ledgerPath = new URL('data/catalog/player-corrections.json', root);
+  const lockPath = new URL('index.html.f2b-lock', root);
+  const lock = await fs.open(lockPath, 'wx');
+  async function replaceFile(file, temporary, contents) {
+    await fs.writeFile(temporary, contents, {flag:'wx'});
+    try { await fs.rename(temporary, file); }
+    finally { await fs.rm(temporary, {force:true}); }
+  }
+  try {
+    const current = await json('data/catalog/player-corrections.json');
+    check(JSON.stringify(current) === JSON.stringify(ledger), 'El registre ha canviat durant la compilació. Torna a executar el comandament.');
+    if (importing && changes.length > canonical.length) {
+      const temporary = new URL('player-corrections.json.tmp-' + process.pid, ledgerPath);
+      await replaceFile(ledgerPath, temporary, JSON.stringify(corrections.pack(changes),null,2) + '\n');
+    }
+    await replaceFile(destination, new URL('index.html.tmp-' + process.pid, root), output);
+  } finally {
+    await lock.close();
+    await fs.rm(lockPath, {force:true});
+  }
+}
+if (importing) console.log('Correccions acceptades: ' + (changes.length - canonical.length) + (args.includes('--dry-run') ? ' (previsualització)' : ''));
 console.log(`F2B · ${seasons.length} edicions, ${db.participants.length} equips, ${db.fixtures.length} enfrontaments i ${db.playerSeasons.length} participacions de jugador validats`);

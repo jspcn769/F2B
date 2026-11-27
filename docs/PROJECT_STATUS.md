@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.15
+# F2B · Informe de situació v0.16
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,12 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Correccions i plantilles v0.16
+
+Les fitxes admeten correccions per participació amb valors abans i després, motiu i data. El navegador desa els ajustos localment i el JSON permet incorporar-los al registre compartit després de revisar-los. El compilador comprova els valors de partida i detecta conflictes. Els totals manuals de temporada tenen el seu apartat dins el rendiment de cada participació.
+
+Les plantilles s’agrupen per posició principal i s’ordenen per OVR dins de cada grup. Les posicions alternatives es mantenen visibles. Les edicions de posició actualitzen la pertinença al grup i la vinculació amb l’arquetip.
 
 ## Conversió de quatre plantilles v0.15
 
@@ -72,7 +78,7 @@ Les fitxes parteixen de `data/catalog/archetype-profiles.json`. BA-01 i ES-01 mo
 - **`data/seasons/`** conté el pilot, les conversions de jugadors per temporada i l’Inter. Les conversions del pilot utilitzen el mateix identificador de participació que el directori.
 - **`data/catalog/`** conté arquetips, atributs i les files de matriu recuperades.
 - **`data/rules/`** fixa el reglament. **`data/scenarios/`** recull configuracions i resultats d’experiments.
-- **`app/encyclopedia.template.html`** conté la interfície. **`index.html`** s’obté amb `node scripts/build-encyclopedia.mjs` i funciona sense servidor. Les edicions locals de fitxes es poden exportar en JSON com a esborranys. Per incorporar un canvi a la base comuna, revisa’l amb el jugador i la temporada i aplica’l a les dades estructurades.
+- **`app/encyclopedia.template.html`** conté la interfície. **`index.html`** s’obté amb `node scripts/build-encyclopedia.mjs` i funciona sense servidor. Les edicions locals s’exporten en un JSON de correccions. Un cop revisades, s’incorporen a `data/catalog/player-corrections.json` amb el comandament documentat al README.
 - **`governance/DECISION_LOG.md`** recull les decisions explícites. **`ROADMAP.md`** manté les fases i les dependències.
 
 ## Fonts de la integració

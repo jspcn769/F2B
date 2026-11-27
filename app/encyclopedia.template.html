@@ -47,18 +47,17 @@
           <div class="search-results" id="searchResults" hidden></div>
         </div>
         <div class="data-tools" id="editorTools" hidden>
-          <button class="tool-btn edit-toggle" id="editToggle" type="button">✎ Editar dades</button>
-          <button class="tool-btn" id="exportData" type="button" title="Exportar totes les fitxes i canvis locals">↓ JSON</button>
-          <label class="tool-btn import-label" for="importFile" title="Importar una còpia JSON">↑ Importar</label>
+          <button class="tool-btn" id="exportData" type="button">Exporta correccions</button>
+          <button class="tool-btn" id="importData" type="button">Importa JSON</button>
           <input id="importFile" type="file" accept="application/json,.json" hidden>
-          <span id="saveState" class="save-state" data-state="idle">Canvis locals automàtics</span>
+          <span id="saveState" class="save-state" data-state="idle" role="status"></span>
         </div>
       </div>
     </header>
     <div class="content" id="content" aria-live="polite">
       <div class="loading"><span class="brandmark">F2B</span><p>Carregant l'enciclopèdia…</p></div>
     </div>
-    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.15</span></footer>
+    <footer class="page-footer"><span>F2B · Football to Basketball</span><span>Arxiu històric · v0.16</span></footer>
   </main>
   <style>
 :root{--bg:#f2f4f1;--paper:#fff;--ink:#17221b;--muted:#7c897f;--line:#e2e8e1;--dark:#101914;--dark2:#1d2a21;--lime:#c9ef70;--lime-soft:#eff7de;--orange:#dc7954;--blue:#5a7dad;--red:#b94c4c;--radius:14px;--shadow:0 12px 34px rgba(16,25,20,.07)}
@@ -156,59 +155,96 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #4479
 .profile-context .crest{width:21px;height:21px;padding:2px}
 .roster-table .crest{width:22px;height:22px;padding:2px}
 @media(max-width:760px){.banner-left .crest.has-crest{width:48px;height:48px;padding:5px}}
+    .roster-section{margin-block:24px}.roster-section h2{margin:0 0 8px}.roster-section h2 small{font-size:.7em;color:var(--muted)}
+    .correction-form .edit-label{display:block;margin-bottom:4px}.correction-form .inline-editor{width:100%}
+    .correction-form details{margin:16px 0}.correction-form details summary{cursor:pointer;font-weight:700}
+    .correction-form details .edit-grid{margin-top:12px}.correction-form .actions{align-items:center;flex-wrap:wrap}
+    .correction-history{padding-left:20px}.correction-history li+li{margin-top:14px}.correction-history ul{padding-left:18px}
+    .correction-feedback{color:#9e342d}.correction-reason{margin-top:16px}
   </style>
   <script>window.F2B_DATA=__F2B_EMBEDDED_DATA__;</script>
   <script>
 (() => {
   'use strict';
+  __F2B_CORRECTION_MODULE__
   const $ = (s, root=document) => root.querySelector(s);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const seasonId = 'SEA-ESP-PRI-2008-09';
   const compId = 'CMP-ESP-PRIMERA';
   let DB = null;
   let indexes = {};
-  const LOCAL_KEY = 'F2B_LOCAL_PLAYER_DATA_V015';
-  let editMode = false;
-  let saveAvailable = true;
+  const LOCAL_KEY = 'F2B_PLAYER_CORRECTIONS_V1';
+  const LEGACY_KEYS = ['F2B_LOCAL_PLAYER_DATA_V015','F2B_LOCAL_PLAYER_DATA_V06'];
+  let corrections;
+  let baseMembers;
+  let canonical = [];
+  let pending = [];
+  let storageFault = '';
 
-async function loadData(){
+  function loadData(){
     DB=window.F2B_DATA;
     if(!DB) throw new Error('Obre l’HTML compilat de l’enciclopèdia.');
-    applyLocalEdits();
-    rebuildIndexes();
-  }
-    function deepMerge(base, saved){
-    if(Array.isArray(saved)) return saved;
-    if(saved && typeof saved==='object'){
-      const out={...(base&&typeof base==='object'&&!Array.isArray(base)?base:{})};
-      for(const [key,value] of Object.entries(saved)) out[key]=deepMerge(out[key],value);
-      return out;
+    corrections=createPlayerCorrections(DB);
+    baseMembers=DB.playerSeasons;
+    canonical=DB.playerCorrections;
+    try {
+      pending=readStoredCorrections();
+      applyPending(pending);
+    } catch (error) {
+      storageFault=error.message;
+      rebuildIndexes();
     }
-    return saved===undefined?base:saved;
-  }
-  function mergeById(defaults, saved){
-    const savedMap=new Map((saved||[]).filter(x=>x&&x.id).map(x=>[x.id,x]));
-    return (defaults||[]).map(item=>{
-      const patch=savedMap.get(item.id);
-      if(!patch) return item;
-      const merged=deepMerge(item,patch);
-      for(const key of ['clubId','playerId','seasonId','teamSeasonId']) {
-        if(Object.hasOwn(item,key)) merged[key]=item[key];
+    showCorrectionStatus();
+    window.addEventListener('storage',event=>{
+      if(event.key!==LOCAL_KEY) return;
+      try {
+        const stored=readStoredCorrections();
+        applyPending(corrections.merge(stored,pending));
+        if(pending.some(entry=>!stored.some(saved=>saved.id===entry.id))) {
+          localStorage.setItem(LOCAL_KEY,JSON.stringify(corrections.pack(pending)));
+        }
+        storageFault='';
+        if(route.page!=='player'||route.playerTab!=='editar') render();
+        showCorrectionStatus();
+      } catch(error) {
+        storageFault=error.message;
+        showCorrectionStatus();
       }
-      return merged;
     });
   }
-  function applyLocalEdits(){
-    try{
-      const raw=localStorage.getItem(LOCAL_KEY);
-      if(!raw) return;
-      const saved=JSON.parse(raw);
-      if(!['0.6'].includes(saved?.schemaVersion) || !Array.isArray(saved.players) || !Array.isArray(saved.playerSeasons)) return;
-      DB.players=mergeById(DB.players,saved.players);
-      DB.playerSeasons=mergeById(DB.playerSeasons,saved.playerSeasons);
-    }catch(error){ saveAvailable=false; }
+  function readStoredCorrections(){
+    const raw=localStorage.getItem(LOCAL_KEY);
+    return raw?corrections.parse(JSON.parse(raw)):[];
   }
-function groupBy(rows, key){
+  function applyPending(changes){
+    const merged=corrections.merge(canonical,changes).slice(canonical.length);
+    DB.playerSeasons=corrections.replay(baseMembers,merged,'LOCAL');
+    pending=merged;
+    rebuildIndexes();
+  }
+  function saveCorrections(incoming){
+    let stored=[];
+    try {
+      stored=readStoredCorrections();
+    } catch(error) {
+      if(error.name!=='SecurityError') throw error;
+    }
+    const merged=corrections.merge(stored,pending);
+    applyPending(corrections.merge(merged,incoming));
+    try {
+      localStorage.setItem(LOCAL_KEY,JSON.stringify(corrections.pack(pending)));
+      storageFault='';
+    } catch {
+      storageFault='El navegador no desa aquesta còpia. Exporta el JSON abans de tancar.';
+    }
+    showCorrectionStatus();
+  }
+  function showCorrectionStatus(){
+    setSaveState(storageFault||pending.length+' correccions locals',storageFault?'error':pending.length?'saved':'idle');
+    $('#exportData').disabled=!pending.length;
+  }
+
+  function groupBy(rows, key){
   const map=new Map();
   for(const item of rows){
     const id=key(item);
@@ -241,57 +277,33 @@ function groupBy(rows, key){
     indexes.playerSeasonsByPlayer=groupBy(DB.playerSeasons,x=>x.playerId);
     indexes.fixturesByRound=new Map(DB.rounds.map(r=>[r.id,r.fixtureIds.map(id=>indexes.fixtures.get(id))]));
   }
-  function persistLocalEdits(){
-    try{
-      localStorage.setItem(LOCAL_KEY,JSON.stringify({schemaVersion:'0.6',savedAt:new Date().toISOString(),players:DB.players,playerSeasons:DB.playerSeasons}));
-      saveAvailable=true; setSaveState('Canvis guardats en aquest navegador','saved');
-    }catch(error){
-      saveAvailable=false; setSaveState('No s’ha pogut desar al navegador','error');
-    }
-  }
   function setSaveState(message,state='idle'){
-    const el=$('#saveState'); if(!el) return;
-    el.textContent=message; el.dataset.state=state;
-  }
-  function getPath(obj,path){ return path.split('.').reduce((v,k)=>v==null?undefined:v[k],obj); }
-  function setPath(obj,path,value){
-    const bits=path.split('.'); let target=obj;
-    for(let i=0;i<bits.length-1;i++){ if(!target[bits[i]]||typeof target[bits[i]]!=='object') target[bits[i]]={}; target=target[bits[i]]; }
-    target[bits.at(-1)]=value;
-  }
-  function editableField(entity,id,path,label,kind='text',options=[]){
-    const obj=entity==='player'?indexes.players.get(id):indexes.playerSeasons.get(id);
-    const value=obj?getPath(obj,path):null;
-    const display=value===null||value===undefined||value===''?'—':String(value);
-    let control='';
-    if(editMode){
-      if(kind==='select'){
-        control=`<select class="inline-editor" aria-label="${esc(label)}" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}"><option value="">— Sense assignar —</option>${options.map(x=>`<option value="${esc(x.value)}" ${String(value??'')===String(x.value)?'selected':''}>${esc(x.label)}</option>`).join('')}</select>`;
-      }else if(kind==='textarea'){
-        control=`<textarea class="inline-editor inline-editor-area" rows="2" aria-label="${esc(label)}" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}">${esc(value??'')}</textarea>`;
-      }else{
-        const inputType=kind==='number'?'number':kind==='date'?'date':'text';
-        control=`<input class="inline-editor" type="${inputType}" ${kind==='number'?'step="1"':''} value="${esc(value??'')}" placeholder="—" aria-label="${esc(label)}" data-entity="${entity}" data-id="${esc(id)}" data-field="${esc(path)}">`;
-      }
-    }else control=`<b class="field-value">${esc(display)}</b>`;
-    return `<div class="edit-field"><span class="edit-label">${esc(label)}</span><div class="edit-control">${control}</div></div>`;
+    const el=$('#saveState');
+    el.textContent=message;
+    el.dataset.state=state;
   }
   const player = id => indexes.players.get(id);
   const playerSeason = id => indexes.playerSeasons.get(id);
   const playerPath = id => `/player/${id}`;
-  function exportLocalData(){
-    const payload={app:'F2B',schemaVersion:'0.6',exportedAt:new Date().toISOString(),seasonId,players:DB.players,playerSeasons:DB.playerSeasons};
+  function downloadJson(payload,filename){
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='F2B-player-data-backup-2008-09-v06.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    setSaveState('Còpia JSON exportada','saved');
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;
+    link.download=filename;
+    link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  function exportLocalData(){
+    if(pending.length) downloadJson(corrections.pack(pending),'F2B-correccions-'+new Date().toISOString().slice(0,10)+'.json');
+  }
+  function legacyBackups(){
+    try { return LEGACY_KEYS.filter(key=>localStorage.getItem(key)); } catch { return []; }
   }
   async function importLocalData(file){
-    const payload=JSON.parse(await file.text());
-    if(payload?.app!=='F2B'||!['0.6'].includes(payload?.schemaVersion)||!Array.isArray(payload.players)||!Array.isArray(payload.playerSeasons)) throw new Error('El fitxer no és una còpia compatible de F2B v0.6.');
-    const playerIds=new Set(payload.players.map(x=>x.id));
-    const teamIds=new Set(DB.participants.map(x=>x.id));
-    if(payload.playerSeasons.some(x=>!playerIds.has(x.playerId)||!teamIds.has(x.teamSeasonId))) throw new Error('La còpia conté relacions de jugador o equip que no existeixen en aquesta temporada.');
-    DB.players=payload.players; DB.playerSeasons=payload.playerSeasons; rebuildIndexes(); persistLocalEdits(); render();
+    const changes=corrections.parse(JSON.parse(await file.text()));
+    saveCorrections(changes);
+    render();
   }
 
   const club = id => indexes.clubs.get(id);
@@ -580,9 +592,14 @@ function groupBy(rows, key){
     const roster=indexes.playerSeasonsByTeam.get(t.id)||[];
     const c=clubForTeam(t);
     if(!roster.length) return empty('◉','Plantilla pendent','Aquest club encara no té fitxes de jugador incorporades.');
-    const ordered=[...roster].sort((a,b)=>(a.squadNumber??99)-(b.squadNumber??99));
-    const rows=ordered.map(m=>({m,p:player(m.playerId),c})).filter(x=>x.p);
-    return pageHead('Plantilla · '+rows.length+' fitxes',fmtClub(c)+' · '+playerSeasonLabel(roster[0]),'Posicions, arquetips i valoracions del curs.')+renderPlayerList(rows);
+    const groups=[['BA','Bases'],['ES','Escoltes'],['AL','Alers'],['AP','Ala pivots'],['P','Pivots'],[null,'Posició pendent']];
+    const rows=roster.map(m=>({m,p:player(m.playerId),c})).filter(row=>row.p);
+    const sections=groups.map(([role,label])=>{
+      const group=rows.filter(({m})=>(m.conversion.primaryPosition||null)===role)
+        .sort((a,b)=>(b.m.conversion.ovr??-1)-(a.m.conversion.ovr??-1)||a.p.fullName.localeCompare(b.p.fullName,'ca'));
+      return group.length?`<section class="roster-section"><h2>${label} <small>· ${group.length}</small></h2>${renderPlayerList(group)}</section>`:'';
+    });
+    return pageHead('Plantilla · '+rows.length+' fitxes',fmtClub(c)+' · '+playerSeasonLabel(roster[0]),'Agrupada per posició principal i ordenada per OVR dins de cada grup.')+sections.join('');
   }
   function membershipLabel(type){
     return ({FIRST_TEAM_CORE:'Primer equip',MID_SEASON_SIGNING:'Incorporació hivernal',MID_SEASON_DEPARTURE:'Baixa durant la temporada',PROMOTED_TO_FIRST_TEAM:'Promocionat al primer equip',FIRST_TEAM_LOAN:'Primer equip · cessió durant temporada',FIRST_TEAM_SQUAD:'Membre de plantilla'})[type]||type||'Pendent';
@@ -657,7 +674,7 @@ function groupBy(rows, key){
 
   const playerTabs=[
     ['resum','Resum'],['atributs','Atributs'],['trajectoria','Trajectòria'],
-    ['rendiment','Estadístiques i palmarès'],['contractes','Contractes i salaris'],['fonts','Fonts i notes']
+    ['rendiment','Estadístiques i palmarès'],['contractes','Contractes i salaris'],['fonts','Fonts i notes'],['editar','Edita la fitxa']
   ];
   const playerSections={
     career:['Etapes de carrera','Les fitxes de club incorporades apareixen més amunt. Aquí s’hi podran afegir altres etapes i dates.',[['season','Temporada'],['club','Club'],['from','Des de','date'],['until','Fins a','date'],['note','Detall']]],
@@ -670,7 +687,7 @@ function groupBy(rows, key){
   };
   const playerStatus={
     NOT_STARTED:'Pendent de conversió',PENDING:'Pendent',DRAFT:'Provisional',
-    IN_REVIEW:'En revisió',REVIEWED:'Revisat',APPROVED:'Validat'
+    IN_REVIEW:'En revisió',REVIEWED:'Revisat',APPROVED:'Validat',LOCAL:'Edició local'
   };
   const playerPositions={BA:'Base',ES:'Escolta',AL:'Aler',AP:'Ala pivot',P:'Pivot'};
   const attributeGroups=[
@@ -712,6 +729,84 @@ function groupBy(rows, key){
       <tbody>${rows.map(row=>`<tr>${columns.map(([prop,,format])=>`<td>${archiveCell(row,prop,format)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:playerNote(message));
   }
 
+  function correctionValue(field,value){
+    if(value===null) return '—';
+    return field==='archetypeId'?archetypeEntry(value)?.name??value:String(value);
+  }
+  function renderCorrectionHistory(entries){
+    if(!entries.length) return playerNote('Encara no hi ha correccions registrades.');
+    const official=new Set(canonical.map(entry=>entry.id));
+    return `<ol class="correction-history">${[...entries].reverse().map(entry=>{
+      const m=playerSeason(entry.membershipId), p=player(entry.playerId);
+      const title=m&&p?routeLink(playerTabPath(p.id,'editar',m.id),esc(p.fullName)+' · '+esc(playerSeasonLabel(m)),'archive-link'):esc(entry.membershipId);
+      return `<li><b>${title}</b> · <time datetime="${esc(entry.at)}">${esc(displayDate(entry.at.slice(0,10)))}</time>
+        · ${official.has(entry.id)?'Compartida':'Local'}<p>${esc(entry.reason)}</p>
+        <ul>${entry.fields.map(({field,before,after})=>`<li>${esc(corrections.fields[field])} · ${esc(correctionValue(field,before))} → ${esc(correctionValue(field,after))}</li>`).join('')}</ul></li>`;
+    }).join('')}</ol>`;
+  }
+  function archetypeOptions(position,selected){
+    const choices=DB.archetypeCatalog.entries.filter(entry=>entry.position===position);
+    return selectOptions(choices.map(entry=>[entry.id,entry.id+' · '+entry.name]),selected);
+  }
+  function selectOptions(choices,selected){
+    return '<option value="">— Sense assignar —</option>'+choices.map(([value,label])=>
+      `<option value="${esc(value)}"${selected===value?' selected':''}>${esc(label)}</option>`).join('');
+  }
+  function renderCorrectionForm(m){
+    const read=field=>corrections.read(m,field);
+    const input=(field,control)=>`<label class="edit-field"><span class="edit-label">${esc(corrections.fields[field])}</span>${control}</label>`;
+    const select=(field,options)=>input(field,`<select class="inline-editor" name="${field}" data-before="${esc(JSON.stringify(read(field)))}">${options}</select>`);
+    const number=field=>input(field,`<input class="inline-editor" type="number" name="${field}" data-before="${esc(JSON.stringify(read(field)))}" min="0" ${field.startsWith('stats.')?'':'max="99"'} step="1" value="${esc(read(field)??'')}">`);
+    const grid=controls=>`<div class="edit-grid">${controls.join('')}</div>`;
+    const pos=corrections.positionFields.map(field=>select(field,selectOptions(Object.entries(playerPositions),read(field))));
+    const history=[...canonical,...pending].filter(entry=>entry.membershipId===m.id);
+    return playerPanel('Edita la fitxa',`<form class="correction-form" data-correction-member="${esc(m.id)}">
+      ${grid([...corrections.ratingFields.map(number),...pos,select('archetypeId',archetypeOptions(read('primaryPosition'),read('archetypeId')))])}
+      <details><summary>Atributs F2B LAB</summary><p>El potencial de F2B LAB segueix el POT.</p>
+        ${grid(corrections.attributeFields.map(([id])=>number('lab.'+id)))}</details>
+      <details><summary>Estadístiques manuals de temporada</summary><p>Totals introduïts manualment per a aquesta participació. Es mostren al costat de les estadístiques d’acta.</p>
+        ${grid(Object.keys(corrections.statistics).map(id=>number('stats.'+id)))}</details>
+      <label class="edit-field correction-reason"><span class="edit-label">Motiu de la correcció</span>
+        <textarea name="reason" class="inline-editor inline-editor-area" rows="2" maxlength="1000" required placeholder="Ex. La seva creació amb pilota encaixa millor com a base."></textarea></label>
+      <div class="actions"><button class="btn" type="submit">Desa la correcció</button><span class="correction-feedback" role="status"></span></div>
+      </form>`)+playerPanel('Historial de la fitxa',renderCorrectionHistory(history));
+  }
+  function renderManualStatistics(m){
+    const values=Object.entries(corrections.statistics).filter(([code])=>m.manualStatistics?.[code]!=null);
+    return values.length?playerPanel('Totals de temporada · entrada manual',`<dl class="profile-bio">
+      ${values.map(([code,label])=>playerFact(label,m.manualStatistics[code])).join('')}</dl>`):'';
+  }
+  function syncArchetypeSelect(event){
+    const form=event.target.form;
+    if(event.target.name!=='primaryPosition'||!form?.dataset.correctionMember) return;
+    const select=form.elements.namedItem('archetypeId');
+    const selected=select.value||JSON.parse(select.dataset.before);
+    select.innerHTML=archetypeOptions(event.target.value,selected);
+  }
+  function submitCorrection(event){
+    const form=event.target;
+    if(!form.dataset.correctionMember) return;
+    event.preventDefault();
+    const feedback=form.querySelector('.correction-feedback');
+    const m=playerSeason(form.dataset.correctionMember);
+    const inputs=new FormData(form);
+    const fields=[];
+    for(const field of Object.keys(corrections.fields)){
+      const value=inputs.get(field);
+      const after=value===''?null:corrections.positionFields.includes(field)||field==='archetypeId'?value:Number(value);
+      const before=JSON.parse(form.elements.namedItem(field).dataset.before);
+      if(before!==after) fields.push({field,before,after});
+    }
+    if(!fields.length){ feedback.textContent='Canvia algun camp abans de desar.'; return; }
+    try {
+      const id=Array.from(crypto.getRandomValues(new Uint8Array(16)),value=>value.toString(16).padStart(2,'0')).join('');
+      saveCorrections([{id,membershipId:m.id,playerId:m.playerId,at:new Date().toISOString(),reason:inputs.get('reason').trim(),fields}]);
+      render();
+      const newFeedback=$('.correction-feedback');
+      if(newFeedback) newFeedback.textContent=storageFault||'Correcció desada.';
+    } catch(error){ feedback.textContent=error.message; }
+  }
+
   function renderPlayer(){
     const p=player(route.playerId);
     if(!p) return empty('◉','Jugador no trobat','La fitxa sol·licitada no és a la base de dades actual.');
@@ -728,13 +823,6 @@ function groupBy(rows, key){
     const nationalityLabel=playerCountryNames[nationality]??nationality;
     const shortName=p.displayName||p.fullName;
     const teamLink=teamPath(t,'roster');
-    const playerField=(path,label,kind='text',opts=[])=>editableField('player',p.id,path,label,kind,opts);
-    const memberField=(path,label,kind='text',opts=[])=>editableField('membership',m.id,path,label,kind,opts);
-    const conversionField=(path,label,kind='text',opts=[])=>editableField('membership',m.id,'conversion.'+path,label,kind,opts);
-    const statusOptions=['PENDING','DRAFT','REVIEWED','APPROVED'].map(value=>({value,label:playerStatus[value]}));
-    const posOptions=Object.entries(playerPositions).map(([value,label])=>({value,label:value+' · '+label}));
-    const roleOptions=[{value:'MIDFIELDER',label:'Migcampista'},{value:'FORWARD',label:'Davanter'}];
-    const box=fields=>`<div class="edit-grid">${fields.join('')}</div>`;
     const bioFacts=[['Data de naixement',hasData(p.dateOfBirth)?displayDate(p.dateOfBirth):null],['Nacionalitat',nationalityLabel],['Lloc de naixement',p.birthplace],['Edat al curs',cv.seasonAge]];
     const metrics=[
       ['OVR',cv.ovr,cv.ovrStatus],['POT',cv.potential,cv.potentialStatus],
@@ -756,66 +844,24 @@ function groupBy(rows, key){
       const available=bioFacts.filter(([,v])=>hasData(v));
       let profileRead=hasData(cv.conversionNotes)?`<p>${esc(cv.conversionNotes)}</p>`:playerNote('El paper tàctic i les notes de conversió encara estan pendents.');
       if(hasData(cv.positionNotes))profileRead+=`<p>${esc(cv.positionNotes)}</p>`;
-      const identity=editMode?box([
-        playerField('fullName','Nom complet'),playerField('displayName','Nom de presentació'),
-        playerField('dateOfBirth','Data de naixement','date'),playerField('nationality','Nacionalitat'),
-        playerField('birthplace','Lloc de naixement')
-      ]):(available.length?`<dl class="profile-bio">${available.map(([label,value])=>playerFact(label,value)).join('')}</dl>`:playerNote('Les dades biogràfiques encara estan pendents de completar.'));
-      const editF2b=editMode?playerPanel('Editar el perfil F2B',box([
-        conversionField('primaryPosition','Posició principal','select',posOptions),conversionField('secondaryPosition','Posició secundària','select',posOptions),conversionField('tertiaryPosition','Tercera posició','select',posOptions),
-        conversionField('ovr','OVR','number'),conversionField('potential','POT','number'),conversionField('f2bHeightCm','Alçada F2B (cm)','number'),conversionField('f2bWeightKg','Pes F2B (kg)','number'),
-        conversionField('archetypeId','Arquetip F2B','select',DB.archetypeCatalog.entries.map(entry=>({value:entry.id,label:entry.id+' · '+entry.name}))),
-        conversionField('conversionNotes','Paper i notes de conversió','textarea'),conversionField('positionNotes','Notes de posició','textarea')
-      ])):'';
-      return `<div class="profile-overview">${playerPanel('Perfil de joc F2B',profileRead)}${playerPanel('Biografia',identity)}</div>${editF2b}`;
+      const identity=available.length?`<dl class="profile-bio">${available.map(([label,value])=>playerFact(label,value)).join('')}</dl>`:playerNote('Les dades biogràfiques encara estan pendents de completar.');
+      return `<div class="profile-overview">${playerPanel('Perfil de joc F2B',profileRead)}${playerPanel('Biografia',identity)}</div>`;
     };
     const attributes=()=>{
-      const hasLab=Object.values(cv.attributes?.lab??{}).some(hasData);
       const count=Object.values(cv.attributes?.lab??{}).filter(hasData).length;
       const groups=attributeGroups.map(([prefix,label])=>{
-        const definitions=DB.attributeDictionary.filter(([id])=>id.startsWith(prefix));
-        const rows=definitions.map(([id,name])=>{
-          const value=cv.attributes?.lab?.[id];
-          return editMode?conversionField('attributes.lab.'+id,id+' · '+name,'number'):
-            `<div class="profile-attribute"><span>${esc(name)}</span><b>${esc(value??'—')}</b></div>`;
-        }).join('');
-        return playerPanel(label,editMode?`<div class="edit-grid">${rows}</div>`:`<div class="profile-attribute-list">${rows}</div>`);
-      }).join('');
-      const legacy=Object.entries(cv.attributes??{}).filter(([group,values])=>group!=='lab'&&values&&Object.values(values).some(hasData));
-      const legacyView=legacy.length?playerPanel('Atributs de la plantilla anterior',legacy.map(([group,values])=>box(Object.keys(values).filter(key=>hasData(values[key])).map(key=>conversionField('attributes.'+group+'.'+key,key,'number')))).join('')):'';
-      return playerPanel('F2B LAB · Atributs',playerNote(hasLab?`${count} de ${DB.attributeDictionary.length} atributs · ${playerStatus[cv.attributeStatus]??'Pendent'}`:'Aquesta fitxa encara no té atributs F2B LAB registrats.')+
-        (editMode?conversionField('attributeStatus','Estat dels atributs','select',statusOptions):'')+
-        (editMode||hasData(cv.attributeNotes)?conversionField('attributeNotes','Notes de calibratge','textarea'):''))+
-        ((hasLab||editMode)?`<div class="profile-groups">${groups}</div>`:'')+legacyView;
+        const rows=DB.attributeDictionary.filter(([id])=>id.startsWith(prefix)).map(([id,name])=>
+          `<div class="profile-attribute"><span>${esc(name)}</span><b>${esc(cv.attributes?.lab?.[id]??'—')}</b></div>`).join('');
+        return playerPanel(label,`<div class="profile-attribute-list">${rows}</div>`);
+      });
+      return playerPanel('F2B LAB · Atributs',playerNote(count?`${count} de ${DB.attributeDictionary.length} atributs · ${playerStatus[cv.attributeStatus]??'Pendent'}`:'Aquesta fitxa encara no té atributs F2B LAB registrats.')+
+        (hasData(cv.attributeNotes)?`<p>${esc(cv.attributeNotes)}</p>`:'')+
+        (count?`<div class="profile-groups">${groups.join('')}</div>`:''));
     };
     const career=()=>playerPanel('Participacions registrades',
       `<div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">Temporada</th><th scope="col">Club</th><th scope="col">Posició F2B</th><th scope="col">Alta</th><th scope="col">Baixa</th></tr></thead>
       <tbody>${memberships.map(row=>`<tr><td>${routeLink(pathSeason('overview',row.seasonId),esc(editionTitle(edition(row.seasonId))))}</td><td>${routeLink(teamPath(team(row.teamSeasonId),'roster'),esc(club(row.clubId).name))} · ${routeLink(playerTabPath(p.id,'resum',row.id),'Perfil del curs','archive-link')}</td><td>${esc(row.conversion.primaryPosition??'—')}</td><td>${esc(displayDate(row.membershipStart))}</td><td>${esc(displayDate(row.membershipEnd))}</td></tr>`).join('')}</tbody></table></div>`)+playerArchiveSection('career',ref)+playerArchiveSection('transfers',ref);
     const sources=()=>{
-      const fields=[
-        playerField('aliases','Àlies (separats per comes)'),
-        playerField('dominantFoot','Cama dominant','select',['Dretà','Esquerrà','Ambidextre'].map(value=>({value,label:value}))),
-        playerField('footballRoleGroup','Posició de futbol','select',roleOptions),playerField('detailedFootballRole','Rol futbolístic detallat'),
-        playerField('footballRoleStatus','Estat del rol de futbol','select',statusOptions),playerField('identityStatus','Estat d’identitat','select',statusOptions),
-        playerField('notes','Notes d’identitat','textarea'),playerField('identitySourceIds','IDs de fonts (separats per comes)'),
-        memberField('sourceId','ID de font'),memberField('squadNumber','Dorsal','number'),
-        memberField('footballRoleGroup','Rol de futbol al curs','select',roleOptions),memberField('footballRoleStatus','Estat del rol al curs','select',statusOptions),
-        memberField('membershipType','Tipus d’incorporació','select',['FIRST_TEAM_CORE','MID_SEASON_SIGNING','MID_SEASON_DEPARTURE','PROMOTED_TO_FIRST_TEAM','FIRST_TEAM_LOAN','FIRST_TEAM_SQUAD'].map(value=>({value,label:membershipLabel(value)}))),
-        memberField('firstTeamScope','Àmbit de plantilla','select',Object.entries({ELIGIBLE_FIRST_TEAM:'Primer equip elegible',ELIGIBILITY_REVIEW:'Revisió d’elegibilitat',FIRST_TEAM_SQUAD:'Membre de plantilla',RESERVE_EXCLUDED:'Filial exclòs'}).map(([value,label])=>({value,label}))),
-        memberField('eligibilityStatus','Elegibilitat','select',Object.entries({ELIGIBLE:'Elegible',REVIEW:'Revisar',EXCLUDED:'Exclòs',PENDING:'Pendent'}).map(([value,label])=>({value,label}))),
-        memberField('membershipStatus','Estat de participació','select',statusOptions),
-        memberField('membershipStart','Data d’alta','date'),memberField('membershipEnd','Data de baixa','date'),
-        memberField('scopeEvidence','Justificació d’inclusió','textarea'),memberField('eligibilityNotes','Notes d’elegibilitat','textarea'),memberField('verificationNotes','Notes de verificació','textarea')
-      ];
-      const verification=[
-        conversionField('status','Estat general','select',['NOT_STARTED','PENDING','DRAFT','IN_REVIEW','APPROVED'].map(value=>({value,label:playerStatus[value]}))),
-        conversionField('primaryPositionStatus','Estat de posició principal','select',statusOptions),conversionField('secondaryPositionStatus','Estat de posició secundària','select',statusOptions),
-        conversionField('archetypeStatus','Estat de l’arquetip','select',statusOptions),conversionField('ovrStatus','Estat OVR','select',statusOptions),conversionField('potentialStatus','Estat POT','select',statusOptions),
-        conversionField('realHeightCm','Alçada real (cm)','number'),conversionField('realWeightKg','Pes real (kg)','number'),
-        conversionField('realHeightSource','Font de l’alçada'),conversionField('realWeightSource','Font del pes'),conversionField('physicalDataStatus','Estat de verificació física','select',statusOptions),
-        conversionField('heightAdjustmentCm','Ajust d’alçada (cm)','number'),conversionField('weightAdjustmentKg','Ajust de pes (kg)','number')
-      ];
-      if(editMode)return playerPanel('Dades d’origen i pertinença',box(fields))+playerPanel('Verificació F2B',box(verification));
       const ids=[...new Set([m.sourceId,...(Array.isArray(p.identitySourceIds)?p.identitySourceIds:[])].filter(Boolean))];
       const resolved=DB.sources.filter(src=>ids.includes(src.id));
       const measurementLinks=[...new Set([cv.realHeightSource,cv.realWeightSource].filter(Boolean))];
@@ -830,9 +876,9 @@ function groupBy(rows, key){
     const tabs=`<nav class="profile-tabs" aria-label="Apartats de la fitxa">${playerTabs.map(([id,name])=>`<a class="${active===id?'active':''}" ${active===id?'aria-current="page"':''} href="#${esc(playerTabPath(p.id,id,route.membershipId?m.id:null))}" data-route="${esc(playerTabPath(p.id,id,route.membershipId?m.id:null))}">${esc(name)}</a>`).join('')}</nav>`;
     const content={
       resum:overview,atributs:attributes,trajectoria:career,
-      rendiment:()=>['statistics','honours','awards'].map(key=>playerArchiveSection(key,ref)).join(''),
+      rendiment:()=>renderManualStatistics(m)+['statistics','honours','awards'].map(key=>playerArchiveSection(key,ref)).join(''),
       contractes:()=>['contracts','salaries'].map(key=>playerArchiveSection(key,ref)).join(''),
-      fonts:sources
+      fonts:sources,editar:()=>renderCorrectionForm(m)
     };
     return `${breadcrumbRow([{label:'Jugadors',path:'/players'},{label:c.name,path:teamLink},{label:shortName}])}${heading}${tabs}
       <div class="profile-body">${content[active]()}</div>`;
@@ -850,7 +896,9 @@ function groupBy(rows, key){
       <div class="section-head"><div><h3>Estat de conversió F2B</h3><p>Consulta l’estat de cada conversió, des de la posició inicial fins als atributs F2B LAB.</p></div></div>
       <div class="grid cards-3"><div class="card"><h3>Mesures i perfil físic</h3><p>Les fitxes convertides inclouen la font de les mesures de referència.</p></div><div class="card"><h3>Posicions i arquetips</h3><p>75 arquetips al catàleg. Consulta les posicions i validacions de cada jugador.</p></div><div class="card"><h3>OVR, potencial i atributs</h3><p>${DB.playerSeasons.filter(m=>m.conversion.attributes?.lab).length} conversions amb atributs F2B LAB.</p></div></div>
       <div class="section-head"><div><h3>Desament i còpies de seguretat</h3><p>Els canvis s'emmagatzemen al navegador actual.</p></div></div>
-      <div class="note"><strong>Persistència local:</strong> l'edició directa desa automàticament les modificacions a l'emmagatzematge local del navegador. El botó JSON exporta una còpia que pots conservar o importar en un altre navegador. Els canvis no s'envien automàticament al repositori GitHub. Els esborranys anteriors a v0.15 es conserven a la versió amb què es van editar.</div>
+      <div class="note">Les correccions es desen en aquest navegador. Exporta el JSON per portar-les a un altre dispositiu o adjuntar-les al xat i incorporar-les a la base compartida.</div>
+      ${legacyBackups().map((key,index)=>`<button class="btn" type="button" data-legacy-backup="${esc(key)}">Descarrega l’esborrany anterior ${index+1}</button>`).join('')}
+      ${playerPanel('Registre de correccions',renderCorrectionHistory([...canonical,...pending]))}
       <div class="section-head"><div><h3>Fonts de plantilles</h3><p>Fonts de referència registrades per als sis clubs incorporats.</p></div></div>
       <div class="grid cards-3">${DB.sources.filter(x=>x.id.startsWith('SRC-BDFUTBOL-')&&x.id!=='SRC-BDFUTBOL-LALIGA-0809').map(x=>`<a class="card" href="${esc(x.url)}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.scope||x.use||'Referència de plantilla')}</p><div class="meta">Obrir font ↗</div></a>`).join('')}</div>`;
   }
@@ -1002,35 +1050,21 @@ function groupBy(rows, key){
     if(!items.length){box.hidden=true;box.innerHTML='';return;}
     box.innerHTML=items.map(x=>`<a class="search-item" href="#${esc(x.path)}" data-route="${esc(x.path)}"><span class="crest">${esc(x.icon)}</span><span><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></span></a>`).join('');box.hidden=false;
   }
-  $('#editToggle').addEventListener('click',()=>{
-    editMode=!editMode; $('#editToggle').classList.toggle('active',editMode); $('#editToggle').textContent=editMode?'✓ Finalitzar edició':'✎ Editar dades';
-    document.body.classList.toggle('edit-mode',editMode); render(); setSaveState(editMode?'Edició directa activada':'Mode de consulta','idle');
-  });
   $('#exportData').addEventListener('click',exportLocalData);
-  $('#importFile').addEventListener('change',async e=>{
-    const file=e.target.files?.[0]; if(!file)return;
-    try{await importLocalData(file);setSaveState('Còpia importada i desada localment','saved');}
-    catch(error){setSaveState('Error important la còpia','error');alert(error.message||String(error));}
-    e.target.value='';
+  $('#importData').addEventListener('click',()=>$('#importFile').click());
+  $('#importFile').addEventListener('change',async event=>{
+    const file=event.target.files?.[0];
+    if(!file) return;
+    try { await importLocalData(file); }
+    catch(error) { setSaveState(error.message,'error'); }
+    event.target.value='';
   });
-  function handleInlineEdit(e){
-    const input=e.target.closest('[data-entity][data-id][data-field]'); if(!input||!editMode)return;
-    const entity=input.dataset.entity, id=input.dataset.id, field=input.dataset.field;
-    const obj=entity==='player'?player(id):playerSeason(id); if(!obj)return;
-    let value=input.value;
-    if(input.type==='number') value=value===''?null:Number(value);
-    if(entity==='player' && ['identitySourceIds','aliases'].includes(field)) value=value.split(',').map(x=>x.trim()).filter(Boolean);
-    setPath(obj,field,value);
-    if(entity==='membership'&&field==='conversion.archetypeId'){
-      const entry=archetypeEntry(value);
-      obj.conversion.archetype=entry?entry.id+' · '+entry.name:null;
-      indexes.membersByArchetype=groupBy(DB.playerSeasons.filter(m=>m.conversion.archetypeId),m=>m.conversion.archetypeId);
-    }
-    input.classList.add('edited');
-    persistLocalEdits();
-  }
-  $('#content').addEventListener('input',handleInlineEdit);
-  $('#content').addEventListener('change',handleInlineEdit);
+  $('#content').addEventListener('submit',submitCorrection);
+  $('#content').addEventListener('change',syncArchetypeSelect);
+  $('#content').addEventListener('click',event=>{
+    const key=event.target.closest('[data-legacy-backup]')?.dataset.legacyBackup;
+    if(LEGACY_KEYS.includes(key)) downloadJson(JSON.parse(localStorage.getItem(key)),'F2B-esborrany-'+key+'.json');
+  });
   document.addEventListener('click',e=>{
     const link=e.target.closest('[data-route]');
     if(link){e.preventDefault();navigate(link.dataset.route);$('#searchResults').hidden=true;return;}
@@ -1041,7 +1075,7 @@ function groupBy(rows, key){
   $('#mobileMenu').addEventListener('click',()=>{$('#sidebar').classList.add('open');$('#mobileScrim').classList.add('open');});
   $('#mobileScrim').addEventListener('click',closeMobile);
   window.addEventListener('hashchange',()=>{parseRoute();render();});
-  loadData().then(()=>{parseRoute();render();}).catch(err=>{$('#content').innerHTML=empty('!','Error carregant les dades',err.message);});
+  Promise.resolve().then(loadData).then(()=>{parseRoute();render();}).catch(err=>{$('#content').innerHTML=empty('!','Error carregant les dades',err.message);});
 })();
 
   </script>
