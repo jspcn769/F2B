@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, template] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -14,6 +14,7 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   json('data/catalog/archetype-profiles.json'),
   json('data/catalog/player-history.json'),
   json('data/catalog/club-crests.json'),
+  json('data/catalog/edition-files.json'),
   read('app/encyclopedia.template.html'),
 ]);
 const check = (condition, message) => {
@@ -96,15 +97,83 @@ for (const group of groups.filter(group=>group.scope==='domestic')) {
     check(domestic.some(item=>item.type===type), group.id+' sense '+type);
   }
 }
-const editionIndex=[{
-  id:db.season.id,
-  competitionId:db.season.competitionId,
-  label:'2008/09',
-  teams:db.participants.length,
-  rounds:db.rounds.length,
-  fixtures:db.fixtures.length,
-}];
-check(editionIndex.every(edition=>competitions.some(item=>item.id===edition.competitionId)), 'Edició sense competició');
+const seasons = [db.season];
+check(Array.isArray(editionFiles), 'Llista d’edicions invàlida');
+for (const path of editionFiles) {
+  check(/^data\/seasons\/[\w/-]+\.json$/.test(path) && !path.includes('//'), 'Ruta d’edició invàlida');
+  const addition = await json(path);
+  seasons.push(addition.season);
+  for (const key of ['clubs','sources','players','participants','rounds','fixtures','playerSeasons']) {
+    db[key].push(...(addition[key] ?? []));
+  }
+}
+const byId = rows => new Map(rows.map(row => [row.id, row]));
+const groupBy = (rows, key) => {
+  const map = new Map();
+  for (const row of rows) {
+    const id = row[key];
+    if (!map.has(id)) map.set(id, []);
+    map.get(id).push(row);
+  }
+  return map;
+};
+for (const rows of [seasons, db.clubs, db.sources, db.players, db.participants, db.rounds, db.fixtures, db.playerSeasons]) {
+  check(rows.every(row => typeof row?.id === 'string' && /^[A-Z0-9-]+$/.test(row.id)) && unique(rows, 'id'), 'Identificadors absents, invàlids o duplicats');
+}
+const seasonRecords = byId(seasons);
+const clubRecords = byId(db.clubs);
+const playerRecords = byId(db.players);
+const teamRecords = byId(db.participants);
+const fixtureRecords = byId(db.fixtures);
+const sourceRecords = byId(db.sources);
+const competitionRecords = byId(competitions);
+const teamsByEdition = groupBy(db.participants, 'seasonId');
+const roundsByEdition = groupBy(db.rounds, 'seasonId');
+const fixturesByEdition = groupBy(db.fixtures, 'seasonId');
+const editionIndex = seasons.map(s => {
+  check(competitionRecords.has(s.competitionId) && s.seasonLabel && s.seasonKey, s.id + ' edició sense competició o curs');
+  const teams = teamsByEdition.get(s.id) ?? [];
+  const rounds = roundsByEdition.get(s.id) ?? [];
+  const fixtures = fixturesByEdition.get(s.id) ?? [];
+  check(unique(teams, 'clubId') && unique(rounds, 'roundNumber'), s.id + ' club o jornada duplicats');
+  check((s.fixtureSourceIds ?? []).every(id => sourceRecords.has(id)), s.id + ' font desconeguda');
+  return {id:s.id, competitionId:s.competitionId, label:s.seasonLabel, teams:teams.length, rounds:rounds.length, fixtures:fixtures.length};
+});
+for (const t of db.participants) {
+  const s = seasonRecords.get(t.seasonId);
+  check(clubRecords.has(t.clubId) && s && s.competitionId === t.competitionId, t.id + ' participació invàlida');
+}
+const fixtureRounds = new Map();
+for (const r of db.rounds) {
+  check(seasonRecords.has(r.seasonId) && Number.isInteger(r.roundNumber) && r.roundNumber > 0, r.id + ' jornada invàlida');
+  for (const id of r.fixtureIds) {
+    const f = fixtureRecords.get(id);
+    check(f?.seasonId === r.seasonId && f.roundNumber === r.roundNumber && !fixtureRounds.has(id), r.id + ' partit sense jornada única: ' + id);
+    fixtureRounds.set(id, r.id);
+  }
+}
+for (const f of db.fixtures) {
+  const home = teamRecords.get(f.homeTeamSeasonId), away = teamRecords.get(f.awayTeamSeasonId);
+  check(seasonRecords.has(f.seasonId) && home?.seasonId === f.seasonId && away?.seasonId === f.seasonId &&
+    home.clubId === f.homeClubId && away.clubId === f.awayClubId && home.id !== away.id, f.id + ' equips incompatibles');
+  const roundId = fixtureRounds.get(f.id);
+  check(roundId && (!f.roundId || f.roundId === roundId), f.id + ' jornada incompatible');
+  f.roundId = roundId;
+  check((f.sourceIds ?? []).every(id => sourceRecords.has(id)), f.id + ' font desconeguda');
+  if (f.derivedFromFixtureId) {
+    const base = fixtureRecords.get(f.derivedFromFixtureId);
+    check(base?.seasonId === f.seasonId && base.homeTeamSeasonId === away.id && base.awayTeamSeasonId === home.id && !base.derivedFromFixtureId, f.id + ' primera volta incompatible');
+  }
+}
+for (const p of db.players) {
+  check((p.identitySourceIds ?? []).every(id => sourceRecords.has(id)), p.id + ' font desconeguda');
+}
+for (const m of db.playerSeasons) {
+  const t = teamRecords.get(m.teamSeasonId);
+  check(playerRecords.has(m.playerId) && t && t.clubId === m.clubId && t.seasonId === m.seasonId && m.conversion, m.id + ' jugador o plantilla incompatible');
+  check(!m.sourceId || sourceRecords.has(m.sourceId), m.id + ' font desconeguda');
+  check(!m.conversion.archetypeId || entries.has(m.conversion.archetypeId), m.id + ' arquetip desconegut');
+}
 
 const requiredProfileText=['family','identity','offense','offBallDefense','possession','fit','limits','physical','assignment','engine'];
 check(catalog.entries.every(entry=>Object.hasOwn(archetypeProfiles,entry.id)), 'Falta una fitxa d’arquetip');
@@ -124,10 +193,23 @@ for(const [id,profile] of Object.entries(archetypeProfiles)){
 }
 const archiveSections=['career','transfers','statistics','honours','awards','contracts','salaries'];
 check(playerHistory && typeof playerHistory==='object' && !Array.isArray(playerHistory), 'Registre històric invàlid');
+const archiveReferences = {
+  clubId:clubRecords, fromClubId:clubRecords, toClubId:clubRecords,
+  editionId:seasonRecords, competitionId:competitionRecords, teamSeasonId:teamRecords, sourceId:sourceRecords
+};
 for(const [id,record] of Object.entries(playerHistory)){
-  check(players.has(id) && record && typeof record==='object' && !Array.isArray(record), id+' fitxa històrica invàlida');
+  check(playerRecords.has(id) && record && typeof record==='object' && !Array.isArray(record), id+' fitxa històrica invàlida');
   for(const [key,rows] of Object.entries(record)){
     check(archiveSections.includes(key) && Array.isArray(rows) && rows.every(row=>row && typeof row==='object' && !Array.isArray(row)), id+' apartat històric invàlid');
+    for (const row of rows) {
+      for (const [field, records] of Object.entries(archiveReferences)) {
+        check(row[field] == null || records.has(row[field]), id + ' ' + key + ' referència desconeguda: ' + field);
+      }
+      const t = teamRecords.get(row.teamSeasonId);
+      const s = seasonRecords.get(row.editionId ?? t?.seasonId);
+      check(!t || ((!row.clubId || t.clubId === row.clubId) && (!row.editionId || t.seasonId === row.editionId)), id + ' equip històric incompatible');
+      check(!s || !row.competitionId || s.competitionId === row.competitionId, id + ' competició històrica incompatible');
+    }
   }
 }
 const pilotCrests = crestCatalog.bySeason[db.season.id];
@@ -142,11 +224,12 @@ const crestImages = await Promise.all(Object.entries(crestCatalog.assets).map(as
   return [id, {clubId:asset.clubId, src:'data:image/webp;base64,' + image.toString('base64'), sourceTitle:source.title, sourceUrl:source.url + '#page=' + asset.sourcePage}];
 }));
 const crestAssets = Object.fromEntries(crestImages);
-for (const assignments of Object.values(crestCatalog.bySeason)) {
+for (const [editionId, assignments] of Object.entries(crestCatalog.bySeason)) {
+  check(seasonRecords.has(editionId), editionId + ' edició d’escut desconeguda');
   for (const [clubId, id] of Object.entries(assignments)) check(crestAssets[id]?.clubId === clubId, clubId + ' escut assignat a un altre club');
 }
 const clubCrests = {assets:crestAssets, bySeason:crestCatalog.bySeason};
-Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,playerHistory,clubCrests,rules});
+Object.assign(db,{archetypeCatalog:catalog,archetypeProfiles,attributeDictionary:dictionary,competitionCatalog,editionIndex,seasons,playerHistory,clubCrests,rules});
 const token='__F2B_EMBEDDED_DATA__';
 check(template.split(token).length===2, 'Punt d’injecció únic');
 const output = template.replace(token, () => JSON.stringify(db).replaceAll('<','\\u003c'));
@@ -156,4 +239,4 @@ if(process.argv.includes('--check')){
 }else{
   await fs.writeFile(destination,output);
 }
-console.log('F2B · 75 arquetips · 36 atributs · 83 jugadors pilot · 28 conversions · 9 posicions · catàleg i índex d’edicions validats · 48 min / 240 min per equip');
+console.log(`F2B · ${seasons.length} edicions, ${db.participants.length} equips, ${db.fixtures.length} enfrontaments i ${db.playerSeasons.length} participacions de jugador validats`);

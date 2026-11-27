@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.13
+# F2B · Informe de situació v0.14
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,10 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Navegació i integritat v0.14
+
+El visor resol les edicions, plantilles, jornades i partits a partir d’identificadors. Les fitxes de club llisten participacions, les d’equip enllacen les altres competicions registrades del mateix curs i els partits deriven la jornada i els equips de les relacions validades. Els perfils de jugador i els arquetips enllacen la participació concreta. El pilot continua sent l’única edició publicada.
 
 ## Escuts històrics v0.13
 

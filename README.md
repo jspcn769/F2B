@@ -2,10 +2,11 @@
 
 F2B és una enciclopèdia d’història alternativa del bàsquet. Conserva els clubs i el marc històric del futbol i hi construeix un joc de cinc contra cinc amb regles, plantilles i estadístiques pròpies.
 
-## Enciclopèdia v0.13
+## Enciclopèdia v0.14
 
 Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera autònoma.
 
+- Navegació per identificadors entre competicions, edicions, clubs, plantilles, jugadors, arquetips i enfrontaments.
 - **29 competicions catalogades** en set països i dos àmbits internacionals. Catàleg, filtres, cerca i fitxa per competició.
 - **20 escuts històrics** de la Primera Divisió 2008/09, extrets de la memòria oficial LFP i incorporats a l’HTML.
 - **Una edició amb dades**, la Primera Divisió 2008/09, amb 20 clubs, 38 jornades i 380 enfrontaments.
@@ -14,7 +15,7 @@ Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera aut
 - 75 arquetips, **75 fitxes detallades en cinc posicions** i diccionari F2B LAB de 36 atributs.
 - Reglament de 48 minuts, amb 240 minuts per equip en temps reglamentari.
 
-Les entrades noves del catàleg esperen la primera edició. El directori de l’Inter 2009/10 queda conservat a `data/seasons/italy/2009-10/inter.json`; la seva edició encara no forma part del visor.
+Les edicions addicionals es declaren a `data/catalog/edition-files.json` i reutilitzen les mateixes pantalles. El directori de l’Inter 2009/10 queda conservat a `data/seasons/italy/2009-10/inter.json`; la seva edició encara no forma part del visor.
 
 ## Edició i comprovació
 

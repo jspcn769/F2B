@@ -57,3 +57,13 @@ Les files d’aquests apartats són contingut del repositori. L’editor local i
 `data/catalog/club-crests.json` assigna un escut per identificador d’edició i de club. Cada recurs apunta a un WebP a `assets/crests/`, una font i una pàgina. Diverses edicions poden compartir el mateix recurs. Les fitxes mostren les inicials quan l’edició no té cap escut assignat. La compilació incorpora cada imatge una sola vegada a l’HTML autònom.
 
 El pilot pren els escuts de les fitxes d’equip de la memòria oficial LFP 2008/09. El Recreativo s’ha extret de la pàgina 3 del PDF, perquè la seva fitxa individual (pàgina 73) repeteix l’escut del Numancia. Les referències de pàgina segueixen l’ordre del PDF.
+
+
+## Relacions i edicions v0.14
+
+- `competitionId` identifica una competició del catàleg. `seasonId` a les entitats estructurals identifica l’edició concreta d’aquella competició. `seasonKey` agrupa les competicions d’un mateix curs.
+- `clubId` identifica el club i `teamSeasonId` la seva participació en una edició. Les plantilles són les participacions de jugador associades a aquest identificador d’equip. El perfil de jugador manté el mateix `playerId` entre etapes.
+- Cada jornada conté els IDs dels seus partits. El compilador resol i comprova el `roundId` invers de cada partit. Els equips local i visitant han de pertànyer a la mateixa edició que el partit. `derivedFromFixtureId` enllaça els partits de tornada derivats de l’anada.
+- Les edicions addicionals es registren amb una ruta a `data/catalog/edition-files.json`. El fitxer d’una edició conté un objecte `season` amb `id`, `competitionId`, `seasonKey` i `seasonLabel`, i pot afegir llistes `clubs`, `sources`, `players`, `participants`, `rounds`, `fixtures` i `playerSeasons`. Les identitats ja registrades es referencien pel seu ID, sense tornar-les a declarar.
+- A les files històriques de jugador, `editionId`, `competitionId`, `teamSeasonId`, `clubId`, `fromClubId` i `toClubId` connecten els registres amb fitxes de l’arxiu. Es poden conservar els camps de text de la taula anterior si la fitxa de destí encara està pendent de catalogar. El compilador valida els IDs i la coherència de les referències combinades.
+- La compilació comprova els identificadors duplicats, les referències de procedència i els vincles de calendari, plantilles i escuts. L’edició local de perfils manté intactes els identificadors de pertinença.
