@@ -1,4 +1,4 @@
-# F2B · Informe de situació v0.20
+# F2B · Informe de situació v0.22
 
 **Tall de treball: 27 de novembre de 2026.** El catàleg general i el directori pilot ja comparteixen el mateix arxiu històric.
 
@@ -16,6 +16,17 @@ El catàleg de competicions conté **29 identitats estables**, agrupades en set 
 L’HTML distingeix una competició catalogada d’una edició amb dades. La nova navegació organitza l’arxiu per competicions, edicions i directoris. L’única edició amb calendari i fitxes visibles és Primera Divisió 2008/09. La cerca consulta el catàleg, inclosos els noms alternatius, i els directoris pilot. Les eines d’edició local i còpia JSON es mostren a Jugadors i Cobertura.
 
 Model de dades: `data/catalog/competitions.json` conté l’identificador de competició, l’àmbit, el tipus i els àlies. Les edicions que mostra l’HTML deriven de dades de temporada existents. La compilació comprova la unicitat dels identificadors i que l’edició enllaci amb la seva competició. La següent incorporació de dades podrà afegir edicions sense crear cap competició duplicada.
+
+## Interfície v0.22
+
+Redisseny complet del visor amb un únic sistema visual i navegació en tres blocs: Arxiu, Explora i Eines F2B. Ruta clicable, context de temporada i barra inferior al mòbil.
+
+- La fitxa d’equip reuneix identitat, banqueta per jornades, quintets a pista, laboratori de quintet, rotació, sistema de joc, mercat i calendari amb filtre de localia.
+- La plantilla mostra dorsal, OVR/POT, nacionalitat, alçada i pes F2B, posicions, arquetip, contracte (pendent) i minuts de referència.
+- La fitxa de jugador separa identitat (REAL), conversió (F2B), atributs amb la mitjana de la posició, trajectòria i fonts. L’encaix amb els arquetips usa els pesos del catàleg.
+- Eines noves: directori filtrable, comparador, rànquings i cobertura per equip.
+- L’edició mostra els camps modificats, la conversió física en directe, validacions i l’historial. El format de correccions i la clau de desament no canvien.
+- La plantilla es divideix en `app/encyclopedia.template.html`, `app/styles.css` i `app/app.js`.
 
 ## Betis, Numància i Recreativo de Huelva v0.20
 

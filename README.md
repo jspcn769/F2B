@@ -2,21 +2,41 @@
 
 F2B és una enciclopèdia d’història alternativa del bàsquet. Conserva els clubs i el marc històric del futbol i hi construeix un joc de cinc contra cinc amb regles, plantilles i estadístiques pròpies.
 
-## Enciclopèdia v0.20
+## Enciclopèdia v0.22
 
-Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera autònoma.
+Obre [index.html](index.html) amb el navegador. El fitxer funciona de manera autònoma, també al mòbil.
 
-- Navegació per identificadors entre competicions, edicions, clubs, plantilles, jugadors, arquetips i enfrontaments.
-- **29 competicions catalogades** en set països i dos àmbits internacionals. Catàleg, filtres, cerca i fitxa per competició.
-- **20 escuts històrics** de la Primera Divisió 2008/09, extrets de la memòria oficial LFP i incorporats a l’HTML.
-- **Una edició amb dades**, la Primera Divisió 2008/09, amb 20 clubs, 38 jornades i 380 enfrontaments.
-- 324 participacions convertides de 323 jugadors als 20 clubs de Primera Divisió 2008/09, amb els 36 atributs F2B LAB. Divuit clubs tenen fitxa tàctica i rotació, i onze tenen registre d’entrenadors per jornada.
-- Plantilles per posició principal amb nom habitual, bandera de nacionalitat, alçada i pes F2B. Les banderes s’inclouen a l’HTML i són visibles sense connexió.
-- Fitxes de jugador amb resum F2B, atributs, trajectòria, rendiment, contractes i fonts.
-- 75 arquetips, **75 fitxes detallades en cinc posicions** i diccionari F2B LAB de 36 atributs.
-- Reglament de 48 minuts, amb 240 minuts per equip en temps reglamentari.
+**Estructura**
 
-Les edicions addicionals es declaren a `data/catalog/edition-files.json` i reutilitzen les mateixes pantalles. El directori de l’Inter 2009/10 queda conservat a `data/seasons/italy/2009-10/inter.json`; la seva edició encara no forma part del visor.
+- **Arxiu**: Inici, Competicions (29 identitats en nou àmbits) i Edicions. La temporada 2008/09 té Resum, Equips, Calendari, Jugadors, Rànquings i Estadístiques.
+- **Explora**: Equips i clubs, Jugadors i Arquetips.
+- **Eines F2B**: Rànquings, Comparador, i Cobertura i correccions.
+- Ruta clicable a la barra superior, context de temporada al menú lateral i barra de navegació inferior al mòbil.
+
+**Fitxes**
+
+- **Equip**: Resum (identitat de joc, banqueta per jornades, quintets de referència a pista, laboratori de quintet i rotació), Plantilla, Sistema de joc, Rotació, Calendari, Mercat i Estadístiques.
+- **Plantilla**: agrupada per posició o en llista, amb filtre, ordenació, dorsal, OVR/POT, nacionalitat, alçada i pes F2B, posicions, arquetip, contracte i minuts de referència.
+- **Jugador**: Resum, Atributs (amb la mitjana de la posició), Conversió F2B (física, estats de validació i encaix amb els 15 arquetips de la posició), Trajectòria, Rendiment i palmarès, Contractes, Fonts i Edita la fitxa.
+- **Partit**: comparació de les plantilles i quintets dels dos equips. El resultat queda pendent del motor.
+
+**Eines**
+
+- Directori de jugadors amb cerca, filtres per equip, posició, arquetip, nacionalitat, OVR i estat, ordenació per columna i vista de taula o targetes. Els filtres queden a l’adreça.
+- Comparador de fins a quatre participacions, amb gràfic de grups i taula d’atributs. Es pot compartir amb un enllaç.
+- Rànquings: OVR, millors per posició, marge POT − OVR, líders per atribut, distribució d’OVR, joves i alçada F2B.
+- Cerca global amb teclat (`/`, fletxes i Retorn).
+
+Els indicadors derivats (índex de plantilla: mitjana de l’OVR dels vuit millors; encaix d’arquetip: pesos del catàleg) s’etiqueten com a F2B i no substitueixen cap classificació ni assignació.
+
+## Codi de la interfície
+
+- `app/encyclopedia.template.html`: estructura de la pàgina.
+- `app/styles.css`: sistema visual.
+- `app/app.js`: rutes, vistes, eines i edició.
+- `app/player-corrections.mjs`: model de correccions compartit amb el compilador.
+
+El compilador incorpora els quatre fitxers i les dades a `index.html`.
 
 ## Edició i comprovació
 
