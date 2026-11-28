@@ -4,7 +4,7 @@ import {createPlayerCorrections} from '../app/player-corrections.mjs';
 const root = new URL('../', import.meta.url);
 const read = (file) => fs.readFile(new URL(file, root), 'utf8');
 const json = async (file) => JSON.parse(await read(file));
-const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger, countryFlags, teamProfiles] = await Promise.all([
+const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, archetypeProfiles, playerHistory, crestCatalog, editionFiles, template, correctionSource, ledger, countryFlags, teamProfiles, styles, application] = await Promise.all([
   json('data/seasons/laliga/2008-09/pilot-base.json'),
   json('data/seasons/laliga/2008-09/conversions.json'),
   json('data/seasons/italy/2009-10/inter.json'),
@@ -21,6 +21,8 @@ const [db, conversion, inter, catalog, dictionary, rules, competitionCatalog, ar
   json('data/catalog/player-corrections.json'),
   json('assets/flags/3x2.json'),
   json('data/seasons/laliga/2008-09/team-profiles.json'),
+  read('app/styles.css'),
+  read('app/app.js'),
 ]);
 const check = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -352,6 +354,8 @@ const changes = importing
 db.playerSeasons = corrections.replay(db.playerSeasons, changes, 'APPROVED');
 db.playerCorrections = changes;
 const tokens = {
+  __F2B_STYLES__: styles,
+  __F2B_APP__: application,
   __F2B_EMBEDDED_DATA__: JSON.stringify(db).replaceAll('<','\\u003c'),
   __F2B_CORRECTION_MODULE__: correctionSource.replace(/^export /, ''),
 };
